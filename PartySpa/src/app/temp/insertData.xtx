@@ -1,0 +1,12 @@
+-- select * from activity;
+-- select * from party;
+-- delete from activity where partyId >=3;
+
+-- insert into activity(partyId,userId,ApplyDate,ActAmt,IsWaiting,MyNo,CheckOver)
+-- select 15,userId,ApplyDate,ActAmt,IsWaiting,MyNo,CheckOver from activity where PartyId=2;
+
+-- select * from liker;
+-- insert into Liker(PartyId,UserId,LikerId,AddedDate)
+-- select 15,UserId,LikerId,AddedDate from Liker where PartyId=1
+
+-- select * from Message

@@ -1,0 +1,38 @@
+
+<div class="jumbotron container-fluid">
+    <div class="text-center mt-2">
+        <h3 style="color: red">我的投票及個人得票</h3>
+    </div>
+
+    <div class="row">
+          <div class="btn-group">
+              <button class="btn btn-primary" btnRadio="1" (click)="loadMembers(1)">我投票的人</button>
+              &nbsp;&#160;
+              <button class="btn btn-primary" btnRadio="0" (click)="loadMembers(0)">投給我的人</button>
+              <!-- <strong>
+                  我的票數是: {{memberList.length}}
+              </strong> -->
+          </div>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+      <div *ngFor="let user of userList" class="card col-lg-3 col-md-6 col-sm-12 mt-3">
+        <app-member-card [user]="user"></app-member-card>
+        <div class="card-footer">
+          <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item">
+              <button class="btn btn-primary" [routerLink]="['/member',user.userId,'activity',this.currentPartyId,'memberDetail']">
+                &nbsp;<i class="fa fa-user fa-2x"></i>&nbsp;
+              </button>
+            </li>
+            <!-- <li class="list-inline-item">
+            <button class="btn btn-primary" (click)="sendLike(member.userId)">
+              &nbsp;<i class="fa fa-heart fa-2x"></i>
+            </button></li>
+          <li class="list-inline-item"><button class="btn btn-primary">&nbsp;<i class="fa fa-envelope fa-2x"></i>&nbsp;</button></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

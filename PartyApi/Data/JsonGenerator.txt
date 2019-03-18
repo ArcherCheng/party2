@@ -1,0 +1,75 @@
+
+https://www.json-generator.com/#
+
+
+[
+  '{{repeat(100)}}',
+  {
+    FirstName: '{{firstName("male")}}',
+    LastName: '{{surname()}}',
+    Phone: '{{index(9987654100)}}',
+    Email: '{{email()}}',
+    Sex: '1',
+    Birthday: '{{date(new Date(1950,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
+    Marry: '{{random(1,2)}}',
+    Education: '{{random(3,4,5,6)}}',
+    Heights: '{{integer(155,185)}}',
+    Weights: '{{integer(50,90)}}',
+    Salary: '{{integer(30,300)}}',
+    Blood: '{{random("A","B","O","AB")}}',
+    City: '{{random("台北市","新北市","桃園市","新竹縣市","苗栗縣","基隆市","宜蘭縣","台中市","台南市","高雄市","其他")}}',
+    Star: '{{random("水瓶座","雙魚座","牡羊座","金牛座","雙子座","巨蟹座","獅子座","處女座","天秤座","天蠍座","射手座","魔羯座")}}',
+    LastDate: '{{date(new Date(2018,0,1), new Date(2018, 9, 30), "YYYY-MM-dd")}}',
+    LastActive: function(){return this.LastDate; },
+    Introduction: '{{lorem(1, "paragraphs")}}',
+    LikeCondition: '{{lorem(1, "paragraphs")}}',
+    Photos: [
+        {
+          PhotoUrl: function(num) {
+          return 'https://randomuser.me/api/portraits/men/' + num.index(1) + '.jpg';
+        },
+        IsMain: true,
+        Descriptions: '{{lorem()}}'
+      }
+    ]
+  }
+]
+
+[
+  '{{repeat(100)}}',
+  {
+    FirstName: '{{firstName("female")}}',
+    LastName: '{{surname()}}',
+    Phone: '{{index(9987654200)}}',
+    Email: '{{email()}}',
+    Sex: '2',
+    Birthday: '{{date(new Date(1960,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
+    Marry: '{{random(1,2)}}',
+    Education: '{{random(3,4,5,6)}}',
+    Heights: '{{integer(150,175)}}',
+    Weights: '{{integer(40,70)}}',
+    Salary: '{{integer(30,300)}}',
+    Blood: '{{random("A","B","O","AB")}}',
+    City: '{{random("台北市","新北市","桃園市","新竹縣市","苗栗縣","基隆市","宜蘭縣","台中市","台南市","高雄市","其他")}}',
+    Star: '{{random("水瓶座","雙魚座","牡羊座","金牛座","雙子座","巨蟹座","獅子座","處女座","天秤座","天蠍座","射手座","魔羯座")}}',
+    LastDate: '{{date(new Date(2018,0,1), new Date(2018, 9, 30), "YYYY-MM-dd")}}',
+    LastActive: function(){return this.LastDate; },
+    Introduction: '{{lorem(1, "paragraphs")}}',
+    LikeCondition: '{{lorem(1, "paragraphs")}}',
+    Photos: [
+        {
+          PhotoUrl: function(num) {
+          return 'https://randomuser.me/api/portraits/women/' + num.index(1) + '.jpg';
+        },
+        IsMain: true,
+        Descriptions: '{{lorem()}}'
+      }
+    ]
+  }
+]
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <div *ngFor="let party of partyList" class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card mb-5">
+        <app-party-card [party]="party"></app-party-card>
+        <a class="btn btn-primary w-100 " [routerLink]="['/party/detail/',party.partyId]" role="button">查看活動詳細資料</a>
+      </div>
+    </div>
+  </div>
+</div>

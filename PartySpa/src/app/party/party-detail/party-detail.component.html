@@ -1,0 +1,102 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h4>
+            <strong>{{party.partyName}}</strong>
+          </h4>
+        </div>
+        <div class="card-body">
+          <div class="party-title">
+            <p>
+              <strong>活動日期: </strong>
+              <span>{{party.partyDate | date:"yyyy-MM-dd, EEEE"}}</span>
+            </p>
+            <p>
+              <strong>活動時間: </strong>
+              <span>{{party.beginTime}} - {{party.endTime}}</span>
+            </p>
+            <p>
+              <strong>參加條件: </strong>
+              <span>{{party.marry | marryCondition}}</span>
+            </p>
+            <p>
+              <strong>預定人數: </strong>
+              <span>{{party.persons}} 人</span>
+            </p>
+            <hr>
+          </div>
+          <div class="party-boy">
+            <p>
+              <strong>男生年齡從: </strong>
+              <span>{{party.manOlds1}} - {{party.manOlds2}} 歲</span>
+            </p>
+            <p>
+              <strong>男生學歷: </strong>
+              <span>{{party.manEducaton | education}} 以上</span>
+            </p>
+            <p>
+              <strong>男生金額: </strong>
+              <span>{{party.manAmt}} 元</span>
+            </p>
+            <hr>
+          </div>
+          <div class="party-girl">
+            <p>
+              <strong>女生年齡從: </strong>
+              <span>{{party.womanOlds1}} - {{party.womanOlds2}} 歲</span>
+            </p>
+            <p>
+              <strong>女生學歷: </strong>
+              <span>{{party.womanEducaton | education}} 以上</span>
+            </p>
+            <p>
+              <strong>女生金額: </strong>
+              <span>{{party.womanAmt}} 元</span>
+            </p>
+            <hr>
+          </div>
+          <div class="party-earlybird">
+            <p>
+              <strong>早鳥優惠日期: </strong>
+              <span>{{party.earlyDate | date:"yyyy-MM-dd, EEEE"}}</span>
+            </p>
+            <p>
+              <strong>男生早鳥金額: </strong>
+              <span>{{party.earlyManAmt}} 元</span>
+            </p>
+            <p>
+              <strong>女生早鳥金額: </strong>
+              <span>{{party.earlyWomanAmt}} 元</span>
+            </p>
+            <hr>
+          </div>
+          <div class="party-restaurant">
+            <p>
+              <strong>餐廳名稱: </strong>
+              <span>{{party.restaurant}}</span>
+            </p>
+            <p>
+              <strong>餐廳地址: </strong>
+              <span>{{party.addressNo}}</span>
+            </p>
+            <p>
+              <strong>交通資訊: </strong>
+              <span>{{party.busNote}}</span>
+            </p>
+            <p>
+              <strong>活動備註: </strong>
+              <span>{{party.notes}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-primary w-100"  (click)="sendActivityOrder(party.partyId)" >我要報名這場活動</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

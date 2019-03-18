@@ -1,0 +1,53 @@
+<!--
+<mat-toolbar color="primary" class="app-header">
+  <button mat-icon-button  (click)="sideNav.toggle()" *ngIf="isHandset$ | async;" >
+    <mat-icon>{{sideNav.opened ? 'close' : 'menu'}}</mat-icon>
+  </button>
+  <span>
+    台北單身派對
+  </span>
+
+  <span class="toolbar-seprator"></span>
+  <div *ngIf="!loggedIn()">
+      <a [routerLink]="['login','login']" class="btn btn-primary" href="#" role="button">使用者登入</a>
+  </div>
+  <div *ngIf="loggedIn()">
+    <span class="mr-1">
+      <img src="{{authService.currentUser.photoUrl || '../assets/user.png'}}" alt="">
+      <img src="{{photoUrl}}" alt="">
+    </span>
+    <a class="text-light" >
+      {{authService.decodedToken?.unique_name}}
+    </a>
+  </div>
+</mat-toolbar>
+-->
+
+<!--
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sideNav class="app-sidenav" fixedInViewport="true"
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? 'push' : 'side'"
+  [opened]="!(isHandset$ | async)" fixedTopGap="64" fixedBottomGap="64" >
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['home']" routerLinkActive="router-link-active"href="">單身派對</a>
+      <a mat-list-item [routerLink]="['party','activity']" routerLinkActive="router-link-active"href="">互動派對</a>
+      <a mat-list-item [routerLink]="['party','history']" routerLinkActive="router-link-active"href="">歷史派對</a>
+      <a mat-list-item [routerLink]="['member','match']" routerLinkActive="router-link-active"href="">電腦配對</a>
+      <a mat-list-item [routerLink]="['member']" routerLinkActive="router-link-active"href="">我的個人資料</a>
+      <a mat-list-item [routerLink]="['member']" routerLinkActive="router-link-active"href="">我的配對條件</a>
+      <a mat-list-item [routerLink]="['home']" routerLinkActive="router-link-active"href="">我的留言管理</a>
+      <a mat-list-item [routerLink]="['home']" routerLinkActive="router-link-active"href="">行前須知</a>
+      <a mat-list-item [routerLink]="['home']" routerLinkActive="router-link-active"href="">活動禮儀</a>
+      <a mat-list-item [routerLink]="['home']" routerLinkActive="router-link-active"href="">約會注意事項</a>
+      <a mat-list-item [routerLink]="['login','login']" routerLinkActive="router-link-active"href="">使用者登入</a>
+      <a mat-list-item [routerLink]="['login','register']" routerLinkActive="router-link-active" >新人註冊</a>
+      <a mat-list-item (click)="logout()" >登出系統</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content class="app-container">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+-->

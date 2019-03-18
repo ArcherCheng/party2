@@ -1,0 +1,278 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <h1 class="text-center">我的個人交友資料</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-sm-12">
+      <div class="card">
+        <app-member-card [user]="user"></app-member-card>
+      </div>
+    </div>
+    <div class="col-lg-8 col-sm-12">
+      <div class="tab-panel">
+        <tabset class="member-tabset" #memberTabs>
+          <tab heading="個人資料">
+            <form #editFrom="ngForm" (ngSubmit)="updateUser()">
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的姓氏:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" name="firstName" [(ngModel)]="user.firstName">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的名字:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" name="lastName" [(ngModel)]="user.lastName">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">行動電話:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" name="phone" [(ngModel)]="user.phone">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">電子郵件:</label>
+                <div class="col-sm-10">
+                  <input class="form-control" name="email" [(ngModel)]="user.email">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的性別: </label>
+                <div class="col-sm-10">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" [value]="1" [(ngModel)]="user.sex">
+                    <label class="form-check-label">我是男生</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" [value]="2" [(ngModel)]="user.sex">
+                    <label class="form-check-label">我是女生</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">婚姻狀況:</label>
+                <div class="col-sm-10">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="marry" [value]="1" id="marry1"
+                      [(ngModel)]="user.marry">
+                    <label class="form-check-label" for="marry1">單身未婚</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="marry" [value]="2" id="marry2"
+                      [(ngModel)]="user.marry">
+                    <label class="form-check-label" for="marry2">二春無小孩</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="marry" [value]="3" id="marry2"
+                      [(ngModel)]="user.marry">
+                    <label class="form-check-label" for="marry2">二春有小孩</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">出生日期:</label>
+                <div class="col-sm-10">
+                  <input type="date" name="birthday" class="form-control" [value]="user.birthday | date:'yyyy-MM-dd'"
+                    (input)="user.birthday=parseDate($event.target.value)">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的身高(CM):</label>
+                <div class="col-sm-10">
+                  <input type="text" name="heights" class="form-control" [(ngModel)]="user.heights">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的體重(KG):</label>
+                <div class="col-sm-10">
+                  <input type="text" name="weights" class="form-control" [(ngModel)]="user.weights">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的年薪(萬):</label>
+                <div class="col-sm-10">
+                  <input type="text" name="salary" class="form-control" [(ngModel)]="user.salary">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">最高學歷:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="education" name="education" [(ngModel)]="user.education">
+                    <option value="0">0.未知</option>
+                    <option value="1">1.小學</option>
+                    <option value="2">2.中學</option>
+                    <option value="3">3.高中(職)</option>
+                    <option value="4">4.大學(專)</option>
+                    <option value="5">5.碩士</option>
+                    <option value="6">6.博士</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">畢業學校:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="school" class="form-control" [(ngModel)]="user.school">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">畢業科系:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="subjects" class="form-control" [(ngModel)]="user.subjects">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的血型:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="blood" name="blood" [(ngModel)]="user.blood">
+                    <option value="">請選擇</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>O</option>
+                    <option>AB</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的星座:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="star" name="star" [(ngModel)]="user.star">
+                    <option value="">請選擇</option>
+                    <option value="水瓶座">水瓶座(1/20-2/18)</option>
+                    <option value="雙魚座">雙魚座(2/19-3/20)</option>
+                    <option value="牡羊座">牡羊座(3/21-4/19)</option>
+                    <option value="金牛座">金牛座(4/20-5/20)</option>
+                    <option value="雙子座">雙子座(5/21-6/21)</option>
+                    <option value="巨蟹座">巨蟹座(6/22-7/22)</option>
+                    <option value="獅子座">獅子座(7/23-8/22)</option>
+                    <option value="處女座">處女座(8/23-9/22)</option>
+                    <option value="天秤座">天秤座(9/23-10/23)</option>
+                    <option value="天蠍座">天蠍座(10/24-11/22)</option>
+                    <option value="射手座">射手座(11/23-12/21)</option>
+                    <option value="魔羯座">魔羯座(12/22-1/19)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">居住城市:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="star" name="city" [(ngModel)]="user.city">
+                    <option value="">請選擇</option>
+                    <option>基隆市</option>
+                    <option>台北市</option>
+                    <option>新北市</option>
+                    <option>桃園市</option>
+                    <option>新竹縣市</option>
+                    <option>苗栗縣</option>
+                    <option>台中市</option>
+                    <option>彰化縣</option>
+                    <option>南投縣</option>
+                    <option>雲林縣</option>
+                    <option>嘉義縣市</option>
+                    <option>台南市</option>
+                    <option>高雄市</option>
+                    <option>屏東縣</option>
+                    <option>宜蘭縣</option>
+                    <option>花蓮縣</option>
+                    <option>台東縣</option>
+                    <option>澎湖金馬</option>
+                    <option>其他</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的職業:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType">
+                    <option value="">請選擇</option>
+                    <option>公職機構</option>
+                    <option>教職機構</option>
+                    <option>軍警消機構</option>
+                    <option>金融機構</option>
+                    <option>醫療機構</option>
+                    <option>上市櫃公司</option>
+                    <option>中小企業公司</option>
+                    <option>百貨餐旅服務業</option>
+                    <option>其他</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">宗教信仰:</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="religion" name="religion" [(ngModel)]="user.religion">
+                    <option value="">請選擇</option>
+                    <option>佛教</option>
+                    <option>道教</option>
+                    <option>基督教</option>
+                    <option>天主教</option>
+                    <option>伊斯蘭教</option>
+                    <option>其他</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">自我介紹:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" name="introduction" rows="6"
+                    [(ngModel)]="user.introduction"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">尋找對像:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" name="likeCondition" rows="6"
+                    [(ngModel)]="user.likeCondition"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                  <button [disabled]="!editFrom.valid" type="submit" class="btn btn-success btn-block">存檔送出</button>
+                </div>
+              </div>
+            </form>
+          </tab>
+
+          <tab heading="上傳相片">
+            <app-member-photo-edit [user]="user" (getUserPhotoChange)="updateMainPhoto($event)"></app-member-photo-edit>
+          </tab>
+
+          <tab heading="配對條件">
+            <app-member-condition-edit [user]="user"></app-member-condition-edit>
+          </tab>
+
+          <tab heading="我的留言">
+            <!-- <app-message></app-message> -->
+          </tab>
+
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+  <Pre>{{editFrom.value | json}}</Pre>
+  <Pre>{{editFrom.status | json}}</Pre>
+-->

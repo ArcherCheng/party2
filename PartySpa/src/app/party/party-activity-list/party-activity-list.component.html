@@ -1,0 +1,22 @@
+<p class="" style="color: red;text-align: center "><strong>注意 : 互動派對有效期為一個月</strong></p>
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <div *ngFor="let party of partyList" class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card mb-5">
+        <app-party-card [party]="party"></app-party-card>
+        <div>
+            <button class="btn btn-success w-100" (click)="activityMemberList(party.partyId)">參加人員名單</button>
+            <button class="btn btn-danger w-100" (click)="activityLikeList(party.partyId)">我的配對名單</button>
+            <!-- <button class="btn btn-primary w-100" (click)="activityMemberLike(party.partyId)">派對群組留言</button> -->
+            <!-- <button class="btn btn-info w-100 " (click)="activityMemberLike(party.partyId)">我的留言信箱</button> -->
+        </div>
+        <!-- <div *ngIf="authService.loggedIn()">
+            <a class="btn btn-success w-100 " [routerLink]="['/member',this.authService.decodedToken.nameid, 'activity', party.partyId, 'memberList']" role="button">參加人員名單</a>
+            <a class="btn btn-danger w-100 " [routerLink]="['/member',this.authService.decodedToken.nameid, 'activity', party.partyId, 'memberLike']" role="button">我的個人得票</a>
+            <a class="btn btn-primary w-100 " [routerLink]="['/party/detail/',party.partyId]" role="button">派對群組留言</a>
+            <a class="btn btn-info w-100 " [routerLink]="['/party/detail/',party.partyId]" role="button">我的留言信箱</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

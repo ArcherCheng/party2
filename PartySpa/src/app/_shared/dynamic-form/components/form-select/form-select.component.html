@@ -1,0 +1,9 @@
+<div [formGroup]="group" class="form-group">
+  <label>{{config.label}}</label>
+  <select class="form-control" [formControlName]="config.name" >
+    <option value="">{{config.placeholder}}</option>
+    <option *ngFor="let item of config.options">
+      {{item}}
+    </option>
+  </select>
+</div>
