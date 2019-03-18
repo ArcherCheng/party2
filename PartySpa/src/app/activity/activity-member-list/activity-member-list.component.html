@@ -5,20 +5,20 @@
       <div class="card-footer">
         <ul class="list-inline member-icons animate text-center">
           <li class="list-inline-item">
-            <button class="btn btn-primary"
-              [routerLink]="['/member',item.userId,'activity',this.currentPartyId,'memberDetail']">
+            <a class="btn btn-primary" [routerLink]="['/activity/member',item.userId,'memberDetail']"
+              [queryParams]="{partyId: currentPartyId}">
               &nbsp;<i class="fa fa-user fa-2x"></i>&nbsp;
-            </button>
+          </a>
           </li>
           <li class="list-inline-item">
             <button class="btn btn-primary" (click)="sendLike(item.userId)">
               &nbsp;<i class="fa fa-heart fa-2x"></i>
             </button></li>
           <li class="list-inline-item">
-            <button class="btn btn-primary"
-              [routerLink]="['/member',item.userId,'activity',this.currentPartyId,'memberDetail']"
-              [queryParams]="{tab: 3}" routerLinkActive="router-link-active">&nbsp;<i
-                class="fa fa-envelope fa-2x"></i>&nbsp;</button>
+            <button class="btn btn-primary" [routerLink]="['/activity/member',item.userId,'memberDetail']"
+              [queryParams]="{tab: 3, partyId: currentPartyId}">
+              &nbsp;<i class="fa fa-envelope fa-2x"></i>&nbsp;
+            </button>
           </li>
         </ul>
       </div>

@@ -5,20 +5,30 @@ import { ActivityRoutingModule } from './activity-routing.module';
 import { ActivityLikeListComponent } from './activity-like-list/activity-like-list.component';
 import { ActivityMemberListComponent } from './activity-member-list/activity-member-list.component';
 import { SharedModule } from '../_shared/shared.module';
-import { MemberModule } from '../member/member.module';
-import { MemberCardComponent } from '../member/member-card/member-card.component';
+import { MemberDetailComponent } from './member-detail/member-detail.component';
+import { MemberMessageComponent } from './member-message/member-message.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 
 @NgModule({
   declarations: [
     ActivityMemberListComponent,
     ActivityLikeListComponent,
-    MemberCardComponent,
+    MemberDetailComponent,
+    MemberMessageComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    // MemberModule,
-    ActivityRoutingModule
+    ActivityRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxGalleryModule,
+    FileUploadModule,
+    TabsModule.forRoot()
   ]
 })
 export class ActivityModule { }

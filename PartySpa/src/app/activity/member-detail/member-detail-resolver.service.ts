@@ -18,6 +18,7 @@ export class MemberDetailResolverService implements Resolve<User> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
+    // alert('MemberDetailResolverService');
     return this.userService.get(route.params.userId).pipe(
         catchError(error => {
             this.alertify.error(error.error);

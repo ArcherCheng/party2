@@ -23,16 +23,17 @@ export class UserService {
   baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
-  get(userId): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'member/' + userId);  // , httpOptions
+  get(userId: number): Observable<User> {
+    // alert(this.baseUrl + 'member/' + userId + '/memberDetail')
+    return this.http.get<User>(this.baseUrl + 'member/' + userId + '/memberDetail');  // , httpOptions
   }
 
-  getCondition(userId): Observable<UserCondition> {
+  getCondition(userId: number): Observable<UserCondition> {
     return this.http.get<UserCondition>(this.baseUrl + 'member/' + userId + '/Condition');  // , httpOptions
   }
 
 
-  getPhotos(userId): Observable<Photo[]> {
+  getPhotos(userId: number): Observable<Photo[]> {
     return this.http.get<Photo[]>(this.baseUrl + 'member/' + userId + '/Photos');  // , httpOptions
   }
 

@@ -4,17 +4,24 @@ import { ActivityMemberListComponent } from './activity-member-list/activity-mem
 import { ActivityMemberListResolverService } from './activity-member-list/activity-member-list-resolver.service';
 import { ActivityLikeListComponent } from './activity-like-list/activity-like-list.component';
 import { ActivityLikeListResolverService } from './activity-like-list/activity-like-list-resolver.service';
+import { MemberDetailComponent } from './member-detail/member-detail.component';
+import { MemberDetailResolverService } from './member-detail/member-detail-resolver.service';
 
 const routes: Routes = [
   {
-    path: 'member/:userId/party/:partyId/memberList',
+    path: 'member/:myUserId/party/:partyId/memberList',
     component: ActivityMemberListComponent,
     resolve: {apiListResult: ActivityMemberListResolverService}
   },
   {
-    path: 'member/:userId/party/:partyId/likeList',
+    path: 'member/:myUserId/party/:partyId/likeList',
     component: ActivityLikeListComponent,
     resolve: {apiListResult: ActivityLikeListResolverService}
+  },
+  {
+    path: 'member/:userId/memberDetail',
+    component: MemberDetailComponent,
+    resolve: {apiResult: MemberDetailResolverService}
   },
 ];
 

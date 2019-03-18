@@ -30,19 +30,18 @@ export class PartyActivityListComponent implements OnInit {
       this.alertify.warning('您尚未登入，無法查詢參加人員名單');
       // this.router.navigate(['/login/login']);
     } else {
-      this.alertify.warning('activityMemberList');
+      // this.alertify.warning('activityMemberList');
       this.router.navigate(['activity/member', this.authService.decodedToken.nameid, 'party', partyId, 'memberList']);
     }
   }
 
   activityLikeList(partyId: number) {
-      if (!this.authService.loggedIn()) {
+    if (!this.authService.loggedIn()) {
       this.alertify.warning('請先登入系統，才可以查詢您個人的投票配對名單');
     } else {
-      this.alertify.warning('activityLikeList');
+      // this.alertify.warning('activityLikeList');
       this.router.navigate(['activity/member', this.authService.decodedToken.nameid, 'party', partyId, 'likeList']);
     }
-
   }
 
 }

@@ -43,8 +43,7 @@ namespace PartyApi.Controllers
             return Ok(dto4List);
         }
 
-
-        [HttpGet("{userId}")]
+        [HttpGet("{userId}/memberDetail")]
         public async Task<IActionResult> Get(int userId)
         {
             var member = await _repo.GetDetail(userId);
@@ -77,7 +76,7 @@ namespace PartyApi.Controllers
         }
 
 
-        [HttpGet("{userId}/activity/{partyId}/memberDetail")]
+        [HttpGet("{userId}/party/{partyId}/memberDetail")]
         public async Task<IActionResult> Get(int userId, int partyId)
         {
             var member = await _repo.Get(userId);

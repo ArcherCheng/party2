@@ -7,23 +7,19 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 
-import { MemberDetailComponent } from './member-detail/member-detail.component';
-import { MemberCardComponent } from './member-card/member-card.component';
 import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberMatchListComponent } from './member-match-list/member-match-list.component';
-import { MemberMessageComponent } from './member-message/member-message.component';
 import { MemberConditionEditComponent } from './member-condition-edit/member-condition-edit.component';
 import { MemberPhotoEditComponent } from './member-photo-edit/member-photo-edit.component';
+import { Test005Component } from './test005/test005.component';
 
 @NgModule({
   declarations: [
-    MemberDetailComponent,
-    MemberCardComponent,
     MemberEditComponent,
     MemberMatchListComponent,
-    MemberMessageComponent,
     MemberConditionEditComponent,
-    MemberPhotoEditComponent
+    MemberPhotoEditComponent,
+    Test005Component
   ],
   imports: [
     CommonModule,
@@ -36,7 +32,6 @@ import { MemberPhotoEditComponent } from './member-photo-edit/member-photo-edit.
     TabsModule.forRoot()
   ],
   exports: [
-    MemberCardComponent
   ]
 })
 export class MemberModule { }

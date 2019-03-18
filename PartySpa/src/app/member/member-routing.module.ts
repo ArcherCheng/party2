@@ -1,27 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MemberDetailComponent } from './member-detail/member-detail.component';
-import { MemberDetailResolverService } from './member-detail/member-detail-resolver.service';
 import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberEditResolverService } from './member-edit/member-edit-resolver.service';
+import { MemberMatchListComponent } from './member-match-list/member-match-list.component';
 
 const routes: Routes = [
-
-  {
-    path: ':userId/memberDetail',
-    component: MemberDetailComponent,
-    resolve: {apiResult: MemberDetailResolverService}
-  },
-  {
+   {
     path: 'edit',
     component: MemberEditComponent,
     resolve: {apiResult: MemberEditResolverService}
   },
   {
-    path: '**',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    path: 'match',
+    component: MemberMatchListComponent,
   },
+
 ];
 
 @NgModule({

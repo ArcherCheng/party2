@@ -19,6 +19,7 @@ export class MemberDetailComponent implements OnInit {
   currentPartyId = 0;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  photoUrl: string;  // 留言頭像用
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +32,14 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit() {
     // this.loadUser();
     this.route.data.subscribe((data: {apiResult: User}) => this.user = data.apiResult);
-    this.currentPartyId = this.route.snapshot.params.partyId;
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    // this.currentPartyId = this.route.snapshot.params.partyId;
+    this.route.queryParams.subscribe(params => {
+      this.currentPartyId = params.partyId;
+      const selectedTab = params.tab;
+      this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
+    });
+
     this.galleryOptions = [
       {
         width: '900px',
@@ -76,9 +84,13 @@ export class MemberDetailComponent implements OnInit {
   }
 
   sendLike(likeId: number) {
+    // alert(this.currentPartyId);
     this.alertify.confirm('確定要投票給這個人嗎?', () => {
-      this.activityService.sendActivityLike(this.authService.decodedToken.nameid, this.route.snapshot.params.partyId, likeId)
-        .subscribe(() => {
+      this.activityService.sendActivityLike(
+        this.authService.decodedToken.nameid,
+        this.currentPartyId,
+        likeId
+        ).subscribe(() => {
           this.alertify.success('投票成功');
         }, error => {
           this.alertify.error(error.error);

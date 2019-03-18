@@ -10,6 +10,7 @@ import { SexPipe } from 'src/app/_shared/enum/sex.pipe';
 
 import { PartyCardComponent } from './component/party-card/party-card.component';
 import { MarryConditionPipe } from './enum/marry-condition.pipe';
+import { MemberCardComponent } from './component/member-card/member-card.component';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('token');
@@ -18,6 +19,7 @@ import { MarryConditionPipe } from './enum/marry-condition.pipe';
 @NgModule({
   declarations: [
     PartyCardComponent,
+    MemberCardComponent,
     EducationPipe,
     MarryPipe,
     SexPipe,
@@ -37,11 +39,12 @@ import { MarryConditionPipe } from './enum/marry-condition.pipe';
     // })
   ],
   exports: [
+    PartyCardComponent,
+    MemberCardComponent,
     EducationPipe,
     MarryPipe,
     MarryConditionPipe,
     SexPipe,
-    PartyCardComponent,
     RouterModule,
     HttpClientModule,
     // JwtModule

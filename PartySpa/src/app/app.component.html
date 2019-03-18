@@ -4,21 +4,19 @@
     <div class="sidebar-heading">主選單</div>
     <div class="list-group list-group-flush">
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
-        routerLinkActive="router-link-active">單身派對</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['test']"
-        routerLinkActive="router-link-active">Test</a>
+        routerLinkActive="router-link-active">單身派對活動</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','activity']"
-        routerLinkActive="router-link-active">互動派對</a>
+        routerLinkActive="router-link-active">互動派對投票</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','history']"
-        routerLinkActive="router-link-active">歷史派對</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','match']"
-        routerLinkActive="router-link-active">電腦配對</a>
+        routerLinkActive="router-link-active">歷史派對相簿</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','edit']"
-        routerLinkActive="router-link-active">我的個人資料</a>
+        routerLinkActive="router-link-active">編輯我的資料</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member']"
-        routerLinkActive="router-link-active">我的配對條件</a>
+        routerLinkActive="router-link-active">我的派對記錄</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
         routerLinkActive="router-link-active">我的留言管理</a>
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','match']"
+        routerLinkActive="router-link-active">開始電腦配對</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
         routerLinkActive="router-link-active">行前須知</a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
@@ -30,6 +28,8 @@
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','register']"
         routerLinkActive="router-link-active">新人註冊</a>
       <a class="list-group-item list-group-item-action bg-light" (click)="logout()">登出系統</a>
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['test']"
+        routerLinkActive="router-link-active">Test</a>
     </div>
   </div>
   <!-- /#sidebar-wrapper -->

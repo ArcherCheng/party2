@@ -10,8 +10,8 @@ const routes: Routes = [
   {path: 'test', component: TestDynamicFormComponent},
   {path: 'login', loadChildren: './login/login.module#LoginModule'},
   {path: 'party', loadChildren: './party/party.module#PartyModule'},
-  {path: 'activity', loadChildren: './activity/activity.module#ActivityModule'},
   {path: 'member', loadChildren: './member/member.module#MemberModule'},
+  {path: 'activity', loadChildren: './activity/activity.module#ActivityModule'},
   {path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];

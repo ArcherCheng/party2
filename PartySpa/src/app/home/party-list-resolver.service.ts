@@ -19,8 +19,8 @@ export class PartyListResolverService implements Resolve<Party[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Party[]> {
     return this.partyService.getNewList().pipe(
       catchError(error => {
-        this.alertify.error('讀取資料失敗');
-        this.router.navigate(['/home']);
+        this.alertify.error(error);
+        this.router.navigate(['/login/login']);
         return EMPTY;
         })
     );
