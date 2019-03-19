@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PartyApi.Models
 {
     public partial class ViewActivitySummary
     {
+        [Key]
         public int PartyId { get; set; }
         public string PartyName { get; set; }
         public int Marry { get; set; }

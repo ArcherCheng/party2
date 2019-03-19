@@ -25,8 +25,8 @@ namespace PartyApi.Models
         public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Party> Party { get; set; }
         public virtual DbSet<PartyPhoto> PartyPhoto { get; set; }
-        //public virtual DbSet<ViewActivitySummary> ViewActivitySummary { get; set; }
-        //public virtual DbSet<ViewActivityMatchUser> ViewActivityMatchUser { get; set; }
+        public virtual DbSet<ViewActivitySummary> ViewActivitySummary { get; set; }
+        public virtual DbSet<ViewActivityMatchUser> ViewActivityMatchUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

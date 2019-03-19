@@ -6,8 +6,8 @@ import { PartyActivityListComponent } from './party-activity-list/party-activity
 import { PartyDetailComponent } from './party-detail/party-detail.component';
 import { PartyHistoryListComponent } from './party-history-list/party-history-list.component';
 import { SharedModule } from '../_shared/shared.module';
-import { PartyHistoryPhotosListComponent } from './party-history-photos-list/party-history-photos-list.component';
-import { PartyMatchStatusComponent } from './party-match-status/party-match-status.component';
+import { PartyPhotoListComponent } from './party-photo-list/party-photo-list.component';
+import { PartyMatchResultComponent } from './party-match-result/party-match-result.component';
 // import { EducationPipe } from '../_shared/enum/education.pipe';
 // import { MarryPipe } from '../_shared/enum/marry.pipe';
 // import { SexPipe } from '../_shared/enum/sex.pipe';
@@ -17,11 +17,8 @@ import { PartyMatchStatusComponent } from './party-match-status/party-match-stat
     PartyDetailComponent,
     PartyActivityListComponent,
     PartyHistoryListComponent,
-    PartyHistoryPhotosListComponent,
-    PartyMatchStatusComponent,
-    // EducationPipe,
-    // MarryPipe,
-    // SexPipe,
+    PartyPhotoListComponent,
+    PartyMatchResultComponent,
   ],
   imports: [
     CommonModule,

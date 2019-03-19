@@ -1,0 +1,7 @@
+.card-header {
+  color: red
+ }
+
+.card-body {
+  background-image: url('/assets/backgrd.gif')
+}

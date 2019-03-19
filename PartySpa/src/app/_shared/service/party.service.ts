@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment.prod';
 import { Party } from '../interface/party';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../interface/pagination';
+import { PartyPhoto } from '../interface/party-photo';
+import { PartySummary } from '../interface/party-summary';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +40,7 @@ export class PartyService {
       params = params.append('pageSize', itemPerPage);
     }
 
-    return this.http.get<Party[]>(this.baseUrl + 'party/old', { observe: 'response', params})
+    return this.http.get<Party[]>(this.baseUrl + 'party/history', { observe: 'response', params})
     .pipe(
       map(response => {
         paginatedResult.result = response.body;
@@ -48,6 +50,14 @@ export class PartyService {
         return paginatedResult;
       })
     );
+  }
+
+  getPartyPhotoList(partyId: number): Observable<PartyPhoto[]> {
+    return this.http.get<PartyPhoto[]>(this.baseUrl + 'party/' + partyId + '/photoList');
+  }
+
+  getPartySummary(partyId: number): Observable<PartySummary> {
+    return this.http.get<PartySummary>(this.baseUrl + 'party/' + partyId + '/summary');
   }
 
   // 建立新的活動

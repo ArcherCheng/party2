@@ -1,35 +1,63 @@
 <div class="d-flex" id="wrapper" #wrapper>
   <!-- Sidebar -->
   <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading">主選單</div>
+    <div class="sidebar-heading bg-success"><strong>派對主選單</strong></div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
-        routerLinkActive="router-link-active">單身派對活動</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','activity']"
-        routerLinkActive="router-link-active">互動派對投票</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','history']"
-        routerLinkActive="router-link-active">歷史派對相簿</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','edit']"
-        routerLinkActive="router-link-active">編輯我的資料</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member']"
-        routerLinkActive="router-link-active">我的派對記錄</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
-        routerLinkActive="router-link-active">我的留言管理</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','match']"
-        routerLinkActive="router-link-active">開始電腦配對</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
-        routerLinkActive="router-link-active">行前須知</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
-        routerLinkActive="router-link-active">活動禮儀</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
-        routerLinkActive="router-link-active">約會注意事項</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','login']"
-        routerLinkActive="router-link-active">使用者登入</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','register']"
-        routerLinkActive="router-link-active">新人註冊</a>
-      <a class="list-group-item list-group-item-action bg-light" (click)="logout()">登出系統</a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['test']"
-        routerLinkActive="router-link-active">Test</a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['home']"
+        routerLinkActive="router-link-active">單身派對活動
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['party','activity']"
+        routerLinkActive="router-link-active">互動派對投票
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['party','history']"
+        routerLinkActive="router-link-active">歷史派對相簿
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['member','edit']"
+        routerLinkActive="router-link-active">我的資料管理
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['home']"
+        routerLinkActive="router-link-active">我的留言回應
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['member']"
+        routerLinkActive="router-link-active">我的派對記錄
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['member','match']"
+        routerLinkActive="router-link-active">我的電腦配對
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['home']"
+        routerLinkActive="router-link-active">行前須知
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['home']"
+        routerLinkActive="router-link-active">活動禮儀
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['home']"
+        routerLinkActive="router-link-active">約會注意事項
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['login','login']"
+        routerLinkActive="router-link-active">使用者登入
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['login','register']"
+        routerLinkActive="router-link-active">新人註冊
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        (click)="logout()">登出系統
+      </a>
+      <!-- <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['test']"
+        routerLinkActive="router-link-active">Test
+      </a> -->
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -37,10 +65,11 @@
   <!-- Page Content -->
   <div id="page-content-wrapper">
 
-    <nav class="navbar navbar-expand navbar-light bg-light zz-fixed-top">
+    <nav class="navbar navbar-expand navbar-light bg-warning zz-fixed-top">
       <button class="btn btn-primary" type="button" id="menu-toggle" (click)="toggleSideBar()">
-        台北單身派對
+          <span class="navbar-toggler-icon"></span>
       </button>
+      <span class="ml-2"> <strong>台北單身派對</strong></span>
       <span class="ml-auto mr-2">
         <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/user.png'}}" alt=""> -->
         <img src="{{photoUrl}}" alt="" id="topbar-photo">

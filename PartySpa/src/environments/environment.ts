@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:5000/api/',
-  pageSize : 8
+  pageSize : 20
 };
 
 /*

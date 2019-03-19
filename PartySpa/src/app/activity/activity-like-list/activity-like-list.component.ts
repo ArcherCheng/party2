@@ -39,6 +39,19 @@ export class ActivityLikeListComponent implements OnInit {
       this.alertify.error(error);
     });
   }
-
+  
+  sendLike(likeId: number) {
+    this.alertify.confirm('確定要投票給這個人嗎?', () => {
+      this.activityService.sendActivityLike(
+        this.authService.decodedToken.nameid,
+        this.route.snapshot.params.partyId,
+        likeId
+      ).subscribe(() => {
+        this.alertify.success('投票成功');
+      }, error => {
+        this.alertify.error(error.error);
+      });
+    });
+  }
 
 }
