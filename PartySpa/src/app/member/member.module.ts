@@ -3,23 +3,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../_shared/shared.module';
 import { MemberRoutingModule } from './member-routing.module';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TabsModule, PaginationModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { MemberEditComponent } from './member-edit/member-edit.component';
-import { MemberMatchListComponent } from './member-match-list/member-match-list.component';
-import { MemberConditionEditComponent } from './member-condition-edit/member-condition-edit.component';
 import { MemberPhotoEditComponent } from './member-photo-edit/member-photo-edit.component';
-import { Test005Component } from './test005/test005.component';
+import { MemberPartyListComponent } from './member-party-list/member-party-list.component';
 
 @NgModule({
   declarations: [
     MemberEditComponent,
-    MemberMatchListComponent,
-    MemberConditionEditComponent,
     MemberPhotoEditComponent,
-    Test005Component
+    MemberPartyListComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +24,7 @@ import { Test005Component } from './test005/test005.component';
     FormsModule,
     ReactiveFormsModule,
     NgxGalleryModule,
+    PaginationModule,
     FileUploadModule,
     TabsModule.forRoot()
   ],

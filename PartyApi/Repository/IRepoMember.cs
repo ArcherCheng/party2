@@ -19,7 +19,5 @@ namespace PartyApi.Repository
         //Task<Activity> GetMemberParty(int userId,int partyId);
         //Task<bool> CheckPartyLike(int userId, int partyId, int receiveId);
         //Task<int> CountPartyLikes(int userId, int partyId);
-
-
     }
 }

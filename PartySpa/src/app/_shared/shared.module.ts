@@ -11,6 +11,7 @@ import { SexPipe } from 'src/app/_shared/enum/sex.pipe';
 import { PartyCardComponent } from './component/party-card/party-card.component';
 import { MarryConditionPipe } from './enum/marry-condition.pipe';
 import { MemberCardComponent } from './component/member-card/member-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // export function tokenGetter() {
 //   return localStorage.getItem('token');
@@ -47,6 +48,9 @@ import { MemberCardComponent } from './component/member-card/member-card.compone
     SexPipe,
     RouterModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+
     // JwtModule
   ]
 })

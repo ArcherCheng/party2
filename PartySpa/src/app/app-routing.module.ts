@@ -11,7 +11,10 @@ const routes: Routes = [
   {path: 'login', loadChildren: './login/login.module#LoginModule'},
   {path: 'party', loadChildren: './party/party.module#PartyModule'},
   {path: 'member', loadChildren: './member/member.module#MemberModule'},
+  {path: 'messages', loadChildren: './messages/messages.module#MessagesModule'},
   {path: 'activity', loadChildren: './activity/activity.module#ActivityModule'},
+  {path: 'match', loadChildren: './match/match.module#MatchModule'},
+  {path: 'notes', loadChildren: './notes/notes.module#NotesModule'},
   {path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];

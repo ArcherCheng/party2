@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PartyApi.Controllers;
 using PartyApi.Dtos;
+using PartyApi.Helpers;
 using PartyApi.Models;
 using PartyApi.Repository;
 
@@ -169,28 +170,21 @@ namespace PartyApi.Controllers
             return Ok(dtoMemberList);
         }
 
-        // [HttpGet("MyActivityList")]
-        // public async Task<IActionResult> GetMyActivityList(int userId, int partyId, int isMyLike)
-        // {
-        //     if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-        //         return Unauthorized();
+        [HttpGet("MyActivityList")]
+        public async Task<IActionResult> GetMyActivityList(int userId, [FromQuery]ParaActivity para)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
 
-        //     // var member = await _repoMember.Get(userId);
-        //     // if (member == null)
-        //     //     return NotFound();
+            var results = await _repo.GetMyActivityList(userId,para);
+            if (results == null)
+                return NotFound();
 
-        //     var activity = await _repo.GetActivityMember(userId, partyId);
-        //     if (activity == null)
-        //         return BadRequest("您没有報名此活動,無法使用此功能");
+            Response.AddPagination(results.CurrentPage, para.PageSize, results.TotalCount, results.TotalPages);
 
-        //     var isTrue = isMyLike > 0 ? true : false;
-
-        //     var likeMembers = await _repo.GetActivityLikeList(userId, partyId, isTrue);
-
-        //     var dtoMemberList = _mapper.Map<IEnumerable<DtoMemberList>>(likeMembers);
-
-        //     return Ok(dtoMemberList);
-        // }
+            // var dto4List = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
+            return Ok(results);
+        }
 
     }
 }

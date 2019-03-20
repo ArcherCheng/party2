@@ -1,0 +1,114 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <h3 class="text-center">我的電腦自動配對條件設定</h3>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>對像條件從:</label>
+                <select class="form-control" id="marryMin" name="marryMin" formControlName="marryMin" >
+                    <option value="1">1.單身未婚</option>
+                    <option value="2">2.二春無小孩</option>
+                    <option value="3">3.二春有小孩</option>
+                  </select>
+              </div>
+              <div class="form-group col-6">
+                <label>對像條件到:</label>
+                <select class="form-control" id="marryMax" name="marryMax" formControlName="marryMax" >
+                    <option value="1">1.單身未婚</option>
+                    <option value="2">2.二春無小孩</option>
+                    <option value="3">3.二春有小孩</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>最小年齡從:</label>
+                <input type="number" class="form-control" formControlName="oldsMin">
+              </div>
+              <div class="form-group col-6">
+                <label>最大年齡到:</label>
+                <input type="number" class="form-control" formControlName="oldsMax">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>最低學歷從:</label>
+                <select class="form-control" id="educationMin" name="educationMin" formControlName="educationMin" >
+                    <option value="0">0.未設定</option>
+                    <option value="1">1.小學</option>
+                    <option value="2">2.中學</option>
+                    <option value="3">3.高中(職)</option>
+                    <option value="4">4.大學(專)</option>
+                    <option value="5">5.碩士</option>
+                    <option value="6">6.博士</option>
+                  </select>
+              </div>
+              <div class="form-group col-6">
+                <label>最高學歷到:</label>
+                <select class="form-control" id="educationMax" name="educationMax" formControlName="educationMax" >
+                    <option value="0">0.未設定</option>
+                    <option value="1">1.小學</option>
+                    <option value="2">2.中學</option>
+                    <option value="3">3.高中(職)</option>
+                    <option value="4">4.大學(專)</option>
+                    <option value="5">5.碩士</option>
+                    <option value="6">6.博士</option>
+                  </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>最小身高從:</label>
+                <input type="number" class="form-control" formControlName="heightsMin">
+              </div>
+              <div class="form-group col-6">
+                <label>最大身高到:</label>
+                <input type="number" class="form-control" formControlName="heightsMax">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>最小體重從:</label>
+                <input type="number" class="form-control" formControlName="weightsMin">
+              </div>
+              <div class="form-group col-6">
+                <label>最大體重到:</label>
+                <input type="number" class="form-control" formControlName="weightsMax">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>最低年薪(萬):</label>
+              <input type="number" class="form-control" formControlName="salaryMin">
+            </div>
+            <div class="form-group form-group form-check">
+                <p>血型條件:</p>
+                <div>
+                  <input type="text" class="form-control" formControlName="bloodInclude">
+               </div>
+            </div>
+            <div class="form-group">
+              <label>星座條件:</label>
+              <input type="text" class="form-control" formControlName="starInclude">
+            </div>
+            <div class="form-group">
+              <label>居住地區條件:</label>
+              <input type="text" class="form-control" formControlName="cityInclude">
+            </div>
+            <div class="form-group">
+              <label>職業類別條件:</label>
+              <input type="text" class="form-control" formControlName="jobTypeInclude">
+            </div>
+            <div class="form-group">
+              <label>宗教信仰條件:</label>
+              <input type="text" class="form-control" formControlName="religionInclude">
+            </div>
+            <div class="form-row">
+              <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">存檔送出</button>
+            </div>
+          </form>
+    </div>
+  </div>
+</div>

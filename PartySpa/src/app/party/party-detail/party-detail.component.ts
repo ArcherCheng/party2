@@ -27,7 +27,9 @@ export class PartyDetailComponent implements OnInit {
   sendActivityOrder(partyId: number) {
     if (!this.authService.loggedIn()) {
       this.alertify.warning('您尚未登入,無法使用本功能');
-    } else {
+      return;
+    }
+    this.alertify.confirm('確定要參加這一場活動嗎?', () => {
       this.activityService.sendActivityOrder(this.authService.decodedToken.nameid, partyId)
       .subscribe(
         data => {
@@ -36,6 +38,6 @@ export class PartyDetailComponent implements OnInit {
           this.alertify.error(error.error);
         }
       );
-    }
+    });
   }
 }

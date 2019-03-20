@@ -14,7 +14,8 @@ namespace PartyApi.Controllers
 {
     // [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
-    [Route("api/users/{userId}/[controller]")]
+    // [Route("api/[controller]/user/{userId}")]
+    [Route("api/user/{userId}/[controller]")]
     [ApiController]
 
     public class MessageController : BaseController

@@ -2,17 +2,25 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberEditResolverService } from './member-edit/member-edit-resolver.service';
-import { MemberMatchListComponent } from './member-match-list/member-match-list.component';
+import { MemberPartyListComponent } from './member-party-list/member-party-list.component';
+import { AuthGuard } from '../_shared/guard/auth.guard';
 
 const routes: Routes = [
    {
-    path: 'edit',
-    component: MemberEditComponent,
-    resolve: {apiResult: MemberEditResolverService}
-  },
-  {
-    path: 'match',
-    component: MemberMatchListComponent,
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'edit',
+        component: MemberEditComponent,
+        resolve: {apiResult: MemberEditResolverService}
+      },
+      {
+        path: 'partyList',
+        component: MemberPartyListComponent,
+      },
+    ]
   },
 
 ];

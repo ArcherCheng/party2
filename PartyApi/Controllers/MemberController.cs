@@ -32,7 +32,6 @@ namespace PartyApi.Controllers
         }
 
         #region HttpGet read data from db
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetList([FromQuery]ParaMember para)
         {
@@ -43,7 +42,7 @@ namespace PartyApi.Controllers
             return Ok(dto4List);
         }
 
-        [HttpGet("{userId}/memberDetail")]
+         [HttpGet("{userId}/memberDetail")]
         public async Task<IActionResult> Get(int userId)
         {
             var member = await _repo.GetDetail(userId);

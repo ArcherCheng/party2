@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PartyApi.Helpers;
 using PartyApi.Models;
 
 namespace PartyApi.Repository
@@ -74,5 +75,13 @@ namespace PartyApi.Repository
             }        
         }
 
+        public async Task<PageList<Activity>> GetMyActivityList(int userId, ParaActivity para)
+        {
+           var results = _db.Activity
+                .Where(x=>x.UserId == userId)
+                .OrderByDescending(p=>p.PartyId)
+                .AsQueryable();
+
+            return await PageList<Activity>.CreateAsync(results,para.PageNumber,para.PageSize);        }
     }
 }
