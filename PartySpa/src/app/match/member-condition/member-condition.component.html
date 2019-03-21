@@ -1,7 +1,8 @@
 <div class="jumbotron container-fluid">
   <div class="row">
-    <h3 class="text-center">我的電腦自動配對條件設定</h3>
+    <h3 class="text-primary">我的電腦自動配對條件設定</h3>
   </div>
+  <p  class="text-danger">(空白或零為不設定條件)</p>
   <div class="row">
     <div class="col-12">
         <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
@@ -83,32 +84,53 @@
               <label>最低年薪(萬):</label>
               <input type="number" class="form-control" formControlName="salaryMin">
             </div>
-            <div class="form-group form-group form-check">
+            <div class="form-group">
                 <p>血型條件:</p>
-                <div>
-                  <input type="text" class="form-control" formControlName="bloodInclude">
-               </div>
+                <div *ngFor="let item of bloodList; let i = index" class="">
+                    <input type="checkbox" [id]="'bloodInclude'+i" formControlName="bloodInclude"
+                    [value]="item" (click)="pushValue($event.target.checked, item)">
+                    <label class="form-check-label" [for]="'bloodInclude'+i">{{item}}</label>
+                </div>
+              </div>
+            <div class="form-group">
+              <p>星座條件:</p>
+              <div *ngFor="let item of starList; let i = index" class="" >
+                  <input type="checkbox" [id]="'starInclude'+i" formControlName="starInclude"
+                  [value]="item" (click)="pushValue($event.target.checked, item)">
+                  <label class="form-check-label" [for]="'starInclude'+i">{{item}}</label>
+              </div>
             </div>
             <div class="form-group">
-              <label>星座條件:</label>
-              <input type="text" class="form-control" formControlName="starInclude">
+              <p>居住地區條件:</p>
+              <div *ngFor="let item of cityList; let i = index" class="" >
+                  <input type="checkbox" [id]="'cityInclude'+i" formControlName="cityInclude"
+                  [value]="item" (click)="pushValue($event.target.checked, item)">
+                  <label class="form-check-label" [for]="'cityInclude'+i">{{item}}</label>
+              </div>
             </div>
             <div class="form-group">
-              <label>居住地區條件:</label>
-              <input type="text" class="form-control" formControlName="cityInclude">
+              <p>職業類別條件:</p>
+              <div *ngFor="let item of jobList; let i = index" >
+                  <input type="checkbox" [id]="'jobTypeInclude'+i" formControlName="jobTypeInclude"
+                  [value]="item" (click)="pushValue($event.target.checked, item)">
+                  <label class="form-check-label" [for]="'jobTypeInclude'+i">{{item}}</label>
+              </div>
             </div>
             <div class="form-group">
-              <label>職業類別條件:</label>
-              <input type="text" class="form-control" formControlName="jobTypeInclude">
-            </div>
-            <div class="form-group">
-              <label>宗教信仰條件:</label>
-              <input type="text" class="form-control" formControlName="religionInclude">
+              <p>宗教信仰條件:</p>
+              <div *ngFor="let item of religionList; let i = index" >
+                  <input type="checkbox" [id]="'religionInclude'+i" formControlName="religionInclude"
+                  [value]="item" (click)="pushValue($event.target.checked, item)">
+                  <label class="form-check-label" [for]="'religionInclude'+i">{{item}}</label>
+              </div>
             </div>
             <div class="form-row">
-              <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">存檔送出</button>
+              <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">送出配對</button>
             </div>
           </form>
     </div>
   </div>
 </div>
+
+<p>Form valid: {{ myFormGroup.valid }} </p>
+<p>Form value: {{ myFormGroup.value | json }}</p>

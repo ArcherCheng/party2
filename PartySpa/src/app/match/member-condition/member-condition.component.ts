@@ -5,6 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_shared/service/auth.service';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { UserService } from 'src/app/_shared/service/user.service';
+import { StarList } from 'src/app/_shared/enum/star-list';
+import { BloodList } from 'src/app/_shared/enum/blood-list';
+import { JobTypeList } from 'src/app/_shared/enum/job-typr-list';
+import { ReligionList } from 'src/app/_shared/enum/religion-list';
+import { CityList } from 'src/app/_shared/enum/city-list';
 
 @Component({
   selector: 'app-member-condition',
@@ -14,6 +19,11 @@ import { UserService } from 'src/app/_shared/service/user.service';
 export class MemberConditionComponent implements OnInit {
   myFormGroup: FormGroup;
   userCondition: UserCondition;
+  bloodList = BloodList;
+  religionList = ReligionList;
+  starList = StarList;
+  cityList = CityList;
+  jobList = JobTypeList;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,5 +67,23 @@ export class MemberConditionComponent implements OnInit {
     // this.userService.updateMember()
 
   }
+
+  pushValue(check, item) {
+    // const haveItem = this.checkboxVal.includes(item);
+    // if (check) {
+    //   if (!haveItem) {
+    //     this.checkboxVal.push(item);
+    //   }
+    // } else {
+    //   if (haveItem) {
+    //     this.checkboxVal = this.checkboxVal.filter((ele) => {
+    //       return ele !== item;
+    //     });
+    //   }
+    // }
+    // this.checkbocValObj[this.config.name] = this.checkboxVal;
+    // this.checkboxValueService.postValue(this.checkbocValObj);
+  }
+
 
 }
