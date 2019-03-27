@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginationModule, TabsModule } from 'ngx-bootstrap';
 
 import { EducationPipe } from 'src/app/_shared/pipe/education.pipe';
 import { MarryPipe } from 'src/app/_shared/pipe/marry.pipe';
@@ -11,27 +12,30 @@ import { MarryConditionPipe } from './pipe/marry-condition.pipe';
 
 import { PartyCardComponent } from './component/party-card/party-card.component';
 import { MemberCardComponent } from './component/member-card/member-card.component';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
     PartyCardComponent,
     MemberCardComponent,
     EducationPipe,
-    MarryPipe,
     SexPipe,
+    MarryPipe,
     MarryConditionPipe,
   ],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule,
-  ],
-  exports: [
-    RouterModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    PaginationModule,
+    NgxGalleryModule,
+    FileUploadModule,
+    TabsModule.forRoot(),
+  ],
+  exports: [
     PartyCardComponent,
     MemberCardComponent,
 
@@ -39,6 +43,15 @@ import { MemberCardComponent } from './component/member-card/member-card.compone
     MarryPipe,
     MarryConditionPipe,
     SexPipe,
+
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PaginationModule,
+    NgxGalleryModule,
+    FileUploadModule,
+    TabsModule,
   ]
 })
 export class SharedModule { }

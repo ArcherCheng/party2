@@ -10,6 +10,7 @@ import { DynamicFormComponent } from '../_shared/dynamic-form/container/dynamic-
 })
 export class TestDynamicFormComponent implements OnInit, AfterViewInit {
   @ViewChild('dynamicForm') dynamicForm: DynamicFormComponent;
+  groupvalue: any;
   // formsPool: { [formType: string]: FieldConfig[] } = {}
     music: FieldConfig[] = [
       {
@@ -17,6 +18,24 @@ export class TestDynamicFormComponent implements OnInit, AfterViewInit {
         label: '喜欢的音乐人',
         name: 'singerName',
         placeholder: '泽野弘之',
+        disabled: false,
+        validations: [Validators.required, Validators.minLength(2)]
+      },
+      {
+        type: 'input',
+        label: '音乐人生日',
+        inputType: 'date',
+        name: 'singerDate',
+        placeholder: '生日',
+        disabled: false,
+        validations: [Validators.required, Validators.minLength(2)]
+      },
+      {
+        type: 'input',
+        label: '音乐人產量',
+        inputType: 'number',
+        name: 'singerDate',
+        placeholder: '產量',
         disabled: false,
         validations: [Validators.required, Validators.minLength(2)]
       },
@@ -92,6 +111,7 @@ export class TestDynamicFormComponent implements OnInit, AfterViewInit {
 
   onSubmit(event) {
     console.log(event);
+    this.groupvalue = event;
   }
 
 }

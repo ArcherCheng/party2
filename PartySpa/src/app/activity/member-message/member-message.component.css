@@ -1,5 +1,6 @@
 .card {
   border: none;
+  /* height: 60vh; */
 }
 /*
 .chat {
@@ -21,5 +22,5 @@
 
 .card-body {
   overflow-y: scroll;
-  height: 400px;
+  height: 500px;
 }

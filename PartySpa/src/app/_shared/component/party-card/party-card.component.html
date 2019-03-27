@@ -3,9 +3,9 @@
   </div>
   <div class="card-body p-1">
     <h4 class="card-title text-center mb-1 text-danger ">
-      {{party.partyName}}
+      {{party.partyName}} 
     </h4>
-    <div class="card-text text-center">派對日期: <strong>{{party.partyDate | date:"yyyy-MM-dd,EEEE" }}</strong></div>
+    <div class="card-text text-center">派對日期: <strong>{{party.partyDate  | date:"yyyy-MM-dd, EEEE"}}</strong></div>
     <div class="card-text text-center">派對時間: <strong>{{party.beginTime}} - {{party.endTime}}</strong> </div>
     <div class="card-text text-center">參加條件: <strong>{{party.marry | marryCondition}}</strong></div>
     <div class="card-text text-center">預定人數: <strong>{{party.persons}} 人</strong></div>

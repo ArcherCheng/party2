@@ -12,7 +12,7 @@ export class FormCheckboxComponent implements OnInit {
   group: FormGroup;
   config: FieldConfig;
   checkboxVal = [];
-  checkbocValObj = {};
+  checkboxValObj = {};
 
   constructor(private checkboxValueService: CheckboxValuePosterService) { }
 
@@ -32,8 +32,8 @@ export class FormCheckboxComponent implements OnInit {
         });
       }
     }
-    this.checkbocValObj[this.config.name] = this.checkboxVal;
-    this.checkboxValueService.postValue(this.checkbocValObj);
+    this.checkboxValObj[this.config.name] = this.checkboxVal;
+    this.checkboxValueService.postValue(this.checkboxValObj);
   }
 
 }

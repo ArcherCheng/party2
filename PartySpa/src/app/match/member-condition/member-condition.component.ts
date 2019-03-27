@@ -10,6 +10,7 @@ import { BloodList } from 'src/app/_shared/enum/blood-list';
 import { JobTypeList } from 'src/app/_shared/enum/job-typr-list';
 import { ReligionList } from 'src/app/_shared/enum/religion-list';
 import { CityList } from 'src/app/_shared/enum/city-list';
+import { CheckboxValuesPosterService } from 'src/app/_shared/service/checkbox-values-poster.service';
 
 @Component({
   selector: 'app-member-condition',
@@ -19,6 +20,7 @@ import { CityList } from 'src/app/_shared/enum/city-list';
 export class MemberConditionComponent implements OnInit {
   myFormGroup: FormGroup;
   userCondition: UserCondition;
+  checkbocValObj = {};
   bloodList = BloodList;
   religionList = ReligionList;
   starList = StarList;
@@ -30,7 +32,8 @@ export class MemberConditionComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private alertify: AlertifyService,
-    private userService: UserService
+    private userService: UserService,
+    private checkBoxService: CheckboxValuesPosterService
   ) {}
 
   ngOnInit() {
@@ -55,35 +58,68 @@ export class MemberConditionComponent implements OnInit {
         weightsMax: [this.userCondition.weightsMax, Validators.required],
         salaryMin: [this.userCondition.salaryMin, Validators.required],
         // salaryMax: [this.userCondition.salaryMax, Validators.required],
-        bloodInclude: [this.userCondition.bloodInclude],
-        cityInclude: [this.userCondition.cityInclude],
-        starInclude: [this.userCondition.starInclude],
-        jobTypeInclude: [this.userCondition.jobTypeInclude],
-        religionInclude: [this.userCondition.religionInclude],
+        bloodInclude: [this.userCondition.bloodInclude, Validators.required],
+        // bloodInclude: this.fb.array(bloodList),
+        starInclude: [this.userCondition.starInclude, Validators.required],
+        // cityInclude: this.fb.array(CityList),
+        // starInclude: this.fb.array(StarList),
+        // jobTypeInclude: this.fb.array(JobTypeList),
+        // religionInclude: this.fb.array(ReligionList),
       });
   }
 
   onSubmit() {
-    // this.userService.updateMember()
+    this.checkBoxService.getValue().subscribe(val => ({
+      valid: this.myFormGroup.valid,
+      formVal: this.myFormGroup.value,
+      checkboxVal: val
+    }));
+    // const result = this.myFormGroup.value;
+    // console.log(result);
+    // console.log(this.myFormGroup);
 
   }
 
-  pushValue(check, item) {
-    // const haveItem = this.checkboxVal.includes(item);
-    // if (check) {
-    //   if (!haveItem) {
-    //     this.checkboxVal.push(item);
-    //   }
-    // } else {
-    //   if (haveItem) {
-    //     this.checkboxVal = this.checkboxVal.filter((ele) => {
-    //       return ele !== item;
-    //     });
-    //   }
-    // }
-    // this.checkbocValObj[this.config.name] = this.checkboxVal;
-    // this.checkboxValueService.postValue(this.checkbocValObj);
+  bloodPushValue(check, item) {
+    let orgItem = this.userCondition.bloodInclude.split(',');
+    const haveItem = orgItem.includes(item);
+    console.log(check, item);
+    if (check) {
+      if (!haveItem) {
+        orgItem.push(item);
+      }
+    } else {
+      if (haveItem) {
+        orgItem = orgItem.filter((ele) => {
+          return ele !== item;
+        });
+      }
+    }
+    // tslint:disable-next-line:no-string-literal
+    this.checkbocValObj['bloodInclue'] = orgItem;
+    this.checkBoxService.postValue(this.checkbocValObj);
+    console.log(this.checkbocValObj);
   }
 
+  starPushValue(check, item) {
+    let orgItem = this.userCondition.starInclude.split(',');
+    const haveItem = orgItem.includes(item);
+    console.log(check, item);
+    if (check) {
+      if (!haveItem) {
+        orgItem.push(item);
+      }
+    } else {
+      if (haveItem) {
+        orgItem = orgItem.filter((ele) => {
+          return ele !== item;
+        });
+      }
+    }
+    // tslint:disable-next-line:no-string-literal
+    this.checkbocValObj['starInclue'] = orgItem;
+    this.checkBoxService.postValue(this.checkbocValObj);
+    console.log(this.checkbocValObj);
 
+  }
 }

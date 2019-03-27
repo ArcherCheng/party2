@@ -1,8 +1,10 @@
 <div [formGroup]="group" class="form-group form-check">
   <p>{{config.label}}</p>
-  <div *ngFor="let item of config.options; let i = index">
-    <input type="checkbox" class="form-check-input"  [id]="config.name+i" [formControlName]="config.name"
-    [value]="item" (click)="pushValue($event.target.checked, item)">
-    <label class="form-check-label" [for]="config.name+i">{{item}}</label>
+  <div class="row">
+      <div *ngFor="let item of config.options; let i = index" class="col-6 col-md-3 col-lg-2 mb-2">
+          <input type="checkbox" class="form-check-input"  [id]="config.name+i" [formControlName]="config.name"
+          [value]="item" (click)="pushValue($event.target.checked, item)">
+          <label class="form-check-label" [for]="config.name+i">{{item}}</label>
+      </div>
   </div>
 </div>

@@ -86,44 +86,56 @@
             </div>
             <div class="form-group">
                 <p>血型條件:</p>
-                <div *ngFor="let item of bloodList; let i = index" class="">
-                    <input type="checkbox" [id]="'bloodInclude'+i" formControlName="bloodInclude"
-                    [value]="item" (click)="pushValue($event.target.checked, item)">
-                    <label class="form-check-label" [for]="'bloodInclude'+i">{{item}}</label>
+                <div class="row">
+                    <div *ngFor="let item of bloodList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2">
+                        <input type="checkbox" formControlName="bloodInclude"
+                        [id]="'bloodInclude'+i" [value]="item" (click)="bloodPushValue($event.target.checked, item)"
+                        [checked]="userCondition.bloodInclude?.includes(item)" >
+                        <label class="form-check-label" [for]="'bloodInclude'+i">{{item}}</label>
+                  </div>
                 </div>
-              </div>
-            <div class="form-group">
-              <p>星座條件:</p>
-              <div *ngFor="let item of starList; let i = index" class="" >
-                  <input type="checkbox" [id]="'starInclude'+i" formControlName="starInclude"
-                  [value]="item" (click)="pushValue($event.target.checked, item)">
-                  <label class="form-check-label" [for]="'starInclude'+i">{{item}}</label>
-              </div>
             </div>
             <div class="form-group">
+              <p>星座條件:</p>
+              <div class="row">
+                  <div *ngFor="let item of starList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2" >
+                      <input type="checkbox" formControlName="starInclude"
+                      [id]="'starInclude'+i" [value]="item" (click)="starPushValue($event.target.checked, item)"
+                      [checked]="userCondition.starInclude?.includes(item)"> 
+                      <label class="form-check-label" [for]="'starInclude'+i">{{item}}</label>
+                  </div>
+              </div>
+            </div>
+            <!-- <div class="form-group">
               <p>居住地區條件:</p>
-              <div *ngFor="let item of cityList; let i = index" class="" >
-                  <input type="checkbox" [id]="'cityInclude'+i" formControlName="cityInclude"
-                  [value]="item" (click)="pushValue($event.target.checked, item)">
-                  <label class="form-check-label" [for]="'cityInclude'+i">{{item}}</label>
+              <div class="row">
+                  <div *ngFor="let item of cityList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2" >
+                      <input type="checkbox" [id]="'cityInclude'+i" formControlName="cityInclude"
+                      [checked]="userCondition.cityInclude?.includes(item)">
+                      <label class="form-check-label" [for]="'cityInclude'+i">{{item}}</label>
+                  </div>
               </div>
             </div>
             <div class="form-group">
               <p>職業類別條件:</p>
-              <div *ngFor="let item of jobList; let i = index" >
-                  <input type="checkbox" [id]="'jobTypeInclude'+i" formControlName="jobTypeInclude"
-                  [value]="item" (click)="pushValue($event.target.checked, item)">
-                  <label class="form-check-label" [for]="'jobTypeInclude'+i">{{item}}</label>
+              <div class="row">
+                  <div *ngFor="let item of jobList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2" >
+                      <input type="checkbox" [id]="'jobTypeInclude'+i" formControlName="jobTypeInclude"
+                      [checked]="userCondition.jobTypeInclude?.includes(item)"  (click)="pushValue($event.target.checked, item)">
+                      <label class="form-check-label" [for]="'jobTypeInclude'+i">{{item}}</label>
+                  </div>
               </div>
             </div>
             <div class="form-group">
               <p>宗教信仰條件:</p>
-              <div *ngFor="let item of religionList; let i = index" >
-                  <input type="checkbox" [id]="'religionInclude'+i" formControlName="religionInclude"
-                  [value]="item" (click)="pushValue($event.target.checked, item)">
-                  <label class="form-check-label" [for]="'religionInclude'+i">{{item}}</label>
+              <div class="row">
+                  <div *ngFor="let item of religionList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2" >
+                      <input type="checkbox" [id]="'religionInclude'+i" formControlName="religionInclude"
+                      [checked]="userCondition.religionInclude?.includes(item)" (click)="pushValue($event.target.checked, item)">
+                      <label class="form-check-label" [for]="'religionInclude'+i">{{item}}</label>
+                  </div>
               </div>
-            </div>
+            </div> -->
             <div class="form-row">
               <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">送出配對</button>
             </div>

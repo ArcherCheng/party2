@@ -41,7 +41,7 @@
                   <strong>{{message.recipientName}}</strong>
             </div>
           </td>
-          <td>{{message.sendDate }}</td>
+          <td>{{message.sendDate | date: 'M/d hh:mm'  }}</td>
           <td>
             <button class="btn btn-danger" (click)="deleteMessage(message.id)" (click)="$event.stopPropagation()" >刪除</button>
           </td>

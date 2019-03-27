@@ -4,6 +4,7 @@ export interface FieldConfig {
   type: string;
   label?: string;
   value?: any;
+  inputType?: string;
   placeholder?: string;
   disabled?: boolean;
   validations?: ValidatorFn[];
