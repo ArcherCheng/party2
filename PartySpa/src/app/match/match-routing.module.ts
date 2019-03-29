@@ -4,6 +4,7 @@ import { AuthGuard } from '../_shared/guard/auth.guard';
 import { MemberConditionComponent } from './member-condition/member-condition.component';
 import { MemberConditionResolverService } from './member-condition/member-condition-resolver.service';
 import { MatchListComponent } from './match-list/match-list.component';
+import { MatchListResolverService } from './match-list/match-list-resolver.service';
 
 const routes: Routes = [
   {
@@ -17,8 +18,9 @@ const routes: Routes = [
         resolve: {apiResult: MemberConditionResolverService}
       },
       {
-        path: 'match',
+        path: 'matchList',
         component: MatchListComponent,
+        resolve: {apiPaginatedResult: MatchListResolverService}
       },
     ]
   },

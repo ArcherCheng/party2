@@ -18,7 +18,7 @@ export class MemberEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private alertift: AlertifyService,
+    private alertify: AlertifyService,
     private userService: UserService,
     private authService: AuthService
   ) { }
@@ -30,10 +30,10 @@ export class MemberEditComponent implements OnInit {
 
   updateUser() {
     this.userService.updateMember(this.authService.decodedToken.nameid, this.user).subscribe(next => {
-      this.alertift.success('存檔成功');
+      this.alertify.success('存檔成功');
       this.editForm.reset();
     }, error => {
-      this.alertift.error(error.error);
+      this.alertify.error(error.error);
     });
   }
 

@@ -36,6 +36,29 @@ export class UserService {
     return this.http.get<Photo[]>(this.baseUrl + 'member/' + userId + '/Photos');  // , httpOptions
   }
 
+  getMatchList(userId, page?, itemsPerPage? ): Observable<PaginatedResult<User[]>> {
+    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
+
+    let params = new HttpParams();
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    return this.http.get<User[]>(this.baseUrl + 'member/' + userId + '/matchList', {observe: 'response', params})
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
+  }
+
+
   getEdit(userId): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'member/' + userId + '/edit');  // , httpOptions
   }
@@ -50,9 +73,9 @@ export class UserService {
   }
 
   updateCondition(userId: number, data: UserCondition) {
+    // console.log(userId, data);
     return this.http.post(this.baseUrl + 'member/' + userId + '/MemberCondition/Edit', data);
   }
-
 
   setMainPhoto(userId: number, id: number) {
     return this.http.post(this.baseUrl + 'member/' + userId + '/photos/' + id + '/setMain', {});

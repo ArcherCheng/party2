@@ -32,18 +32,32 @@ namespace PartyApi.Controllers
         }
 
         #region HttpGet read data from db
-        [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery]ParaMember para)
+        [HttpGet("{userId}/matchList")]
+        public async Task<IActionResult> GetMatchList(int userId, [FromQuery]ParaMember para)
         {
-            var repoMember = await _repo.GetList(para);
+            // int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            return Unauthorized();
+
+            para.UserId = userId;
+            var repoMember = await _repo.GetMatchList(para);
             Response.AddPagination(repoMember.CurrentPage, repoMember.PageSize, repoMember.TotalCount, repoMember.TotalPages);
 
-            var dto4List = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
-            return Ok(dto4List);
+            var dtoMemberList = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
+            return Ok(dtoMemberList);
         }
 
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUser(int userId)
+        {
+            var member = await _repo.GetDetail(userId);
+            var dtoMember = _mapper.Map<DtoMemberDetail>(member);
+            return Ok(dtoMember);
+        }
+
+
          [HttpGet("{userId}/memberDetail")]
-        public async Task<IActionResult> Get(int userId)
+        public async Task<IActionResult> GetDetail(int userId)
         {
             var member = await _repo.GetDetail(userId);
             var dtoMember = _mapper.Map<DtoMemberDetail>(member);
@@ -137,7 +151,7 @@ namespace PartyApi.Controllers
             if (await _repo.SaveAllAsync() > 0)
                 return Ok(repoMemberCondition);
 
-            return BadRequest("新增活動失敗");
+            return BadRequest("配對條件存檔失敗");
 
         }
 

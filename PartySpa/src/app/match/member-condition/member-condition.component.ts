@@ -10,7 +10,7 @@ import { BloodList } from 'src/app/_shared/enum/blood-list';
 import { JobTypeList } from 'src/app/_shared/enum/job-typr-list';
 import { ReligionList } from 'src/app/_shared/enum/religion-list';
 import { CityList } from 'src/app/_shared/enum/city-list';
-import { CheckboxValuesPosterService } from 'src/app/_shared/service/checkbox-values-poster.service';
+import { CheckboxItem } from 'src/app/_shared/dynamic-form/interface/checkbox-item';
 
 @Component({
   selector: 'app-member-condition',
@@ -18,17 +18,29 @@ import { CheckboxValuesPosterService } from 'src/app/_shared/service/checkbox-va
   styleUrls: ['./member-condition.component.css']
 })
 export class MemberConditionComponent implements OnInit {
-  myFormGroup: FormGroup;
   userCondition: UserCondition;
-  checkbocValObj = {};
-  bloodList = BloodList;
-  religionList = ReligionList;
-  starList = StarList;
-  cityList = CityList;
-  jobList = JobTypeList;
+  myFormGroup: FormGroup;
 
+  bloodList = BloodList;
+  bloodOptions = new Array<CheckboxItem>();
   bloodSelected = new Array();
+
+  starList = StarList;
+  starOptions = new Array<CheckboxItem>();
   starSelected = new Array();
+
+  religionList = ReligionList;
+  religionOptions = new Array<CheckboxItem>();
+  religionSelected = new Array();
+
+  cityList = CityList;
+  cityOptions = new Array<CheckboxItem>();
+  citySelected = new Array();
+
+  jobList = JobTypeList;
+  jobOptions = new Array<CheckboxItem>();
+  jobSelected = new Array();
+
 
   constructor(
     private route: ActivatedRoute,
@@ -36,26 +48,45 @@ export class MemberConditionComponent implements OnInit {
     private authService: AuthService,
     private alertify: AlertifyService,
     private userService: UserService,
-    private checkBoxService: CheckboxValuesPosterService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data: {apiResult: UserCondition}) => {
       this.userCondition = data.apiResult;
-      this.bloodSelected = this.userCondition.bloodInclude.split(',');
-      this.starSelected = this.userCondition.starInclude.split(',');
-      this.createMyFormGroup();
-      // console.log(this.bloodSelected);
-      // console.log(this.starSelected);
-      // console.log(this.myFormGroup);
-      // this.addCheckboxs();
-      // console.log(this.bloodInclude);
+
+      this.bloodOptions = this.bloodList.map(val => new CheckboxItem(val, val, false));
+      if (this.userCondition.bloodInclude) {
+        this.bloodSelected = this.userCondition.bloodInclude.split(',');
+      }
+
+      this.starOptions = this.starList.map(val => new CheckboxItem(val, val, false));
+      if (this.userCondition.starInclude) {
+        this.starSelected = this.userCondition.starInclude.split(',');
+      }
+
+      this.jobOptions = this.jobList.map(val => new CheckboxItem(val, val, false));
+      if (this.userCondition.jobTypeInclude) {
+        this.jobSelected = this.userCondition.jobTypeInclude.split(',');
+      }
+
+      this.cityOptions = this.cityList.map(val => new CheckboxItem(val, val, false));
+      if (this.userCondition.cityInclude) {
+        this.citySelected = this.userCondition.cityInclude.split(',');
+      }
+
+      this.religionOptions = this.religionList.map(val => new CheckboxItem(val, val, false));
+      if (this.userCondition.religionInclude) {
+        this.religionSelected = this.userCondition.religionInclude.split(',');
+      }
     });
+    this.createFormGroup();
 
   }
 
-  createMyFormGroup() {
+  createFormGroup() {
       this.myFormGroup = this.fb.group({
+        userId: [this.userCondition.userId],
         marryMin: [this.userCondition.marryMin, Validators.required],
         marryMax: [this.userCondition.marryMax, Validators.required],
         oldsMin: [this.userCondition.oldsMin, Validators.required],
@@ -69,63 +100,18 @@ export class MemberConditionComponent implements OnInit {
         salaryMin: [this.userCondition.salaryMin, Validators.required],
         bloodInclude: [this.userCondition.bloodInclude],
         starInclude: [this.userCondition.starInclude],
-        cityInclude: [this.userCondition.bloodInclude],
-        jobTypeInclude: [this.userCondition.starInclude],
+        cityInclude: [this.userCondition.cityInclude],
+        jobTypeInclude: [this.userCondition.jobTypeInclude],
         religionInclude: [this.userCondition.bloodInclude],
       });
   }
 
-  // get bloodInclude(): FormArray {
-  //   return this.myFormGroup.get('bloodInclude') as FormArray;
-  // }
-
-  // addCheckboxs() {
-  //   this.bloodList.map((o , i) => {
-  //     const control = new FormControl(false);
-  //     // (this.myFormGroup.controls.bloodInclue as FormArray).push(control);
-  //     this.bloodInclude.push(control);
-  //   });
-
-  //   this.bloodSelected.forEach(value => {
-  //     const index: number = this.bloodList.findIndex(item => item === value);
-  //     // console.log(value, index);
-  //     if (index >= 0) {
-  //       this.bloodInclude.get(index.toString()).setValue(true);
-  //     }
-  //   });
-  // }
-
   onSubmit(value) {
-    this.checkBoxService.getValue().subscribe(val => ({
-      valid: this.myFormGroup.valid,
-      formVal: this.myFormGroup.contains,
-      checkboxVal: val
-    }));
-
-    console.log(value);
-    console.log(this.checkBoxService.vals);
-
-  }
-
-  bloodPushValue(check, item) {
-    let orgItem = this.userCondition.bloodInclude.split(',');
-    const haveItem = orgItem.includes(item);
-    console.log(check, item);
-    if (check) {
-      if (!haveItem) {
-        orgItem.push(item);
-      }
-    } else {
-      if (haveItem) {
-        orgItem = orgItem.filter((ele) => {
-          return ele !== item;
-        });
-      }
-    }
-    // tslint:disable-next-line:no-string-literal
-    this.checkbocValObj['bloodInclue'] = orgItem;
-    this.checkBoxService.postValue(this.checkbocValObj);
-    console.log(this.checkbocValObj);
+    this.userService.updateCondition(this.authService.decodedToken.nameid, this.myFormGroup.value).subscribe(next => {
+      this.alertify.success('存檔成功');
+    }, error => {
+      this.alertify.error(error.error);
+    });
   }
 
   PushValue(check, item) {
@@ -144,9 +130,32 @@ export class MemberConditionComponent implements OnInit {
       }
     }
     // tslint:disable-next-line:no-string-literal
-    this.checkbocValObj['starInclue'] = orgItem;
-    this.checkBoxService.postValue(this.checkbocValObj);
-    console.log(this.checkbocValObj);
+    // this.checkbocValObj['starInclue'] = orgItem;
+    // this.checkBoxService.postValue(this.checkbocValObj);
+    // console.log(this.checkbocValObj);
 
   }
+
+  onBloodChenges(value) {
+    this.myFormGroup.controls.bloodInclude.setValue(value.join(','));
+  }
+
+  onStarChenges(value) {
+    this.myFormGroup.controls.starInclude.setValue(value.join(','));
+  }
+
+  onCityChenges(value) {
+    this.myFormGroup.controls.cityInclude.setValue(value.join(','));
+  }
+
+  onJobChenges(value) {
+    this.myFormGroup.controls.jobTypeInclude.setValue(value.join(','));
+  }
+
+  onReligionChenges(value) {
+    this.myFormGroup.controls.religionInclude.setValue(value.join(','));
+  }
+
+
+
 }

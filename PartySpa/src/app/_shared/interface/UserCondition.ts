@@ -17,7 +17,6 @@ export interface UserCondition {
   weightsMax: number;
 
   salaryMin: number;
-  salaryMax: number;
 
   bloodInclude: string;
 

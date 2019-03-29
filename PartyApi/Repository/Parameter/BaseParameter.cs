@@ -13,6 +13,8 @@ namespace PartyApi.Repository
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value;}
         }
 
+        public int Id;
+        public string Key { get; set; }
         public int BeginId { get; set; }
         public int EndId { get; set; }
         public string BeginKey { get; set; }

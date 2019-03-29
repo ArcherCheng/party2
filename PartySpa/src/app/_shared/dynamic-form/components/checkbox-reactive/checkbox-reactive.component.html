@@ -1,8 +1,9 @@
 <form [formGroup]="checkboxFormArray">
   <div formArrayName="items" class="row">
     <div *ngFor="let item of items.controls; index as i" class="col-6 col-md-3 col-lg-2 mb-2">
-      <input type="checkbox" [formControlName]="i">
-      <label>{{options[i].label}}</label>
+      <label>
+            <input type="checkbox" [formControlName]="i"> {{options[i].label}}
+      </label>
     </div>
   </div>
 </form>

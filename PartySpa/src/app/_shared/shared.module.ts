@@ -30,9 +30,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    PaginationModule,
     NgxGalleryModule,
     FileUploadModule,
+    PaginationModule.forRoot(),
     TabsModule.forRoot(),
   ],
   exports: [

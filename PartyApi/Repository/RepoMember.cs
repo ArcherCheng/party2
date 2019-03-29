@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,136 +49,61 @@ namespace PartyApi.Repository
             var result = await _db.MemberCondition
                 .FirstOrDefaultAsync(p => p.UserId == userId);
 
-            return result;           
+            return result;
         }
 
 
-        public async Task<PageList<Member>> GetList(ParaMember para)
+        public async Task<PageList<Member>> GetMatchList(ParaMember para)
         {
-            var members = _db.Member
-                .Include(p=>p.MemberPhoto)
-                .OrderBy(p=>p.UserId)
-                .AsQueryable();
+            DateTime minDate,maxDate;
+            
+            var member = _db.Member.FirstOrDefault(x => x.UserId == para.UserId);
+            
+            var memberCondition = _db.MemberCondition.FirstOrDefault(x => x.UserId == para.UserId);
 
-            return await PageList<Member>.CreateAsync(members,para.PageNumber,para.PageSize);
+            minDate = System.DateTime.Now.AddYears(-memberCondition.OldsMax);
+            maxDate = System.DateTime.Now.AddYears(-memberCondition.OldsMin);
+
+            var matchList = _db.Member.Include(p => p.MemberPhoto)
+                .Where(x => x.Sex != member.Sex)
+                .OrderByDescending(p => p.ActiveDate).AsQueryable();
+        
+            matchList = matchList.Where(x =>
+               (x.Marry >= memberCondition.MarryMin && x.Marry <= memberCondition.MarryMax) &&
+               (x.Birthday >= minDate && x.Birthday <= maxDate) &&
+               (x.Education >= memberCondition.EducationMin && x.Education <= memberCondition.EducationMax) &&
+               (x.Heights >= memberCondition.HeightsMin && x.Heights <= memberCondition.HeightsMax) &&
+               (x.Weights >= memberCondition.WeightsMin && x.Weights <= memberCondition.WeightsMax) 
+               );
+
+            // if(!string.IsNullOrEmpty(memberCondition.BloodInclude))
+            // {
+            //     matchList = matchList.Where(x => memberCondition.BloodInclude.Contains(x.Blood));
+            // }
+
+            // if(!string.IsNullOrEmpty(memberCondition.StarInclude))
+            // {
+            //     matchList = matchList.Where(x => memberCondition.StarInclude.Contains(x.Star));
+            // }
+
+            // if(!string.IsNullOrEmpty(memberCondition.CityInclude))
+            // {
+            //     matchList = matchList.Where(x => memberCondition.CityInclude.Contains(x.City));
+            // }
+
+            // if(!string.IsNullOrEmpty(memberCondition.JobTypeInclude))
+            // {
+            //     matchList = matchList.Where(x => memberCondition.JobTypeInclude.Contains(x.JobType));
+            // }
+
+            // if(!string.IsNullOrEmpty(memberCondition.ReligionInclude))
+            // {
+            //     matchList = matchList.Where(x => memberCondition.ReligionInclude.Contains(x.Religion));
+            // }
+
+            return await PageList<Member>.CreateAsync(matchList,para.PageNumber,para.PageSize);
         }
-
-    
     }
 } 
 
-            // if( para.UserId > 0)
-            // {
-            //     members = members.Where(p => p.UserId != para.UserId);
-            // }
-
-            // if(para.Sex > 0)
-            // {
-            //     members = members.Where(p => p.Sex == para.Sex);
-            // }
-
-            // if (para.MinAge > 0 && para.MaxAge > 0) 
-            // {
-            //     var minDate= System.DateTime.Today.AddYears(-para.MaxAge - 1);
-            //     var maxDate= System.DateTime.Today.AddYears(-para.MinAge);
-            //     members = members.Where(p => p.Birthday >= minDate && p.Birthday <= maxDate);
-            // }
-
-            // if (para.MinHeights > 0 && para.MaxHeights > 0) 
-            // {
-            //     members = members.Where(p => p.Heights >= para.MinHeights && p.Heights <= para.MaxHeights);
-            // }
-
-            // if (para.MinWeights > 0 && para.MaxWeights > 0) 
-            // {
-            //     members = members.Where(p => p.Weights >= para.MinWeights && p.Weights <= para.MaxWeights);
-            // }
-
-            // if (para.MinEducation > 0 && para.MaxEducation > 0) 
-            // {
-            //     members = members.Where(p => p.Education >= para.MinEducation && p.Education <= para.MaxEducation);
-            // }
-
-            // if (para.MinSalary > 0 && para.MaxSalary > 0) 
-            // {
-            //     members = members.Where(p => p.Salary >= para.MinSalary && p.Salary <= para.MaxSalary);
-            // }
-
-            // if (para.Blood != null)
-            // {
-            //     members = members.Where(p => para.Blood.Contains(p.Blood));
-            // }
-
-            // if (para.Star != null)
-            // {
-            //     members = members.Where(p => para.Star.Contains(p.Star));
-            // }
-
-            // if (para.City != null)
-            // {
-            //     members = members.Where(p => para.City.Contains(p.City));
-            // }
-
-
-//    public async Task<IEnumerable<Member>> GetPartyMemberList(int userId, int partyId)
-    //     {
-    //         var member=await _db.Member.FirstOrDefaultAsync(p => p.UserId == userId);
-    //         var sex = member.Sex;
-
-    //         var result = await _db.Activity
-    //             .Where(p=>p.PartyId == partyId && p.User.Sex != sex)
-    //             .Select(p=>p.User).Include(p => p.MemberPhoto)
-    //             .ToListAsync();
-
-    //         return  result;
-    //     }        
-
-
-
-        // public async Task<IEnumerable<Member>> GetPartyLikeList(int userId, int partyId, bool isMyLike)
-        // {
-        //     if(isMyLike)
-        //     {
-        //         var result = await _db.Liker
-        //             //.Include(p => p.MyLike)
-        //             //.Include(p => p.ReceiveLikee)
-        //             .Where(p=>p.PartyId == partyId && (p.UserId == userId))
-        //             .Select(p => p.LikerMe).Include(p => p.MemberPhoto)
-        //             .ToListAsync();
-        //         return result;
-
-        //     }
-        //     else
-        //     {
-        //         var result = await _db.Liker
-        //             //.Include(p => p.SendLiker)
-        //             //.Include(p => p.LikeMe)
-        //             .Where(p=>p.PartyId == partyId && (p.LikerId == userId))
-        //             .Select(p => p.MyLiker).Include(p => p.MemberPhoto)
-        //             .ToListAsync();
-        //         return result;
-        //     }        
-        // }
-
-        // public async Task<Activity> GetMemberParty(int userId,int partyId)
-        // {
-        //     var result = await _db.Activity
-        //              .FirstOrDefaultAsync(p => p.UserId == userId && p.PartyId == partyId);
-        //      return result;
-        // }
-
-        // public async Task<bool> CheckPartyLike(int userId, int partyId, int likeId)
-        // {
-        //     var result = await _db.Liker
-        //              .FirstOrDefaultAsync(p => p.PartyId == partyId && p.UserId == userId && p.LikerId == likeId);
-        //     return (result != null);                     
-            
-        // }
-
-        // public async Task<int> CountPartyLikes(int userId,int partyId)
-        // {
-        //     var count = await _db.Liker
-        //              .Where(p => p.PartyId == partyId && p.UserId == userId)
-        //              .CountAsync();
-        //     return count;
-        // }
+ 

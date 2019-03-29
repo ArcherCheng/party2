@@ -17,7 +17,6 @@ namespace PartyApi.Models
         public int WeightsMin { get; set; }
         public int WeightsMax { get; set; }
         public int SalaryMin { get; set; }
-        public int SalaryMax { get; set; }
         public string BloodInclude { get; set; }
         public string StarInclude { get; set; }
         public string CityInclude { get; set; }
