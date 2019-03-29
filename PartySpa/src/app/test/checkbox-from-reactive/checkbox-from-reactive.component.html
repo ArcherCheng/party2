@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)"> 
+    <div>
+      <label for="">Id:</label>
+      <input type="text" formControlName="id">
+    </div>
+
+    <div>
+        <label for="">Name:</label>
+        <input type="text" formControlName="name">
+    </div>
+
+    <div>
+        <label for="">Roles:</label>
+        <app-checkbox-reactive [options]="userRolesOptions"
+        [selectedValues]="userModel.roles" (toggle)="OnRolesChanges($event)">
+        </app-checkbox-reactive>
+    </div>
+
+    <div class="form-row">
+        <button [disabled]="!form.valid" type="submit" class="btn btn-success btn-block">送出</button>
+    </div>
+
+
+  </form>

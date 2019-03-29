@@ -1,0 +1,23 @@
+<form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom)">
+  <div>
+    <label for="">id:</label>
+    <input type="text" name="id" [(ngModel)]="userModel.id">
+  </div>
+  <div>
+    <label for="">name:</label>
+    <input type="text" name="lastName" [(ngModel)]="userModel.name">
+  </div>
+  <div>
+    <label for="">birthday:</label>
+    <input type="date" name="birthday" [(ngModel)]="userModel.birthday">
+  </div>
+  <div>
+    <app-checkbox-template [options]="userRolesOptions" [selectedValues]="userModel.roles"
+      (toggle)="OnRolesChanges($event)">
+    </app-checkbox-template>
+  </div>
+  <div>
+    <input type="submit">
+  </div>
+
+</form>

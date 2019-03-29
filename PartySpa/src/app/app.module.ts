@@ -15,7 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DynamicFormModule } from './_shared/dynamic-form/dynamic-form.module';
-import { TestDynamicFormComponent } from './test-dynamic-form/test-dynamic-form.component';
 // import { NavComponent } from './_shared/nav/nav.component';
 
 export function tokenGetter() {
@@ -26,9 +25,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     HomeComponent,
-    TestDynamicFormComponent,
     // NavComponent,
-
   ],
   imports: [
     BrowserModule,

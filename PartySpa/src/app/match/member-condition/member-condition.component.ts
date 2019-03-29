@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { UserCondition } from 'src/app/_shared/interface/UserCondition';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/_shared/service/auth.service';
@@ -27,6 +27,9 @@ export class MemberConditionComponent implements OnInit {
   cityList = CityList;
   jobList = JobTypeList;
 
+  bloodSelected = new Array();
+  starSelected = new Array();
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -39,7 +42,14 @@ export class MemberConditionComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: {apiResult: UserCondition}) => {
       this.userCondition = data.apiResult;
+      this.bloodSelected = this.userCondition.bloodInclude.split(',');
+      this.starSelected = this.userCondition.starInclude.split(',');
       this.createMyFormGroup();
+      // console.log(this.bloodSelected);
+      // console.log(this.starSelected);
+      // console.log(this.myFormGroup);
+      // this.addCheckboxs();
+      // console.log(this.bloodInclude);
     });
 
   }
@@ -57,26 +67,43 @@ export class MemberConditionComponent implements OnInit {
         weightsMin: [this.userCondition.weightsMin, Validators.required],
         weightsMax: [this.userCondition.weightsMax, Validators.required],
         salaryMin: [this.userCondition.salaryMin, Validators.required],
-        // salaryMax: [this.userCondition.salaryMax, Validators.required],
-        bloodInclude: [this.userCondition.bloodInclude, Validators.required],
-        // bloodInclude: this.fb.array(bloodList),
-        starInclude: [this.userCondition.starInclude, Validators.required],
-        // cityInclude: this.fb.array(CityList),
-        // starInclude: this.fb.array(StarList),
-        // jobTypeInclude: this.fb.array(JobTypeList),
-        // religionInclude: this.fb.array(ReligionList),
+        bloodInclude: [this.userCondition.bloodInclude],
+        starInclude: [this.userCondition.starInclude],
+        cityInclude: [this.userCondition.bloodInclude],
+        jobTypeInclude: [this.userCondition.starInclude],
+        religionInclude: [this.userCondition.bloodInclude],
       });
   }
 
-  onSubmit() {
+  // get bloodInclude(): FormArray {
+  //   return this.myFormGroup.get('bloodInclude') as FormArray;
+  // }
+
+  // addCheckboxs() {
+  //   this.bloodList.map((o , i) => {
+  //     const control = new FormControl(false);
+  //     // (this.myFormGroup.controls.bloodInclue as FormArray).push(control);
+  //     this.bloodInclude.push(control);
+  //   });
+
+  //   this.bloodSelected.forEach(value => {
+  //     const index: number = this.bloodList.findIndex(item => item === value);
+  //     // console.log(value, index);
+  //     if (index >= 0) {
+  //       this.bloodInclude.get(index.toString()).setValue(true);
+  //     }
+  //   });
+  // }
+
+  onSubmit(value) {
     this.checkBoxService.getValue().subscribe(val => ({
       valid: this.myFormGroup.valid,
-      formVal: this.myFormGroup.value,
+      formVal: this.myFormGroup.contains,
       checkboxVal: val
     }));
-    // const result = this.myFormGroup.value;
-    // console.log(result);
-    // console.log(this.myFormGroup);
+
+    console.log(value);
+    console.log(this.checkBoxService.vals);
 
   }
 
@@ -101,7 +128,7 @@ export class MemberConditionComponent implements OnInit {
     console.log(this.checkbocValObj);
   }
 
-  starPushValue(check, item) {
+  PushValue(check, item) {
     let orgItem = this.userCondition.starInclude.split(',');
     const haveItem = orgItem.includes(item);
     console.log(check, item);

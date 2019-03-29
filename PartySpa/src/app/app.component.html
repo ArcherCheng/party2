@@ -62,8 +62,16 @@
         (click)="logout()">登出系統
       </a>
       <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['test']"
-        routerLinkActive="router-link-active">Test
+        [routerLink]="['test','dynamic-form']"
+        routerLinkActive="router-link-active">dynamic form
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['test','checkbox-form-reactive']"
+        routerLinkActive="router-link-active">checkbox-form-reactive
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['test','checkbox-form-template']"
+        routerLinkActive="router-link-active">checkbox-form-template
       </a>
     </div>
   </div>

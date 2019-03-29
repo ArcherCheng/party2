@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
-import { FieldConfig } from '../_shared/dynamic-form/interface/field-config';
 import { Validators } from '@angular/forms';
-import { DynamicFormComponent } from '../_shared/dynamic-form/container/dynamic-form/dynamic-form.component';
+import { DynamicFormComponent } from 'src/app/_shared/dynamic-form/container/dynamic-form/dynamic-form.component';
+import { FieldConfig } from 'src/app/_shared/dynamic-form/interface/field-config';
 
 @Component({
-  selector: 'app-test-dynamic-form',
-  templateUrl: './test-dynamic-form.component.html',
-  styleUrls: ['./test-dynamic-form.component.css']
+  selector: 'app-dynamic-from',
+  templateUrl: './dynamic-from.component.html',
+  styleUrls: ['./dynamic-from.component.css']
 })
-export class TestDynamicFormComponent implements OnInit, AfterViewInit {
+export class DynamicFromComponent implements OnInit, AfterViewInit {
   @ViewChild('dynamicForm') dynamicForm: DynamicFormComponent;
   groupvalue: any;
   // formsPool: { [formType: string]: FieldConfig[] } = {}
@@ -113,5 +113,6 @@ export class TestDynamicFormComponent implements OnInit, AfterViewInit {
     console.log(event);
     this.groupvalue = event;
   }
+
 
 }

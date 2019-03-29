@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestDynamicFormComponent } from './test-dynamic-form.component';
+import { CheckboxReactiveComponent } from './checkbox-reactive.component';
 
-describe('TestDynamicFormComponent', () => {
-  let component: TestDynamicFormComponent;
-  let fixture: ComponentFixture<TestDynamicFormComponent>;
+describe('CheckboxReactiveComponent', () => {
+  let component: CheckboxReactiveComponent;
+  let fixture: ComponentFixture<CheckboxReactiveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestDynamicFormComponent ]
+      declarations: [ CheckboxReactiveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestDynamicFormComponent);
+    fixture = TestBed.createComponent(CheckboxReactiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
