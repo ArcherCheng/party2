@@ -113,5 +113,5 @@ namespace PartyApi.Dtos
         public string ReligionInclude { get; set; }       
     }
 
-
+  
 }

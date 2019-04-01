@@ -9,19 +9,19 @@ import { NgForm } from '@angular/forms';
 })
 export class CheckboxFromTemplateComponent implements OnInit {
   private userRoles = [
-    {id: 1, name: 'Admin'},
-    {id: 2, name: 'Director'},
-    {id: 3, name: 'Professor'},
-    {id: 4, name: 'Student'},
-    {id: 5, name: 'Teacher'},
-    {id: 6, name: 'Supervisor'},
+    {keyId: 1, keyValue: 'Admin'},
+    {keyId: 2, keyValue: 'Director'},
+    {keyId: 3, keyValue: 'Professor'},
+    {keyId: 4, keyValue: 'Student'},
+    {keyId: 5, keyValue: 'Teacher'},
+    {keyId: 6, keyValue: 'Supervisor'},
   ];
 
   public userModel = {
     id: 1,
     name: 'William',
     birthday: '1984-12-28',
-    roles: [2, 4]
+    roles: ['Admin', 'Student']
   };
 
   userRolesOptions = new Array<CheckboxItem>();
@@ -32,7 +32,7 @@ export class CheckboxFromTemplateComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.userRolesOptions = this.userRoles.map(x => new CheckboxItem(x.id, x.name));
+      this.userRolesOptions = this.userRoles.map(x => new CheckboxItem(x.keyId, x.keyValue, false));
     }, 1000);
   }
 

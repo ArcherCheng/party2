@@ -17,16 +17,16 @@ export class CheckboxTemplateComponent implements OnInit, OnChanges {
   }
 
   onToggle() {
-    const checkedOptions = this.options.filter(x => x.checked);
-    this.selectedValues = checkedOptions.map(x => x.value);
+    const checkedOptions = this.options.filter(x => x.isChecked);
+    this.selectedValues = checkedOptions.map(x => x.keyValue);
     this.toggle.emit(this.selectedValues);
   }
 
   ngOnChanges(): void {
     this.selectedValues.forEach( value => {
-      const element = this.options.find(x => x.value === value);
+      const element = this.options.find(x => x.keyValue === value);
       if (element) {
-        element.checked = true;
+        element.isChecked = true;
       }
     });
   }

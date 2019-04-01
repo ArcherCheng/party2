@@ -23,6 +23,7 @@ export class PartyActivityListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: {apiListResult: Party[]}) => this.partyList = data.apiListResult);
+    this.authService.setCurrentTitle('互動派對投票');
   }
 
   activityMemberList(partyId: number) {

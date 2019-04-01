@@ -9,7 +9,11 @@ import { DynamicFormModule } from '../_shared/dynamic-form/dynamic-form.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [CheckboxFromReactiveComponent, CheckboxFromTemplateComponent, DynamicFromComponent],
+  declarations: [
+    CheckboxFromReactiveComponent,
+    CheckboxFromTemplateComponent,
+    DynamicFromComponent
+  ],
   imports: [
     CommonModule,
     TestRoutingModule,

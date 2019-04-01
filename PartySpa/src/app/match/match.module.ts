@@ -6,10 +6,11 @@ import { MemberConditionComponent } from './member-condition/member-condition.co
 import { MatchListComponent } from './match-list/match-list.component';
 import { SharedModule } from '../_shared/shared.module';
 import { DynamicFormModule } from '../_shared/dynamic-form/dynamic-form.module';
+import { MemberDetailComponent } from './member-detail/member-detail.component';
 // import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [MemberConditionComponent, MatchListComponent],
+  declarations: [MemberConditionComponent, MatchListComponent, MemberDetailComponent],
   imports: [
     CommonModule,
     SharedModule,

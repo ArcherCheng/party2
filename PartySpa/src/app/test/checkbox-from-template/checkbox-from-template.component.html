@@ -1,4 +1,5 @@
-<form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom)">
+
+<form #editFrom="ngForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="">id:</label>
     <input type="text" name="id" [(ngModel)]="userModel.id">

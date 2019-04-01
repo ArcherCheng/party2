@@ -12,7 +12,6 @@ namespace PartyApi.Repository
         Task<Member> GetEdit(int userId);
         Task<PageList<Member>> GetMatchList(ParaMember para);
         Task<MemberCondition> GetMemberCondition(int userId);
-
         
         //Task<IEnumerable<Member>> GetPartyMemberList(int userId,int partyId);
         //Task<IEnumerable<Member>> GetPartyLikeList(int userId,int partyId, bool isLiker);

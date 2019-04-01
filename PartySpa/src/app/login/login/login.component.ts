@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.setCurrentTitle('使用者登入');
   }
 
   login() {

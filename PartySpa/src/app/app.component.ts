@@ -10,7 +10,7 @@ import { wrappedError } from '@angular/core/src/error_handler';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent  implements OnInit {
-  title = '台北單身派對聯誼會';
+  currentTitle = '台北單身派對聯誼會';
   photoUrl: string;
   jwtHelper = new JwtHelperService();
   sidebarMode = true;
@@ -21,6 +21,7 @@ export class AppComponent  implements OnInit {
 
   ngOnInit()  {
       this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+      this.authService.currentTitle.subscribe(title => this.currentTitle = title);
       const token = localStorage.getItem('token');
       const user: User =  JSON.parse(localStorage.getItem('user'));
       if (token) {

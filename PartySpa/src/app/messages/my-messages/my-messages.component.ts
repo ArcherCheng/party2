@@ -29,6 +29,7 @@ export class MyMessagesComponent implements OnInit {
       this.messages = data.apiPaginatedResult.result;
       this.pagination = data.apiPaginatedResult.pagination;
     });
+    this.authService.setCurrentTitle('我的留言管理');
   }
 
   loadMessages(messageContainer) {

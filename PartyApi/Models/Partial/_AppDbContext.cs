@@ -27,6 +27,7 @@ namespace PartyApi.Models
         public virtual DbSet<PartyPhoto> PartyPhoto { get; set; }
         public virtual DbSet<ViewActivitySummary> ViewActivitySummary { get; set; }
         public virtual DbSet<ViewActivityMatchUser> ViewActivityMatchUser { get; set; }
+        public virtual DbSet<CheckboxItem> CheckboxItem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

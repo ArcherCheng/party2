@@ -3,20 +3,25 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PartyApi.Models;
+using System.Collections.Generic;
 
 namespace PartyApi.Repository
 {
-    public class RepoAuth : IRepoAuth
+    public class RepoAuth : BaseRepository,IRepoAuth
     {
-        private readonly AppDbContext _context;
-        public RepoAuth(AppDbContext context)
+        public RepoAuth(AppDbContext dbContext) : base(dbContext)
         {
-            _context = context;
         }
+
+        // private readonly AppDbContext _context;
+        // public RepoAuth(AppDbContext context)
+        // {
+        //     _context = context;
+        // }
 
         public async Task<Member> Login(string userPhoneMail, string password)
         {
-            var user = await _context.Member.Include(p=>p.MemberPhoto).FirstOrDefaultAsync(p => p.Phone == userPhoneMail || p.Email == userPhoneMail);  //.FirstOrDefaultAsync(p => p.phono == userPhoneMail || p.email == userPhoneMail);
+            var user = await _db.Member.Include(p=>p.MemberPhoto).FirstOrDefaultAsync(p => p.Phone == userPhoneMail || p.Email == userPhoneMail);  //.FirstOrDefaultAsync(p => p.phono == userPhoneMail || p.email == userPhoneMail);
             if (user == null)
                 return null;
 
@@ -33,15 +38,15 @@ namespace PartyApi.Repository
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            await _context.Member.AddAsync(user);
-            await _context.SaveChangesAsync();
+            await _db.Member.AddAsync(user);
+            await _db.SaveChangesAsync();
 
             return user;
         } 
 
         public async Task<bool> UserExists(string userPhone, string userMail)
         {
-            var user = await _context.Member.FirstOrDefaultAsync(p => p.Phone == userPhone || p.Email == userMail);
+            var user = await _db.Member.FirstOrDefaultAsync(p => p.Phone == userPhone || p.Email == userMail);
 
             if (user == null)
                 return false;
@@ -69,6 +74,19 @@ namespace PartyApi.Repository
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+        public async Task<IEnumerable<CheckboxItem>> GetCheckboxItemList(string keyGroup)
+        {
+            var result = await _db.CheckboxItem
+                .Where(x => x.KeyGroup == keyGroup)
+                .OrderBy(x =>x.KeyId)
+                // .Select(x => new {
+                //     KeyId = x.KeyId,
+                //     KeyValue =  x.KeyValue,
+                //     IsChecked = x.IsChecked
+                // })
+                .ToListAsync();
+            return result;
+        }        
 
     }
 }

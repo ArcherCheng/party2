@@ -84,6 +84,16 @@ namespace PartyApi.Controllers
         public async Task<IActionResult> GetCondidtion(int userId)
         {
             var memberCondition = await _repoCondition.Get(userId);
+            if (memberCondition == null) 
+            {
+                memberCondition = new MemberCondition();
+                memberCondition.UserId = userId;
+                memberCondition.BloodInclude = "";
+                memberCondition.StarInclude = "";
+                memberCondition.CityInclude = "";
+                memberCondition.JobTypeInclude = "";
+                memberCondition.ReligionInclude = "";
+            }
             var dtoMemberCondition = _mapper.Map<DtoMemberCondition>(memberCondition);
             return Ok(dtoMemberCondition);
         }
@@ -140,6 +150,7 @@ namespace PartyApi.Controllers
             var repoMemberCondition = await _repo.GetMemberCondition(userId);
             if (repoMemberCondition == null)
             {
+                repoMemberCondition = new MemberCondition();
                 _mapper.Map(model, repoMemberCondition);
                 _repoCondition.Add(repoMemberCondition);
             }

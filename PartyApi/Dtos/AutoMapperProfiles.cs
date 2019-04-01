@@ -12,6 +12,7 @@ namespace PartyApi.Dtos
         {
             //login 會員登入資料檔
             CreateMap<DtoRegister, Member>();
+            CreateMap<CheckboxItem,DtoCheckboxItem>();
             CreateMap<Member, DtoLoginToReturn>()
                 .ForMember(dest => dest.UserName, opt =>
                         {

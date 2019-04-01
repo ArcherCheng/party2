@@ -76,33 +76,36 @@ namespace PartyApi.Repository
                (x.Weights >= memberCondition.WeightsMin && x.Weights <= memberCondition.WeightsMax) 
                );
 
-            // if(!string.IsNullOrEmpty(memberCondition.BloodInclude))
-            // {
-            //     matchList = matchList.Where(x => memberCondition.BloodInclude.Contains(x.Blood));
-            // }
+            if(!string.IsNullOrEmpty(memberCondition.BloodInclude))
+            {
+                matchList = matchList.Where(x => memberCondition.BloodInclude.Contains(x.Blood));
+            }
 
-            // if(!string.IsNullOrEmpty(memberCondition.StarInclude))
-            // {
-            //     matchList = matchList.Where(x => memberCondition.StarInclude.Contains(x.Star));
-            // }
+            if(!string.IsNullOrEmpty(memberCondition.StarInclude))
+            {
+                matchList = matchList.Where(x => memberCondition.StarInclude.Contains(x.Star));
+            }
 
-            // if(!string.IsNullOrEmpty(memberCondition.CityInclude))
-            // {
-            //     matchList = matchList.Where(x => memberCondition.CityInclude.Contains(x.City));
-            // }
+            if(!string.IsNullOrEmpty(memberCondition.CityInclude))
+            {
+                matchList = matchList.Where(x => memberCondition.CityInclude.Contains(x.City));
+            }
 
-            // if(!string.IsNullOrEmpty(memberCondition.JobTypeInclude))
-            // {
-            //     matchList = matchList.Where(x => memberCondition.JobTypeInclude.Contains(x.JobType));
-            // }
+            if(!string.IsNullOrEmpty(memberCondition.JobTypeInclude))
+            {
+                matchList = matchList.Where(x => memberCondition.JobTypeInclude.Contains(x.JobType));
+            }
 
-            // if(!string.IsNullOrEmpty(memberCondition.ReligionInclude))
-            // {
-            //     matchList = matchList.Where(x => memberCondition.ReligionInclude.Contains(x.Religion));
-            // }
+            if(!string.IsNullOrEmpty(memberCondition.ReligionInclude))
+            {
+                matchList = matchList.Where(x => memberCondition.ReligionInclude.Contains(x.Religion));
+            }
 
             return await PageList<Member>.CreateAsync(matchList,para.PageNumber,para.PageSize);
         }
+
+    
+
     }
 } 
 

@@ -1,8 +1,8 @@
 <div class="jumbotron container-fluid">
   <div class="row">
-    <h3 class="text-primary">我的電腦自動配對條件設定</h3>
+    <h3 class="text-primary">我的交友配對條件設定</h3>
   </div>
-  <p class="text-danger">(空白或零為不設定條件)</p>
+  <!-- <p class="text-danger">(空白或零為不設定條件)</p> -->
   <div class="row">
     <div class="col-12">
       <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit(myFormGroup)">
@@ -115,7 +115,7 @@
         </div>
         <input type="number" class="form-control" formControlName="userId" hidden>
         <div class="form-row">
-          <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">送出配對</button>
+          <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">送出存檔</button>
         </div>
       </form>
     </div>

@@ -12,4 +12,13 @@ namespace PartyApi.Dtos
         public string UserName { get; set; }
         public string UserRole { get; set; }
     }
+
+    public class DtoCheckboxItem
+    {
+        public int KeyId { get; set; }
+        public string KeyValue { get; set; }        
+        public bool IsChecked { get; set; }      
+    }
+
+
 }

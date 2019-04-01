@@ -36,6 +36,8 @@ export class RegisterComponent implements OnInit {
     //   containerClass: 'theme-red'
     // };
     this.createRegisterForm();
+    this.authService.setCurrentTitle('新人註冊');
+
   }
 
   createRegisterForm() {

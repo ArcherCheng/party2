@@ -38,21 +38,12 @@
         routerLinkActive="router-link-active">我的資料管理
       </a>
       <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['member','partyList']"
-        routerLinkActive="router-link-active">我的報名繳費
-      </a>
-      <a class="list-group-item list-group-item-action bg-light"
         [routerLink]="['match','condition']"
-        routerLinkActive="router-link-active">我的電腦配對
+        routerLinkActive="router-link-active">我的配對條件
       </a>
       <a class="list-group-item list-group-item-action bg-light"
         [routerLink]="['match','matchList']"
         routerLinkActive="router-link-active">電腦配對結果
-      </a>
-
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['home']"
-        routerLinkActive="router-link-active">愛情心情貼文
       </a>
       <a class="list-group-item list-group-item-action bg-light"
         [routerLink]="['login','login']"
@@ -65,6 +56,16 @@
       <a class="list-group-item list-group-item-action bg-light"
         (click)="logout()">登出系統
       </a>
+      <!--
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['member','partyList']"
+        routerLinkActive="router-link-active">我的報名繳費
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['home']"
+        routerLinkActive="router-link-active">愛情心情貼文
+      </a>
+
       <a class="list-group-item list-group-item-action bg-light"
         [routerLink]="['test','dynamic-form']"
         routerLinkActive="router-link-active">dynamic form
@@ -77,6 +78,7 @@
         [routerLink]="['test','checkbox-form-template']"
         routerLinkActive="router-link-active">checkbox-form-template
       </a>
+      -->
     </div>
   </div>
   <!-- /#sidebar-wrapper -->
@@ -88,7 +90,7 @@
       <button class="btn btn-primary" type="button" id="menu-toggle" (click)="toggleSideBar()">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <span class="ml-2"> <strong>台北單身派對</strong></span>
+      <span class="ml-2"> <strong>台北單身派對-{{currentTitle}}</strong></span>
       <span class="ml-auto mr-2">
         <!-- <img src="{{authService.currentUser.photoUrl || '../../assets/user.png'}}" alt=""> -->
         <img src="{{photoUrl}}" alt="" id="topbar-photo">

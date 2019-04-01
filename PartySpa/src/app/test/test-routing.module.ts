@@ -6,15 +6,15 @@ import { CheckboxFromTemplateComponent } from './checkbox-from-template/checkbox
 
 const routes: Routes = [
   {
-    path: 'dynamic-form',
+    path: 'dynamic',
     component: DynamicFormComponent,
   },
   {
-    path: 'checkbox-form-reactive',
+    path: 'form1',
     component: CheckboxFromReactiveComponent,
   },
   {
-    path: 'checkbox-form-template',
+    path: 'form2',
     component: CheckboxFromTemplateComponent,
   },
 

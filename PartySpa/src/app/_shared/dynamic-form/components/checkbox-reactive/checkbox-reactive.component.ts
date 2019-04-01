@@ -20,7 +20,7 @@ export class CheckboxReactiveComponent implements OnInit, OnChanges {
     return this.checkboxFormArray.get('items') as FormArray;
   }
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.checkboxFormArray.valueChanges.subscribe(value => {
@@ -28,7 +28,7 @@ export class CheckboxReactiveComponent implements OnInit, OnChanges {
       for (let index = 0; index < this.items.length; index++) {
         const isOptionChecked = this.items.get(index.toString()).value;
         if (isOptionChecked) {
-          const currentOptionValue = this.options[index].value;
+          const currentOptionValue = this.options[index].keyValue;
           optionsChecked.push(currentOptionValue);
         }
       }
@@ -44,13 +44,11 @@ export class CheckboxReactiveComponent implements OnInit, OnChanges {
     }
 
     this.selectedValues.forEach(value => {
-      const index: number = this.options.findIndex(opt => opt.value === value);
+      const index: number = this.options.findIndex(opt => opt.keyValue === value);
       if (index >= 0 ) {
         this.items.get(index.toString()).setValue(true);
       }
     });
   }
-
-
 
 }

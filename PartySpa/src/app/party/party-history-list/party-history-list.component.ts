@@ -4,6 +4,7 @@ import { Pagination, PaginatedResult } from 'src/app/_shared/interface/paginatio
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { PartyService } from 'src/app/_shared/service/party.service';
+import { AuthService } from 'src/app/_shared/service/auth.service';
 
 @Component({
   selector: 'app-party-history-list',
@@ -16,8 +17,9 @@ export class PartyHistoryListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    alertify: AlertifyService,
-    partyService: PartyService
+    private alertify: AlertifyService,
+    private partyService: PartyService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class PartyHistoryListComponent implements OnInit {
       this.partyList = data.apiPaginationResult.result;
       this.pagination = data.apiPaginationResult.pagination;
     });
+    this.authService.setCurrentTitle('歷史派對相簿');
   }
 
 }

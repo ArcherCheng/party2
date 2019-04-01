@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { UserCondition } from 'src/app/_shared/interface/UserCondition';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_shared/service/auth.service';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { UserService } from 'src/app/_shared/service/user.service';
-import { StarList } from 'src/app/_shared/enum/star-list';
-import { BloodList } from 'src/app/_shared/enum/blood-list';
-import { JobTypeList } from 'src/app/_shared/enum/job-typr-list';
-import { ReligionList } from 'src/app/_shared/enum/religion-list';
-import { CityList } from 'src/app/_shared/enum/city-list';
+// import { StarList } from 'src/app/_shared/enum/star-list';
+// import { BloodList } from 'src/app/_shared/enum/blood-list';
+// import { JobTypeList } from 'src/app/_shared/enum/job-type-list';
+// import { ReligionList } from 'src/app/_shared/enum/religion-list';
+// import { CityList } from 'src/app/_shared/enum/city-list';
 import { CheckboxItem } from 'src/app/_shared/dynamic-form/interface/checkbox-item';
 
 @Component({
@@ -21,29 +21,26 @@ export class MemberConditionComponent implements OnInit {
   userCondition: UserCondition;
   myFormGroup: FormGroup;
 
-  bloodList = BloodList;
+  // bloodList = BloodList;
   bloodOptions = new Array<CheckboxItem>();
   bloodSelected = new Array();
 
-  starList = StarList;
-  starOptions = new Array<CheckboxItem>();
+  starOptions =  new Array<CheckboxItem>();
   starSelected = new Array();
 
-  religionList = ReligionList;
   religionOptions = new Array<CheckboxItem>();
   religionSelected = new Array();
 
-  cityList = CityList;
   cityOptions = new Array<CheckboxItem>();
   citySelected = new Array();
 
-  jobList = JobTypeList;
   jobOptions = new Array<CheckboxItem>();
   jobSelected = new Array();
 
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
     private alertify: AlertifyService,
@@ -52,39 +49,47 @@ export class MemberConditionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: {apiResult: UserCondition}) => {
+    // console.log('ngOnInit');
+    this.route.data.subscribe((data: { apiResult: UserCondition }) => {
       this.userCondition = data.apiResult;
-
-      this.bloodOptions = this.bloodList.map(val => new CheckboxItem(val, val, false));
-      if (this.userCondition.bloodInclude) {
-        this.bloodSelected = this.userCondition.bloodInclude.split(',');
-      }
-
-      this.starOptions = this.starList.map(val => new CheckboxItem(val, val, false));
-      if (this.userCondition.starInclude) {
-        this.starSelected = this.userCondition.starInclude.split(',');
-      }
-
-      this.jobOptions = this.jobList.map(val => new CheckboxItem(val, val, false));
-      if (this.userCondition.jobTypeInclude) {
-        this.jobSelected = this.userCondition.jobTypeInclude.split(',');
-      }
-
-      this.cityOptions = this.cityList.map(val => new CheckboxItem(val, val, false));
-      if (this.userCondition.cityInclude) {
-        this.citySelected = this.userCondition.cityInclude.split(',');
-      }
-
-      this.religionOptions = this.religionList.map(val => new CheckboxItem(val, val, false));
-      if (this.userCondition.religionInclude) {
-        this.religionSelected = this.userCondition.religionInclude.split(',');
-      }
+      this.setSelectedValue();
+      this.createFormGroup();
     });
-    this.createFormGroup();
+    this.authService.setCurrentTitle('我的配對條件');
+
+  }
+
+  setSelectedValue() {
+    // console.log('setCheckboxOptions');
+    this.authService.getCheckboxItemList('Blood').subscribe(data => this.bloodOptions = data);
+    if (this.userCondition.bloodInclude !== null) {
+      this.bloodSelected = this.userCondition.bloodInclude.split(',');
+    }
+
+    this.authService.getCheckboxItemList('Star').subscribe(data => this.starOptions = data);
+    if (this.userCondition.starInclude) {
+      this.starSelected = this.userCondition.starInclude.split(',');
+    }
+
+    this.authService.getCheckboxItemList('Job').subscribe(data => this.jobOptions = data);
+    if (this.userCondition.jobTypeInclude) {
+      this.jobSelected = this.userCondition.jobTypeInclude.split(',');
+    }
+
+    this.authService.getCheckboxItemList('City').subscribe(data => this.cityOptions = data);
+    if (this.userCondition.cityInclude) {
+      this.citySelected = this.userCondition.cityInclude.split(',');
+    }
+
+    this.authService.getCheckboxItemList('Religion').subscribe(data => this.religionOptions = data);
+    if (this.userCondition.religionInclude) {
+      this.religionSelected = this.userCondition.religionInclude.split(',');
+    }
 
   }
 
   createFormGroup() {
+      // console.log('createFormGroup');
       this.myFormGroup = this.fb.group({
         userId: [this.userCondition.userId],
         marryMin: [this.userCondition.marryMin, Validators.required],
@@ -109,6 +114,7 @@ export class MemberConditionComponent implements OnInit {
   onSubmit(value) {
     this.userService.updateCondition(this.authService.decodedToken.nameid, this.myFormGroup.value).subscribe(next => {
       this.alertify.success('存檔成功');
+      this.router.navigate(['match', 'matchList']);
     }, error => {
       this.alertify.error(error.error);
     });

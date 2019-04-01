@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../interface/User';
 import { Register } from '../interface/register';
 import { Router } from '@angular/router';
 import { AlertifyService } from './alertify.service';
+import { CheckboxItem } from '../dynamic-form/interface/checkbox-item';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class AuthService {
   currentUser: User;
   photoUrl = new BehaviorSubject<string>('src/assets/user.png');
   currentPhotoUrl = this.photoUrl.asObservable();
+  currentTitle = new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,
@@ -51,6 +53,10 @@ export class AuthService {
     this.router.navigate(['/home']);
   }
 
+  setCurrentTitle(title: string) {
+    this.currentTitle.next(title);
+  }
+
   changeUserPhoto(photoUrl: string) {
     this.photoUrl.next(photoUrl);
   }
@@ -75,6 +81,10 @@ export class AuthService {
 
   forgetPassword(myphone: string, myemail: string) {
     return this.http.post(this.baseUrl + 'forgetPassword', {phone: myphone, email: myemail});
+  }
+
+  getCheckboxItemList(keyGroup: string): Observable<CheckboxItem[]> {
+    return this.http.get<CheckboxItem[]>(this.baseUrl + 'getCheckboxItemList/' + keyGroup);
   }
 
 }

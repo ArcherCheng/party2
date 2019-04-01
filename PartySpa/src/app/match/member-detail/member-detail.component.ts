@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/app/_shared/interface/User';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
-import { AuthService } from 'src/app/_shared/service/auth.service';
 import { UserService } from 'src/app/_shared/service/user.service';
+import { AuthService } from 'src/app/_shared/service/auth.service';
+import { User } from 'src/app/_shared/interface/User';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
-import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { ActivityService } from 'src/app/_shared/service/Activity.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -14,33 +12,22 @@ import { ActivityService } from 'src/app/_shared/service/Activity.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-  @ViewChild('memberTabs') memberTabs: TabsetComponent;
   user: User;
-  currentPartyId = 0;
+  photoUrl: string;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  photoUrl: string;  // 留言頭像用
 
   constructor(
     private route: ActivatedRoute,
     private alertify: AlertifyService,
-    private authService: AuthService,
     private userService: UserService,
-    private activityService: ActivityService
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    // this.loadUser();
-    this.route.data.subscribe((data: {apiResult: User}) => this.user = data.apiResult);
+    this.route.data.subscribe((data: {apiResult: User }) => this.user = data.apiResult);
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
     this.authService.setCurrentTitle('會員個人資料');
-    // this.currentPartyId = this.route.snapshot.params.partyId;
-    this.route.queryParams.subscribe(params => {
-      this.currentPartyId = params.partyId;
-      const selectedTab = params.tab;
-      this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
-    });
-
     this.galleryOptions = [
       {
         width: '900px',
@@ -65,7 +52,6 @@ export class MemberDetailComponent implements OnInit {
       }
     ];
     this.galleryImages = this.getImages();
-
   }
 
   getImages() {
@@ -82,35 +68,6 @@ export class MemberDetailComponent implements OnInit {
       }
     }
     return imageUrls;
-  }
-
-  sendLike(likeId: number) {
-    // alert(this.currentPartyId);
-    this.alertify.confirm('確定要投票給這個人嗎?', () => {
-      this.activityService.sendActivityLike(
-        this.authService.decodedToken.nameid,
-        this.currentPartyId,
-        likeId
-        ).subscribe(() => {
-          this.alertify.success('投票成功');
-        }, error => {
-          this.alertify.error(error.error);
-        });
-    });
-  }
-
-  // 直接在 init 中,下載主機端的資料,
-  // 改成用 route resolver 下載主機端的資料 member-detail-resolver.service
-  // loadUser() {
-  //   this.userService.get(+this.route.snapshot.params.id).subscribe((user: User) => {
-  //     this.user = user;
-  //   }, error => {
-  //     this.alertify.error(error.error);
-  //   });
-  // }
-
-  selectTab(tabId: number) {
-    this.memberTabs.tabs[tabId].active = true;
   }
 
 }

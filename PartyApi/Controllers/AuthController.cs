@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -108,6 +109,20 @@ namespace PartyApi.Controllers
                 token = tokenHandler.WriteToken(token),
                 user
             });
+        }
+
+        [HttpGet("GetCheckboxItemList/{keyGroup}")]
+        public async Task<IActionResult> GetCheckboxItemList(string keyGroup) 
+        {
+            var checkboxdItemList = await _repo.GetCheckboxItemList(keyGroup);
+            if (checkboxdItemList == null) 
+            {
+                return NotFound();
+            }
+
+            var dtoCheckboxItemList = _mapper.Map<IEnumerable<DtoCheckboxItem>>(checkboxdItemList);
+
+            return Ok(dtoCheckboxItemList);
         }
     }
 }
