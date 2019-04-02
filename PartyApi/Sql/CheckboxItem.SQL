@@ -7,6 +7,7 @@ create table CheckboxItem
 	KeyId         int               not null,
 	KeyValue      nvarchar(32)      not null,
 	IsChecked     bit               not null,
+	KeyLabel      nvarchar(64)      null,
 	--以下每檔資料表都會有這些欄位
 	WriteType     integer        null,
 	WriteTime     datetime       null,
@@ -28,42 +29,41 @@ insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked)
 values('Blood',4,'AB',0);
 go
 
-
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',1,'牡羊座',0);
+values('Star',1,'水瓶座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',2,'金牛座',0);
+values('Star',2,'雙魚座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',3,'雙子座',0);
+values('Star',3,'牡羊座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',4,'巨蟹座',0);
+values('Star',4,'金牛座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',5,'獅子座',0);
+values('Star',5,'雙子座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',6,'處女座',0);
+values('Star',6,'巨蟹座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',7,'天秤座',0);
+values('Star',7,'獅子座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',8,'天蠍座',0);
+values('Star',8,'處女座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',9,'射手座',0);
+values('Star',9,'天秤座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',10,'魔羯座',0);
+values('Star',10,'天蠍座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',11,'水瓶座',0);
+values('Star',11,'射手座',0);
 go
 insert into CheckboxItem(KeyGroup,KeyId,KeyValue,IsChecked) 
-values('Star',12,'雙魚座',0);
+values('Star',12,'魔羯座',0);
 go
 
 

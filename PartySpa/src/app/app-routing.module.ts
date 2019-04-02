@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'activity', loadChildren: './activity/activity.module#ActivityModule'},
   {path: 'match', loadChildren: './match/match.module#MatchModule'},
   {path: 'notes', loadChildren: './notes/notes.module#NotesModule'},
+  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
   {path: 'test', loadChildren: './test/test.module#TestModule'},
   {path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '**', redirectTo: 'home', pathMatch: 'full'},

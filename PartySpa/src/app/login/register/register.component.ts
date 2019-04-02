@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/_shared/service/auth.service';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { Router } from '@angular/router';
 import { Register } from 'src/app/_shared/interface/register';
+import { CheckboxItem } from 'src/app/_shared/dynamic-form/interface/checkbox-item';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,13 @@ export class RegisterComponent implements OnInit {
   model: any = {};
   registerData: Register;
   registerForm: FormGroup;
+
+  bloodOptions = new Array<CheckboxItem>();
+  starOptions =  new Array<CheckboxItem>();
+  religionOptions = new Array<CheckboxItem>();
+  cityOptions = new Array<CheckboxItem>();
+  jobOptions = new Array<CheckboxItem>();
+
   // = this.fb.group({
   //   firstName: ['王', Validators.required],
   //   lastName: ['明生', Validators.required],
@@ -28,16 +36,28 @@ export class RegisterComponent implements OnInit {
   //   passwordConfirm: ['password', Validators.required]
   // }, {validator: this.passwordMatchValidator});
 
-  constructor(private authService: AuthService, private router: Router,
-              private alertify: AlertifyService, private fb: FormBuilder) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertify: AlertifyService,
+    private fb: FormBuilder
+    ) { }
 
   ngOnInit() {
     // this.bsConfig = {
     //   containerClass: 'theme-red'
     // };
+    this.loadCheckBoxItem();
     this.createRegisterForm();
     this.authService.setCurrentTitle('新人註冊');
 
+  }
+  loadCheckBoxItem() {
+    this.authService.getCheckboxItemList('Blood').subscribe(data => this.bloodOptions = data);
+    this.authService.getCheckboxItemList('Star').subscribe(data => this.starOptions = data);
+    this.authService.getCheckboxItemList('City').subscribe(data => this.cityOptions = data);
+    this.authService.getCheckboxItemList('Job').subscribe(data => this.jobOptions = data);
+    this.authService.getCheckboxItemList('Religion').subscribe(data => this.religionOptions = data);
   }
 
   createRegisterForm() {

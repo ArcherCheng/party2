@@ -56,6 +56,15 @@
       <a class="list-group-item list-group-item-action bg-light"
         (click)="logout()">登出系統
       </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['admin','member']"
+        routerLinkActive="router-link-active">member-list
+      </a>
+      <a class="list-group-item list-group-item-action bg-light"
+        [routerLink]="['admin','party']"
+        routerLinkActive="router-link-active">party-list
+      </a>
+
       <!--
       <a class="list-group-item list-group-item-action bg-light"
         [routerLink]="['member','partyList']"

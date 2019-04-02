@@ -118,8 +118,9 @@ namespace PartyApi.Controllers
                 return Unauthorized();
 
             var repoMember = await _repo.Get(userId);
-            _mapper.Map(model, repoMember);
-
+            // _mapper.Map(model, repoMember);
+            // _repo.Update(repoMember);
+    
             if (await _repo.SaveAllAsync() > 0)
                 return NoContent();
 
