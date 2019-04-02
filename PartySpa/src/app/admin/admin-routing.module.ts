@@ -5,7 +5,7 @@ import { PartyListComponent } from './party-list/party-list.component';
 import { AdminGuard } from '../_shared/guard/admin.guard';
 import { AuthGuard } from '../_shared/guard/auth.guard';
 import { MemberListResolverService } from './member-list/member-list-resolver.service';
-import { PartyListResolverService } from '../home/party-list-resolver.service';
+import { PartyListResolverService } from './party-list/party-list-resolver.service';
 
 const routes: Routes = [
   {
@@ -16,12 +16,12 @@ const routes: Routes = [
       {
         path: 'member',
         component: MemberListComponent,
-        resolve: {apiResult: MemberListResolverService}
+        //  resolve: {apiResult: MemberListResolverService}
       },
       {
         path: 'party',
         component: PartyListComponent,
-        resolve: {apiResult: PartyListResolverService}
+        // resolve: {apiResult: PartyListResolverService}
       },
     ]
   },

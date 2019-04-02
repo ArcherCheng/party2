@@ -15,16 +15,16 @@ export class AdminGuard implements CanActivate {
     ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    // return true;
     if (this.authService.loggedIn()) {
       const role = this.authService.decodedToken.role;
-      if (role === 'admin') {
+      if (role === 'Admin') {
         return true;
       }
       this.alertify.error('您非系統管理者');
     }
     this.alertify.error('您無法通過授權進入');
     this.router.navigate(['/home']);
-    return true;
     return false;
   }
 }
