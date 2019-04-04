@@ -60,12 +60,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArcherCheng/TaipeiParty.git"
+    "url": "git+https://github.com/ArcherCheng/Party2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ArcherCheng/TaipeiParty/issues"
+    "url": "https://github.com/ArcherCheng/Party2/issues"
   },
-  "homepage": "https://github.com/ArcherCheng/TaipeiParty#readme"
+  "homepage": "https://github.com/ArcherCheng/Part2y#readme"
 }
