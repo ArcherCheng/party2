@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { Party } from '../interface/party';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../interface/pagination';
@@ -51,6 +51,7 @@ export class PartyService {
       })
     );
   }
+
 
   getPartyPhotoList(partyId: number): Observable<PartyPhoto[]> {
     return this.http.get<PartyPhoto[]>(this.baseUrl + 'party/' + partyId + '/photoList');

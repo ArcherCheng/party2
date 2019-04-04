@@ -29,19 +29,7 @@ namespace PartyApi.Controllers
             _config = config;
         }
 
-        /*
-        {
-            "firstName": "趙",
-            "lastName": "金龍",
-            "email": "a010@mydate.tw",
-            "phone": "0970922010",
-            "sex": "1",
-            "birthday": "1978/12/8",
-            "marry": "1",
-            "education": "5",
-            "password": "password"	
-        }
-        */
+ 
         [HttpPost("register")]
         public async Task<IActionResult> Register(DtoRegister formData)
         {
@@ -126,3 +114,20 @@ namespace PartyApi.Controllers
         }
     }
 }
+
+
+/*
+postman 用的 Json
+
+{
+    "firstName": "趙",
+    "lastName": "金龍",
+    "email": "a010@mydate.tw",
+    "phone": "0970922010",
+    "sex": "1",
+    "birthday": "1978/12/8",
+    "marry": "1",
+    "education": "5",
+    "password": "password"	
+}
+*/

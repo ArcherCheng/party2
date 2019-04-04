@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interface/User';
@@ -9,6 +9,7 @@ import { User } from '../interface/User';
 })
 export class ActivityService {
   baseUrl = environment.apiUrl;
+  
   constructor(private http: HttpClient) { }
 
   // 使用者點擊參加報名活動

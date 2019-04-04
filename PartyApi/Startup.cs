@@ -60,6 +60,7 @@ namespace PartyApi
             services.AddScoped<IRepoMemberPhoto,RepoMemberPhoto>();
             services.AddScoped<IRepoParty,RepoParty>();
             services.AddScoped<IRepoActivity,RepoActivity>();
+            services.AddScoped<IRepoAdmin,RepoAdmin>();
             services.AddScoped<IRepoMessage,RepoMessage>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {

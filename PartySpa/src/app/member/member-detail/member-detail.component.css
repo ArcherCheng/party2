@@ -1,0 +1,21 @@
+.member-detail,.member-introduction {
+  background-image: url('/assets/paper.gif')
+}
+
+.img-thumbnail {
+  /* margin: 25px; */
+  widows: 85%;
+  height: 85%;
+}
+
+.card-body {
+  padding: 0 15px;
+  background-image: url('/assets/backgrd.gif');
+}
+
+.card-footer {
+  padding: 10px 15px;
+  background-color: #fff;
+  border-top: none;
+}
+

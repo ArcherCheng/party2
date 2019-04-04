@@ -1,0 +1,11 @@
+<p>
+  test-dynamic-form works!
+</p>
+<div class="app">
+  <app-dynamic-form #dynamicForm [configs]="music" (submit)="onSubmit($event)">
+
+  </app-dynamic-form>
+
+</div>
+<p>Form value: {{ dynamicForm.value | json }}</p>
+<p>Form valid: {{ dynamicForm.valid }} </p>

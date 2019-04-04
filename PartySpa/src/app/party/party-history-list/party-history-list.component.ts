@@ -30,4 +30,20 @@ export class PartyHistoryListComponent implements OnInit {
     this.authService.setCurrentTitle('歷史派對相簿');
   }
 
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.loadPageData();
+  }
+
+  loadPageData() {
+    this.partyService.getHistoryList(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe(
+      (res: PaginatedResult<Party[]>) => {
+        this.partyList = res.result;
+        this.pagination = res.pagination;
+      }, error => {
+        this.alertify.error(error.error);
+      }
+    );
+  }
+
 }
