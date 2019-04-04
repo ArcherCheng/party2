@@ -34,3 +34,5 @@ export class EducationPipe implements PipeTransform {
   }
 
 }
+
+
