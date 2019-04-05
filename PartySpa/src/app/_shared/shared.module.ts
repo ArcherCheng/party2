@@ -38,7 +38,6 @@ import { MemberCardComponent } from './component/member-card/member-card.compone
   exports: [
     PartyCardComponent,
     MemberCardComponent,
-
     EducationPipe,
     MarryPipe,
     MarryConditionPipe,

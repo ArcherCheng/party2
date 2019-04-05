@@ -26,7 +26,7 @@ export class PartyListComponent implements OnInit {
     this.route.data.subscribe((data: {apiResult: PaginatedResult<Party[]>}) => {
       this.partyList = data.apiResult.result;
       this.pagination = data.apiResult.pagination;
-      console.log(data.apiResult);
+      // console.log(data.apiResult);
     });
     this.authService.setCurrentTitle('活動資料維護');
   }

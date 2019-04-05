@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemberConditionComponent } from './member-condition.component';
+import { MatchConditionComponent } from './match-condition.component';
 
-describe('MemberConditionComponent', () => {
-  let component: MemberConditionComponent;
-  let fixture: ComponentFixture<MemberConditionComponent>;
+describe('MatchConditionComponent', () => {
+  let component: MatchConditionComponent;
+  let fixture: ComponentFixture<MatchConditionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberConditionComponent ]
+      declarations: [ MatchConditionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemberConditionComponent);
+    fixture = TestBed.createComponent(MatchConditionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

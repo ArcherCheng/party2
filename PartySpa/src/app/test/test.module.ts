@@ -16,11 +16,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    TestRoutingModule,
-    DynamicFormModule,
     ReactiveFormsModule,
     FormsModule,
-
+    DynamicFormModule,
+    TestRoutingModule,
   ]
 })
 export class TestModule { }

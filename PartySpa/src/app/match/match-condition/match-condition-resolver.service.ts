@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class MemberConditionResolverService implements Resolve<UserCondition>  {
+export class MatchConditionResolverService implements Resolve<UserCondition>  {
 
   constructor(
     private router: Router,

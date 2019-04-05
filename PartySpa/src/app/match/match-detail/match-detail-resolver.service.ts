@@ -6,10 +6,11 @@ import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { UserService } from 'src/app/_shared/service/user.service';
 import { catchError } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class MemberDetailResolverService implements Resolve<User> {
+export class MatchDetailResolverService implements Resolve<User> {
 
   constructor(
     private router: Router,
@@ -17,7 +18,7 @@ export class MemberDetailResolverService implements Resolve<User> {
     private userService: UserService
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User>{
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
     return this.userService.get(route.params.userId).pipe(
       catchError(error => {
         this.alertify.error(error.error);

@@ -11,13 +11,12 @@ import { UserService } from 'src/app/_shared/service/user.service';
 // import { ReligionList } from 'src/app/_shared/enum/religion-list';
 // import { CityList } from 'src/app/_shared/enum/city-list';
 import { CheckboxItem } from 'src/app/_shared/dynamic-form/interface/checkbox-item';
-
 @Component({
-  selector: 'app-member-condition',
-  templateUrl: './member-condition.component.html',
-  styleUrls: ['./member-condition.component.css']
+  selector: 'app-match-condition',
+  templateUrl: './match-condition.component.html',
+  styleUrls: ['./match-condition.component.css']
 })
-export class MemberConditionComponent implements OnInit {
+export class MatchConditionComponent implements OnInit {
   userCondition: UserCondition;
   myFormGroup: FormGroup;
 

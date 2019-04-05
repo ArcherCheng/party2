@@ -26,7 +26,7 @@ export class MemberListComponent implements OnInit {
     this.route.data.subscribe((data: {apiResult: PaginatedResult<User[]>}) => {
       this.userList = data.apiResult.result;
       this.pagination = data.apiResult.pagination;
-      console.log(data.apiResult);
+      // console.log(data.apiResult);
     });
     this.authService.setCurrentTitle('會員資料維護');
   }

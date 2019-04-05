@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import { PartyListResolverService } from './home/party-list-resolver.service';
+import { HomeListResolverService } from './home/home-list-resolver.service';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, resolve: {apiListResult: PartyListResolverService}},
+  {path: 'home', component: HomeComponent, resolve: {apiListResult: HomeListResolverService}},
   {path: 'login', loadChildren: './login/login.module#LoginModule'},
   {path: 'party', loadChildren: './party/party.module#PartyModule'},
   {path: 'member', loadChildren: './member/member.module#MemberModule'},

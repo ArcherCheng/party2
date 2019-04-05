@@ -6,15 +6,18 @@ import { SharedModule } from '../_shared/shared.module';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    ForgetPasswordComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     LoginRoutingModule,
-    // FormsModule,
-    // ReactiveFormsModule,
   ]
 })
 export class LoginModule { }

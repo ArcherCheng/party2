@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class PartyListResolverService implements Resolve<Party[]> {
+export class HomeListResolverService implements Resolve<Party[]> {
   constructor(
     private router: Router,
     private alertify: AlertifyService,

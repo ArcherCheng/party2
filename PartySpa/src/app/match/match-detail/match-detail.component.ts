@@ -7,11 +7,11 @@ import { User } from 'src/app/_shared/interface/User';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 @Component({
-  selector: 'app-member-detail',
-  templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  selector: 'app-match-detail',
+  templateUrl: './match-detail.component.html',
+  styleUrls: ['./match-detail.component.css']
 })
-export class MemberDetailComponent implements OnInit {
+export class MatchDetailComponent implements OnInit {
   user: User;
   photoUrl: string;
   galleryOptions: NgxGalleryOptions[];

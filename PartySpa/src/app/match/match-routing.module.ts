@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../_shared/guard/auth.guard';
-import { MemberConditionComponent } from './member-condition/member-condition.component';
-import { MemberConditionResolverService } from './member-condition/member-condition-resolver.service';
 import { MatchListComponent } from './match-list/match-list.component';
 import { MatchListResolverService } from './match-list/match-list-resolver.service';
-import { MemberDetailComponent } from './member-detail/member-detail.component';
-import { MemberDetailResolverService } from './member-detail/member-detail-resolver.service';
+import { MatchConditionComponent } from './match-condition/match-condition.component';
+import { MatchConditionResolverService } from './match-condition/match-condition-resolver.service';
+import { MatchDetailComponent } from './match-detail/match-detail.component';
+import { MatchDetailResolverService } from './match-detail/match-detail-resolver.service';
 
 const routes: Routes = [
   {
@@ -16,8 +16,8 @@ const routes: Routes = [
     children: [
       {
         path: 'condition',
-        component: MemberConditionComponent,
-        resolve: {apiResult: MemberConditionResolverService}
+        component: MatchConditionComponent,
+        resolve: {apiResult: MatchConditionResolverService}
       },
       {
         path: 'matchList',
@@ -25,9 +25,9 @@ const routes: Routes = [
         resolve: {apiPaginatedResult: MatchListResolverService}
       },
       {
-        path: 'memberDetail/:userId',
-        component: MemberDetailComponent,
-        resolve: {apiResult: MemberDetailResolverService}
+        path: 'matchDetail/:userId',
+        component: MatchDetailComponent,
+        resolve: {apiResult: MatchDetailResolverService}
       },
     ]
   },

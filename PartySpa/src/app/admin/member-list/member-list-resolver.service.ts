@@ -25,7 +25,7 @@ export class MemberListResolverService implements Resolve<PaginatedResult<User[]
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.adminService.getMemberList(this.pageNumber, this.pageSize).pipe(
-      tap(data => console.log(data)),
+      // tap(data => console.log(data)),
       catchError(error => {
         // catchError(this.authService.handleError('adminService.getMemberList', []));
         this.alertify.error(error.error);
