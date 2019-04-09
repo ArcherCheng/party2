@@ -31,22 +31,6 @@ namespace PartyApi.Controllers
             _repo = repo;
         }
 
-        #region HttpGet read data from db
-        [HttpGet("{userId}/matchList")]
-        public async Task<IActionResult> GetMatchList(int userId, [FromQuery]ParaMember para)
-        {
-            // int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            return Unauthorized();
-
-            para.UserId = userId;
-            var repoMember = await _repo.GetMatchList(para);
-            Response.AddPagination(repoMember.CurrentPage, repoMember.PageSize, repoMember.TotalCount, repoMember.TotalPages);
-
-            var dtoMemberList = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
-            return Ok(dtoMemberList);
-        }
-
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUser(int userId)
         {
@@ -55,8 +39,7 @@ namespace PartyApi.Controllers
             return Ok(dtoMember);
         }
 
-
-         [HttpGet("{userId}/memberDetail")]
+        [HttpGet("{userId}/memberDetail")]
         public async Task<IActionResult> GetDetail(int userId)
         {
             var member = await _repo.GetDetail(userId);
@@ -64,12 +47,38 @@ namespace PartyApi.Controllers
             return Ok(dtoMember);
         }
 
+        [HttpGet("{userId}/party/{partyId}/memberDetail")]
+        public async Task<IActionResult> Get(int userId, int partyId)
+        {
+            var member = await _repo.Get(userId);
+            var dtoMember = _mapper.Map<DtoMemberDetail>(member);
+            return Ok(dtoMember);
+        }
+
+
+
         [HttpGet("{userId}/edit")]
         public async Task<IActionResult> GetEdit(int userId)
         {
             var member = await _repo.GetEdit(userId);
             var dtoMember = _mapper.Map<DtoMemberEdit>(member);
             return Ok(dtoMember);
+        }
+
+        [HttpPost("{userId}/memberUpdate")]
+        public async Task<IActionResult> MemberUpdate(int userId, [FromBody]DtoMemberEdit model)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var repoMember = await _repo.Get(userId);
+            _mapper.Map(model, repoMember);
+            _repo.Update(repoMember);
+    
+            if (await _repo.SaveAllAsync() > 0)
+                return NoContent();
+
+            throw new System.Exception($"更新使用者資料失敗,ID = {userId}");
         }
 
         [HttpGet("{userId}/Photos")]
@@ -98,50 +107,6 @@ namespace PartyApi.Controllers
             return Ok(dtoMemberCondition);
         }
 
-
-        [HttpGet("{userId}/party/{partyId}/memberDetail")]
-        public async Task<IActionResult> Get(int userId, int partyId)
-        {
-            var member = await _repo.Get(userId);
-            var dtoMember = _mapper.Map<DtoMemberDetail>(member);
-            return Ok(dtoMember);
-        }
-
-        #endregion
-
-        #region HttpPut HttpPost 
-
-        [HttpPut("{userId}")]
-        public async Task<IActionResult> Put(int userId, [FromBody]DtoMemberEdit model)
-        {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
-            var repoMember = await _repo.Get(userId);
-            // _mapper.Map(model, repoMember);
-            // _repo.Update(repoMember);
-    
-            if (await _repo.SaveAllAsync() > 0)
-                return NoContent();
-
-            throw new System.Exception($"更新使用者資料失敗,ID = {userId}");
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> delete(int userId)
-        {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
-            var repoData = await _repo.Get(userId);
-            // repoData.isClose = true;
-
-            if (_repo.SaveAll() > 0)
-                return NoContent();
-
-            throw new System.Exception($"關閉使用者資料失敗,ID = {userId}");
-        }
-
         [HttpPost("{userId}/MemberCondition/Edit")]
         public async Task<IActionResult> MemberCondition(int userId, [FromBody]DtoMemberCondition model)
         {
@@ -164,11 +129,39 @@ namespace PartyApi.Controllers
                 return Ok(repoMemberCondition);
 
             return BadRequest("配對條件存檔失敗");
-
         }
 
 
+        [HttpGet("{userId}/matchList")]
+        public async Task<IActionResult> GetMatchList(int userId, [FromQuery]ParaMember para)
+        {
+            // int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            return Unauthorized();
 
+            para.UserId = userId;
+            var repoMember = await _repo.GetMatchList(para);
+            Response.AddPagination(repoMember.CurrentPage, repoMember.PageSize, repoMember.TotalCount, repoMember.TotalPages);
+
+            var dtoMemberList = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
+            return Ok(dtoMemberList);
+        }
+
+
+        [HttpDelete]
+        public async Task<IActionResult> delete(int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var repoData = await _repo.Get(userId);
+            // repoData.isClose = true;
+
+            if (_repo.SaveAll() > 0)
+                return NoContent();
+
+            throw new System.Exception($"關閉使用者資料失敗,ID = {userId}");
+        }
 
 
     }
@@ -325,4 +318,3 @@ namespace PartyApi.Controllers
         //     return BadRequest("寫入資料庫失敗,請洽詢服務人員");
         // }
 
-        #endregion

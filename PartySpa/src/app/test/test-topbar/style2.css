@@ -1,0 +1,22 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  /* display: inline; */
+  float: left;
+  margin: 5px;
+}
+
+a {
+  display: block;
+  width: 100px;
+  background-color: #888888;
+  border-radius: 4px 3px 6px 10px;
+}
+
+.clearfix {
+  clear:both;
+}

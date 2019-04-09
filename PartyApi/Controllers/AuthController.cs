@@ -46,8 +46,8 @@ namespace PartyApi.Controllers
             return Ok(); 
 
             //返回簡單使用者資料
-            //var user = _mapper.Map<DtoLoginToReturn>(member);
-            //Ok(user);
+            // var user = _mapper.Map<DtoLoginToReturn>(member);
+            // return Ok(user);
             
             //重新導向使用者資料編輯
             //return CreatedAtRoute("GetAccountr", new {controller = "account", id = userToReturn.USERID}, userToReturn);
@@ -66,7 +66,18 @@ namespace PartyApi.Controllers
             if(member == null)
                 return Unauthorized();
 
-            var userName= member.FirstName + member.LastName;
+            var userName= member.NickName;
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                if (member.Sex == 1) 
+                {
+                    userName = member.FirstName + "'R";
+                } else
+                {
+                    userName = member.FirstName + "'S";
+                }
+            }
+
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, member.UserId.ToString()),
@@ -90,7 +101,7 @@ namespace PartyApi.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             //返回簡單使用者資料
-            var user = _mapper.Map<DtoMemberList>(member);
+            var user = _mapper.Map<DtoLoginToReturn>(member);
 
             return Ok(new
             {

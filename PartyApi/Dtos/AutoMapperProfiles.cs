@@ -16,14 +16,14 @@ namespace PartyApi.Dtos
             CreateMap<Member, DtoLoginToReturn>()
                 .ForMember(dest => dest.UserName, opt =>
                         {
-                            opt.MapFrom(src => string.IsNullOrEmpty(src.NickName) ? src.FirstName + src.LastName : src.NickName); //(src.sex == 1 ? "先生" : "小姐")
+                            opt.MapFrom(src => string.IsNullOrEmpty(src.NickName) ? src.FirstName + (src.Sex == 1 ? "'R" : "'S") : src.NickName); 
                         });
 
             //會員資料檔
             CreateMap<Member, DtoMemberList>()
                .ForMember(dest => dest.UserName, opt =>
                         {
-                            opt.MapFrom(src => string.IsNullOrEmpty(src.NickName) ? src.FirstName + src.LastName : src.NickName); //(src.sex == 1 ? "先生" : "小姐")
+                            opt.MapFrom(src => string.IsNullOrEmpty(src.NickName) ? src.FirstName + (src.Sex == 1 ? "'R" : "'S") : src.NickName); 
                         })
                .ForMember(dest => dest.Age, opt =>
                        {
@@ -37,7 +37,7 @@ namespace PartyApi.Dtos
             CreateMap<Member, DtoMemberDetail>()
                .ForMember(dest => dest.UserName, opt =>
                        {
-                           opt.MapFrom(src => string.IsNullOrEmpty(src.NickName) ? src.FirstName + src.LastName : src.NickName); //(src.sex == 1 ? "先生" : "小姐")
+                           opt.MapFrom(src => string.IsNullOrEmpty(src.NickName) ? src.FirstName + (src.Sex == 1 ? "'R" : "'S") : src.NickName); //(src.sex == 1 ? "先生" : "小姐")
                        })
                 .ForMember(dest => dest.Age, opt =>
                        {
@@ -67,9 +67,9 @@ namespace PartyApi.Dtos
             //Activity 會員留言訊息資料檔
             CreateMap<Message, DtoMessageList>()
                .ForMember(dest => dest.SenderName, opt =>
-                    opt.MapFrom(src => string.IsNullOrEmpty(src.Sender.NickName) ? src.Sender.FirstName + src.Sender.LastName : src.Sender.NickName))  //(src.sex == 1 ? "先生" : "小姐")
+                    opt.MapFrom(src => string.IsNullOrEmpty(src.Sender.NickName) ? src.Sender.FirstName + (src.Sender.Sex == 1 ? "'R" : "'S") : src.Sender.NickName))  //(src.sex == 1 ? "先生" : "小姐")
                .ForMember(dest => dest.RecipientName, opt =>
-                    opt.MapFrom(src => string.IsNullOrEmpty(src.Recipient.NickName) ? src.Recipient.FirstName + src.Recipient.LastName : src.Recipient.NickName)) //(src.sex == 1 ? "先生" : "小姐")
+                    opt.MapFrom(src => string.IsNullOrEmpty(src.Recipient.NickName) ? src.Recipient.FirstName + (src.Recipient.Sex == 1 ? "'R" : "'S"): src.Recipient.NickName)) //(src.sex == 1 ? "先生" : "小姐")
                 .ForMember(dest => dest.SenderPhotoUrl, opt => 
                     opt.MapFrom(src => src.Sender.MemberPhoto.FirstOrDefault(p => p.IsMain).PhotoUrl))
                 .ForMember(dest => dest.RecipientPhotoUrl, opt => 

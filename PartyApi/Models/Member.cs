@@ -43,10 +43,15 @@ namespace PartyApi.Models
         public bool IsClosePhoto { get; set; }
         public string BankName { get; set; }
         public string BankNumber6 { get; set; }
+
+        //這部份內容由程式自動產生
+        public string MainPhotoUrl { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public DateTime? LastDate { get; set; }
         public DateTime? ActiveDate { get; set; }
+
+        //備用欄位
         public string EmailCode { get; set; }
         public string PhoneCode { get; set; }
         public string IdPhoto11Url { get; set; }
@@ -58,6 +63,8 @@ namespace PartyApi.Models
         public int SchoolCheck { get; set; }
         public int UnPayTimes { get; set; }
         public int ResetPassword { get; set; }
+        
+        //由admin來輸入
         public string UserRole { get; set; }
         public int IsBlackUser { get; set; }
         public int? WriteType { get; set; }

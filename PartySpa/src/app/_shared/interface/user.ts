@@ -1,5 +1,5 @@
 import { Photo } from './photo';
-import { UserCondition } from './UserCondition';
+// import { UserCondition } from './UserCondition';
 
 export interface User {
   userId: number;

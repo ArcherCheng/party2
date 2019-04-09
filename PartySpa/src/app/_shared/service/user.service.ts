@@ -69,7 +69,7 @@ export class UserService {
   }
 
   updateMember(userId: number, member: User) {
-    return this.http.put(this.baseUrl + 'member/' + userId, member);
+    return this.http.post(this.baseUrl + 'member/' + userId + '/memberUpdate', member);
   }
 
   updateCondition(userId: number, data: UserCondition) {

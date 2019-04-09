@@ -114,9 +114,12 @@ namespace PartyApi.Controllers
             if (currentMainPhoto != null)
                 currentMainPhoto.IsMain = false;
 
+            var mainPhotoUrl = photo.PhotoUrl;
+            // member.MainPhotoUrl = mainPhotoUrl;
             photo.IsMain = true;
             if (_repo.SaveAll()>0)
                 return NoContent();
+
 
             return BadRequest("無法設定相片封面,請洽服務人員");
         }

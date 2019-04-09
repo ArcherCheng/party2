@@ -32,7 +32,8 @@ namespace PartyApi.Dtos
         public string School { get; set; }
         public string Subjects { get; set; }
 
-        //非原始欄位, 顯示用
+        //非原始欄位,計算出來的, 顯示用
+        public string MainPhotoUrl { get; set; }
         public string UserName { get; set; }
         public string PhotoUrl { get; set; }
         public int Age{get; set;}
@@ -87,7 +88,7 @@ namespace PartyApi.Dtos
         public string BankNumber6 { get; set; }
         public bool  IsCloseData { get; set; }
         public bool  IsClosePhoto { get; set; }
-        public MemberCondition MemberCondition{ get; set; }
+        // public MemberCondition MemberCondition{ get; set; }
         public ICollection<DtoPhotoList> Photos{get;set;}
 
     }

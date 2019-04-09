@@ -139,7 +139,7 @@
                 <label class="col-sm-2 col-form-label">我的血型:</label>
                 <div class="col-sm-10">
                   <select class="form-control" id="blood" name="blood" [(ngModel)]="user.blood">
-                    <option *ngFor="let item of bloodOptions">{{item.keyValue}}</option>
+                    <option *ngFor="let item of bloodOptions" [value]="item.keyValue">{{item.keyValue}}</option>
                   </select>
                 </div>
               </div>
@@ -168,7 +168,7 @@
                 <label class="col-sm-2 col-form-label">居住城市:</label>
                 <div class="col-sm-10">
                   <select class="form-control" id="star" name="city" [(ngModel)]="user.city">
-                    <option *ngFor="let item of cityOptions">{{item.keyValue}}</option>
+                    <option *ngFor="let item of cityOptions" [value]="item.keyValue">{{item.keyValue}}</option>
                   </select>
                 </div>
               </div>
@@ -177,7 +177,7 @@
                 <label class="col-sm-2 col-form-label">我的職業:</label>
                 <div class="col-sm-10">
                   <select class="form-control" id="jobType" name="jobType" [(ngModel)]="user.jobType">
-                    <option *ngFor="let item of jobOptions">{{item.keyValue}}</option>
+                    <option *ngFor="let item of jobOptions" [value]="item.keyValue">{{item.keyValue}}</option>
                   </select>
                 </div>
               </div>
@@ -186,7 +186,7 @@
                 <label class="col-sm-2 col-form-label">宗教信仰:</label>
                 <div class="col-sm-10">
                   <select class="form-control" id="religion" name="religion" [(ngModel)]="user.religion">
-                    <option *ngFor="let item of religionOptions">{{item.keyValue}}</option>
+                    <option *ngFor="let item of religionOptions" [value]="item.keyValue">{{item.keyValue}}</option>
                    </select>
                 </div>
               </div>

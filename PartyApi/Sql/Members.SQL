@@ -55,33 +55,34 @@ create table Member
 	PdAnswer     nvarchar(32)   null, --找回密碼答案,由註冊時系統先給 model.通行密碼
 	
 	--關檔及轉帳查核用
-	IsCloseData  bit        not null,--是否關閉檔案
+	IsCloseData  bit        not null,--是否關閉檔案,即不做網路配對
 	IsClosePhoto bit        not null,--是否關閉相簿
 	BankName     nvarchar(32)   null, --轉帳銀行
 	BankNumber6  nvarchar(32)   null, --帳號後6碼
 
-	--以下由系統自動產生的登入記錄
+	--這部份內容由系統自動產生
+	MainPhotoUrl  nvarchar(256)   null,--封面相片網址
 	PasswordHash  varbinary(2048)   null,
 	PasswordSalt  varbinary(2048)   null,
 	LastDate      datetime       null,--上次登入日期
 	ActiveDate    datetime       null,--最後活動日期
 
 	--備用欄位 身份驗證查核用
-	EmailCode     nvarchar(64)   null,--郵件驗證碼
-	PhoneCode     nvarchar(16)   null,--簡訊驗證碼
-	IdPhoto11Url  nvarchar(64)   null,--身份證正面
-	IdPhoto12Url  nvarchar(64)   null,--身份證反面
-	IdCheck       int        not null,--身份證查驗
-	JobPhotoUrl   nvarchar(64)   null,--在職證明
-	JobCheck      int        not null,--職業查驗
-	SchoolUrl     nvarchar(64)   null,--學歷證明
-	SchoolCheck   int        not null,--學歷查驗
-	UnPayTimes    int        not null,--報名未繳款次數
-	ResetPassword int        not null,--必須重設密碼
+	PhoneCode     nvarchar(16)    null,--簡訊驗證碼
+	EmailCode     nvarchar(256)   null,--郵件驗證碼
+	IdPhoto11Url  nvarchar(256)   null,--身份證正面
+	IdPhoto12Url  nvarchar(256)   null,--身份證反面
+	JobPhotoUrl   nvarchar(256)   null,--在職證明
+	SchoolUrl     nvarchar(256)   null,--學歷證明
 
 	--以下由系統人員輸入
 	UserRole      nvarchar(16)   null,--角色歸屬
 	IsBlackUser   int        not null,--是否列為黑名單
+	UnPayTimes    int        not null,--報名未繳款次數
+	ResetPassword int        not null,--必須重設密碼
+	JobCheck      int        not null,--職業查驗
+	IdCheck       int        not null,--身份證查驗
+	SchoolCheck   int        not null,--學歷查驗
 
 	--以下每檔資料表都會有這些欄位
 	WriteType     integer        null,
