@@ -55,8 +55,6 @@ namespace PartyApi.Controllers
             return Ok(dtoMember);
         }
 
-
-
         [HttpGet("{userId}/edit")]
         public async Task<IActionResult> GetEdit(int userId)
         {
@@ -73,6 +71,7 @@ namespace PartyApi.Controllers
 
             var repoMember = await _repo.Get(userId);
             _mapper.Map(model, repoMember);
+            repoMember.ActiveDate = System.DateTime.Now;
             _repo.Update(repoMember);
     
             if (await _repo.SaveAllAsync() > 0)
@@ -112,6 +111,9 @@ namespace PartyApi.Controllers
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
+            var repoMember = await _repo.Get(userId);
+            repoMember.ActiveDate = System.DateTime.Now;
+            _repo.Update(repoMember);
 
             var repoMemberCondition = await _repo.GetMemberCondition(userId);
             if (repoMemberCondition == null)
@@ -131,7 +133,6 @@ namespace PartyApi.Controllers
             return BadRequest("配對條件存檔失敗");
         }
 
-
         [HttpGet("{userId}/matchList")]
         public async Task<IActionResult> GetMatchList(int userId, [FromQuery]ParaMember para)
         {
@@ -147,7 +148,6 @@ namespace PartyApi.Controllers
             return Ok(dtoMemberList);
         }
 
-
         [HttpDelete]
         public async Task<IActionResult> delete(int userId)
         {
@@ -162,8 +162,6 @@ namespace PartyApi.Controllers
 
             throw new System.Exception($"關閉使用者資料失敗,ID = {userId}");
         }
-
-
     }
 }
 

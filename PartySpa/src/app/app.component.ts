@@ -3,6 +3,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './_shared/service/auth.service';
 import { User } from './_shared/interface/User';
 import { wrappedError } from '@angular/core/src/error_handler';
+import { LoginUser } from './_shared/interface/loginUser';
 
 @Component({
   selector: 'app-root',
@@ -23,13 +24,13 @@ export class AppComponent  implements OnInit {
       this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
       this.authService.currentTitle.subscribe(title => this.currentTitle = title);
       const token = localStorage.getItem('token');
-      const user: User =  JSON.parse(localStorage.getItem('user'));
+      const user: LoginUser =  JSON.parse(localStorage.getItem('user'));
       if (token) {
         this.authService.decodedToken = this.jwtHelper.decodeToken(token);
       }
       if (user) {
         this.authService.currentUser = user;
-        this.authService.changeUserPhoto(user.photoUrl);
+        this.authService.changeUserPhoto(user.mainPhotoUrl);
       }
   }
 
@@ -59,9 +60,9 @@ export class AppComponent  implements OnInit {
     this.topbarMode = !this.topbarMode;
   }
 
-  loggedIn() {
+  isLoggedIn() {
     // const token = localStorage.getItem('token');
     // return !!token;
-    return this.authService.loggedIn();
+    return this.authService.isLoggedIn();
   }
 }

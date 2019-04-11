@@ -46,12 +46,16 @@
                 <label class="col-sm-2 col-form-label">我的性別: </label>
                 <div class="col-sm-10">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" [value]="1" [(ngModel)]="user.sex">
-                    <label class="form-check-label">我是男生</label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="sex" [value]="1" [(ngModel)]="user.sex">
+                        我是男生
+                    </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" [value]="2" [(ngModel)]="user.sex">
-                    <label class="form-check-label">我是女生</label>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="sex" [value]="2" [(ngModel)]="user.sex">
+                        我是女生
+                    </label>
                   </div>
                 </div>
               </div>
@@ -60,19 +64,22 @@
                 <label class="col-sm-2 col-form-label">婚姻狀況:</label>
                 <div class="col-sm-10">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="marry" [value]="1" id="marry1"
-                      [(ngModel)]="user.marry">
-                    <label class="form-check-label" for="marry1">單身未婚</label>
+                    <label class="form-check-label" for="marry1">
+                        <input class="form-check-input" type="radio" name="marry" [value]="1" id="marry1" [(ngModel)]="user.marry">
+                        單身未婚
+                    </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="marry" [value]="2" id="marry2"
-                      [(ngModel)]="user.marry">
-                    <label class="form-check-label" for="marry2">二春無小孩</label>
+                    <label class="form-check-label" for="marry2">
+                        <input class="form-check-input" type="radio" name="marry" [value]="2" id="marry2" [(ngModel)]="user.marry">
+                        二春無小孩
+                    </label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="marry" [value]="3" id="marry2"
-                      [(ngModel)]="user.marry">
-                    <label class="form-check-label" for="marry2">二春有小孩</label>
+                    <label class="form-check-label" for="marry3">
+                        <input class="form-check-input" type="radio" name="marry" [value]="3" id="marry3" [(ngModel)]="user.marry">
+                        二春有小孩
+                    </label>
                   </div>
                 </div>
               </div>
@@ -206,6 +213,75 @@
                     [(ngModel)]="user.likeCondition"></textarea>
                 </div>
               </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">我的暱稱:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="nickName" class="form-control" [(ngModel)]="user.nickName">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">忘記密碼問題:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="pdQuestion" class="form-control" [(ngModel)]="user.pdQuestion">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">忘記密碼答案:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="pdAnswer" class="form-control" [(ngModel)]="user.pdAnswer">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">銀行名稱:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="bankName" class="form-control" [(ngModel)]="user.bankName">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">帳號後5碼:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="bankNumber6" class="form-control" [(ngModel)]="user.bankNumber6">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">關閉檔案:</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="isCloseData" [value]="false" [(ngModel)]="user.isCloseData">
+                            開放檔案
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="isCloseData" [value]="true" [(ngModel)]="user.isCloseData">
+                            關閉檔案
+                        </label>
+                      </div>
+                    </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">關閉相簿:</label>
+                <div class="col-sm-10">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="isClosePhoto" [value]="false" [(ngModel)]="user.isClosePhoto">
+                        開放相簿
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="isClosePhoto" [value]="true" [(ngModel)]="user.isClosePhoto">
+                        關閉相簿
+                    </label>
+                  </div>
+                </div>
+              </div>
 
               <div class="form-group row">
                 <div class="offset-sm-2 col-sm-10">
@@ -224,7 +300,7 @@
   </div>
 </div>
 
-
+<!--
   <Pre>{{editFrom.value | json}}</Pre>
   <Pre>{{editFrom.status | json}}</Pre>
-
+ -->

@@ -82,6 +82,7 @@ namespace PartyApi.Repository
                 .OrderByDescending(p=>p.PartyId)
                 .AsQueryable();
 
-            return await PageList<Activity>.CreateAsync(results,para.PageNumber,para.PageSize);        }
+            return await PageList<Activity>.CreateAsync(results,para.PageNumber,para.PageSize);
+        }
     }
 }

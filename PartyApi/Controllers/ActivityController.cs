@@ -113,6 +113,24 @@ namespace PartyApi.Controllers
             return Ok(dtoMemberList);
         }
 
+        [HttpGet("member/{id}/detail")]
+        public async Task<IActionResult> GetMemberDetail(int userId,int partyId,int id)
+        {
+            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var activity = await _repo.GetActivityMember(userId,partyId);
+            if(activity == null)
+                return BadRequest("您没有報名這場活動,無法查詢資料");
+            
+            var member = await _repoMember.GetDetail(id);
+            if(member == null)
+                return NotFound();
+
+            var dtoMember = _mapper.Map<DtoMemberDetail>(member);
+            return Ok(dtoMember);
+        }
+
         [HttpPost("like/{likeId}")]
         public async Task<IActionResult> SendActivityLike(int userId, int partyId, int likeId)
         {

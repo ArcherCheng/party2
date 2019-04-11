@@ -15,7 +15,6 @@ import { CheckboxItem } from 'src/app/_shared/dynamic-form/interface/checkbox-it
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
   user: User;
-  photoUrl: string;
   bloodOptions = new Array<CheckboxItem>();
   starOptions =  new Array<CheckboxItem>();
   religionOptions = new Array<CheckboxItem>();
@@ -31,7 +30,7 @@ export class MemberEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: {apiResult: User}) => this.user = data.apiResult);
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.user.photoUrl = photoUrl);
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.user.mainPhotoUrl = photoUrl);
     this.authService.setCurrentTitle('我的資料管理');
     this.loadCheckBoxItem();
   }
@@ -54,7 +53,7 @@ export class MemberEditComponent implements OnInit {
   }
 
   updateMainPhoto(photoUrl) {
-    this.user.photoUrl = photoUrl;
+    this.user.mainPhotoUrl = photoUrl;
   }
 
 

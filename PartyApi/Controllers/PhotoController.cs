@@ -56,9 +56,10 @@ namespace PartyApi.Controllers
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var member = _repoMember.Get(userId);
+            var member = await _repoMember.Get(userId);
             if(member == null)
                 return Unauthorized();
+            member.ActiveDate = System.DateTime.Now;
 
             var file = dtoPhotoCreate.File;
             var uploadResult = new ImageUploadResult();
@@ -99,7 +100,7 @@ namespace PartyApi.Controllers
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var member = _repoMember.Get(userId);
+            var member = await _repoMember.Get(userId);
             if(member == null)
                 return Unauthorized();
                 
@@ -110,16 +111,17 @@ namespace PartyApi.Controllers
             if (photo.IsMain)
                 return BadRequest("這個相片已經是設為封面了");
 
+            var mainPhotoUrl = photo.PhotoUrl;
+            member.MainPhotoUrl = mainPhotoUrl;
+            member.ActiveDate = System.DateTime.Now;
+
             var currentMainPhoto = await _repo.GetMainPhoto(userId);
             if (currentMainPhoto != null)
                 currentMainPhoto.IsMain = false;
 
-            var mainPhotoUrl = photo.PhotoUrl;
-            // member.MainPhotoUrl = mainPhotoUrl;
             photo.IsMain = true;
             if (_repo.SaveAll()>0)
                 return NoContent();
-
 
             return BadRequest("無法設定相片封面,請洽服務人員");
         }

@@ -31,11 +31,11 @@ namespace PartyApi.Dtos
         public string City { get; set; }
         public string School { get; set; }
         public string Subjects { get; set; }
+        public string MainPhotoUrl { get; set; }
 
         //非原始欄位,計算出來的, 顯示用
-        public string MainPhotoUrl { get; set; }
         public string UserName { get; set; }
-        public string PhotoUrl { get; set; }
+        // public string PhotoUrl { get; set; }
         public int Age{get; set;}
     }        
      
@@ -79,9 +79,9 @@ namespace PartyApi.Dtos
         public string Religion { get; set; }
         public string Introduction { get; set; }
         public string LikeCondition { get; set; }
-        public string NickName { get; set; }
- 	    
+
         //以下為個人的其他未顯示欄位
+        public string NickName { get; set; }
         public string PdQuestion { get; set; }
         public string PdAnswer { get; set; }
         public string BankName { get; set; }

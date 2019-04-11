@@ -27,7 +27,7 @@ export class PartyActivityListComponent implements OnInit {
   }
 
   activityMemberList(partyId: number) {
-    if (!this.authService.loggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       this.alertify.warning('您尚未登入，無法查詢參加人員名單');
       // this.router.navigate(['/login/login']);
     } else {
@@ -37,7 +37,7 @@ export class PartyActivityListComponent implements OnInit {
   }
 
   activityLikeList(partyId: number) {
-    if (!this.authService.loggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       this.alertify.warning('請先登入系統，才可以查詢您個人的投票配對名單');
     } else {
       // this.alertify.warning('activityLikeList');

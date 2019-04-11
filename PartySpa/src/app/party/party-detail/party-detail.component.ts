@@ -25,7 +25,7 @@ export class PartyDetailComponent implements OnInit {
   }
 
   sendActivityOrder(partyId: number) {
-    if (!this.authService.loggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       this.alertify.warning('您尚未登入,無法使用本功能');
       return;
     }

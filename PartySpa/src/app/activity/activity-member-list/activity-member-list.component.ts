@@ -18,7 +18,7 @@ export class ActivityMemberListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private alertify: AlertifyService,
-    private authService: AuthService,
+    public authService: AuthService,
     private activityService: ActivityService
   ) { }
 

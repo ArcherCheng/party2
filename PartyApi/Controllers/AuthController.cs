@@ -21,11 +21,12 @@ namespace PartyApi.Controllers
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
         private readonly IRepoAuth _repo;
-
-        public AuthController(IConfiguration config, IMapper mapper, IRepoAuth repo)
+        private readonly IRepoMember _repoMember;
+        public AuthController(IConfiguration config, IMapper mapper, IRepoAuth repo, IRepoMember repoMember)
         {
             _mapper = mapper;
             _repo = repo;
+            _repoMember = repoMember;
             _config = config;
         }
 
@@ -66,10 +67,14 @@ namespace PartyApi.Controllers
             if(member == null)
                 return Unauthorized();
 
+            member.LastDate = System.DateTime.Now;
+            member.ActiveDate = System.DateTime.Now;
+            _repoMember.SaveAll();
+
             var userName= member.NickName;
             if (string.IsNullOrWhiteSpace(userName))
             {
-                if (member.Sex == 1) 
+                if (member.Sex == 1)
                 {
                     userName = member.FirstName + "'R";
                 } else

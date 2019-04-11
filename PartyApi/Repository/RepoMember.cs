@@ -37,7 +37,7 @@ namespace PartyApi.Repository
         public async Task<Member> GetEdit(int userId)
         {
             var result = await _db.Member
-                .Include(p => p.MemberCondition)
+                // .Include(p => p.MemberCondition)
                 .Include(p => p.MemberPhoto)
                 .FirstOrDefaultAsync(p => p.UserId == userId);
 

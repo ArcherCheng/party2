@@ -12,7 +12,9 @@ namespace PartyApi.Dtos
         {
             //login 會員登入資料檔
             CreateMap<DtoRegister, Member>();
+
             CreateMap<CheckboxItem,DtoCheckboxItem>();
+
             CreateMap<Member, DtoLoginToReturn>()
                 .ForMember(dest => dest.UserName, opt =>
                         {
@@ -28,11 +30,11 @@ namespace PartyApi.Dtos
                .ForMember(dest => dest.Age, opt =>
                        {
                            opt.MapFrom(src => src.Birthday.CalculateYearsOld());
-                       })
-                .ForMember(dest => dest.PhotoUrl, opt =>
-                        {
-                            opt.MapFrom(src => src.MemberPhoto.FirstOrDefault(p => p.IsMain).PhotoUrl);
-                        });
+                       });
+                // .ForMember(dest => dest.PhotoUrl, opt =>
+                //         {
+                //             opt.MapFrom(src => src.MemberPhoto.FirstOrDefault(p => p.IsMain).PhotoUrl);
+                //         });
 
             CreateMap<Member, DtoMemberDetail>()
                .ForMember(dest => dest.UserName, opt =>
@@ -43,20 +45,22 @@ namespace PartyApi.Dtos
                        {
                            opt.MapFrom(src => src.Birthday.CalculateYearsOld());
                        })
-                .ForMember(dest => dest.PhotoUrl, opt =>
-                       {
-                           opt.MapFrom(src => src.MemberPhoto.FirstOrDefault(p => p.IsMain).PhotoUrl);
-                       })
+                // .ForMember(dest => dest.PhotoUrl, opt =>
+                //        {
+                //            opt.MapFrom(src => src.MemberPhoto.FirstOrDefault(p => p.IsMain).PhotoUrl);
+                //        })
                 .ForMember(dest => dest.Photos, opt =>
                         {
                             opt.MapFrom(src => src.MemberPhoto);
                         });
 
             CreateMap<Member, DtoMemberEdit>().ReverseMap();
+
             CreateMap<MemberCondition, DtoMemberCondition>().ReverseMap();
 
             //個人上傳相片檔
             CreateMap<MemberPhoto, DtoPhotoList>();
+            
             CreateMap<MemberPhoto, DtoPhotoCreate>().ReverseMap();
 
             //Party 活動資料檔

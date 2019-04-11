@@ -72,11 +72,11 @@ namespace PartyApi.Models
         public string WriteUser { get; set; }
         public string WriteIp { get; set; }
 
+        public virtual ICollection<MemberPhoto> MemberPhoto { get; set; }
         public virtual MemberCondition MemberCondition { get; set; }
         public virtual ICollection<Activity> Activity { get; set; }
         public virtual ICollection<Liker> LikerMe { get; set; }
         public virtual ICollection<Liker> MyLiker { get; set; }
-        public virtual ICollection<MemberPhoto> MemberPhoto { get; set; }
         public virtual ICollection<Message> MessageRecipient { get; set; }
         public virtual ICollection<Message> MessageSender { get; set; }
     }

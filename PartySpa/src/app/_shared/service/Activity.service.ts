@@ -9,13 +9,19 @@ import { User } from '../interface/User';
 })
 export class ActivityService {
   baseUrl = environment.apiUrl;
-  
+
   constructor(private http: HttpClient) { }
 
   // 使用者點擊參加報名活動
   sendActivityOrder(userId: number, partyId: number) {
     return this.http.post(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId + '/sendactivityorder', {});
   }
+
+  getMember(userId: number, partyId: number , id: number): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId
+    + '/member/' + id + '/detail');  // , httpOptions
+  }
+
 
   getActivityMemberList(userId: number, partyId: number): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId + '/memberList', {});

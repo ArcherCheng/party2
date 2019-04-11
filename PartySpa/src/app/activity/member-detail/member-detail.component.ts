@@ -19,7 +19,7 @@ export class MemberDetailComponent implements OnInit {
   currentPartyId = 0;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  photoUrl: string;  // 留言頭像用
+  mainPhotoUrl: string;  // 留言頭像用
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +32,7 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit() {
     // this.loadUser();
     this.route.data.subscribe((data: {apiResult: User}) => this.user = data.apiResult);
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.mainPhotoUrl = photoUrl);
     this.authService.setCurrentTitle('會員個人資料');
     // this.currentPartyId = this.route.snapshot.params.partyId;
     this.route.queryParams.subscribe(params => {

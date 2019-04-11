@@ -108,7 +108,7 @@
         {{authService.decodedToken?.unique_name}}
       </a>
 
-      <div *ngIf="!loggedIn()">
+      <div *ngIf="!isLoggedIn()">
         <ul class="navbar-nav mr-auto right">
           <li class="nav-item" routerLinkActive="active">
             <a class="btn btn-primary" [routerLink]="['login/login']">登入系統</a>

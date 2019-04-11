@@ -11,7 +11,7 @@
             <!-- <button class="btn btn-primary w-100" (click)="activityMemberLike(party.partyId)">派對群組留言</button> -->
             <!-- <button class="btn btn-info w-100 " (click)="activityMemberLike(party.partyId)">我的留言信箱</button> -->
         </div>
-        <!-- <div *ngIf="authService.loggedIn()">
+        <!-- <div *ngIf="authService.isLoggedIn()">
             <a class="btn btn-success w-100 " [routerLink]="['/member',this.authService.decodedToken.nameid, 'activity', party.partyId, 'memberList']" role="button">參加人員名單</a>
             <a class="btn btn-danger w-100 " [routerLink]="['/member',this.authService.decodedToken.nameid, 'activity', party.partyId, 'memberLike']" role="button">我的個人得票</a>
             <a class="btn btn-primary w-100 " [routerLink]="['/party/detail/',party.partyId]" role="button">派對群組留言</a>

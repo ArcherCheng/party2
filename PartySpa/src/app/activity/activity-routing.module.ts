@@ -25,7 +25,7 @@ const routes: Routes = [
         resolve: {apiListResult: ActivityLikeListResolverService}
       },
       {
-        path: 'member/:userId/memberDetail',
+        path: 'member/:myUserId/party/:partyId/member/:id/detail',
         component: MemberDetailComponent,
         resolve: {apiResult: MemberDetailResolverService}
       },

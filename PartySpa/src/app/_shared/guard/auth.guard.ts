@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.authService.loggedIn()) {
+    if (this.authService.isLoggedIn()) {
       return true;
     }
     this.alertify.error('你尚未登入,無法通過授權進入');

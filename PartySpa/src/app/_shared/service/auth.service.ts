@@ -5,11 +5,12 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User } from '../interface/User';
+// import { User } from '../interface/User';
 import { Register } from '../interface/register';
 import { Router } from '@angular/router';
 import { AlertifyService } from './alertify.service';
 import { CheckboxItem } from '../dynamic-form/interface/checkbox-item';
+import { LoginUser } from '../interface/loginUser';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class AuthService {
   baseUrl = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-  currentUser: User;
-  photoUrl = new BehaviorSubject<string>('src/assets/user.png');
-  currentPhotoUrl = this.photoUrl.asObservable();
+  currentUser: LoginUser;
+  mainPhotoUrl = new BehaviorSubject<string>('src/assets/user.png');
+  currentPhotoUrl = this.mainPhotoUrl.asObservable();
   currentTitle = new BehaviorSubject<string>('');
 
   constructor(
@@ -32,13 +33,13 @@ export class AuthService {
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
       map((response: any) => {
-        const user = response;
-        if (user) {
-          localStorage.setItem('token', user.token);
-          localStorage.setItem('user', JSON.stringify(user.user));
-          this.currentUser = user.user;
-          this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          this.changeUserPhoto(this.currentUser.photoUrl);
+        const res = response;
+        if (res) {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res.user));
+          this.currentUser = res.user;
+          this.decodedToken = this.jwtHelper.decodeToken(res.token);
+          this.changeUserPhoto(this.currentUser.mainPhotoUrl);
         }
       })
     );
@@ -58,7 +59,7 @@ export class AuthService {
   }
 
   changeUserPhoto(photoUrl: string) {
-    this.photoUrl.next(photoUrl);
+    this.mainPhotoUrl.next(photoUrl);
   }
 
   register(user: Register) {
@@ -66,7 +67,7 @@ export class AuthService {
     return this.http.post(this.baseUrl + 'register', user);
   }
 
-  loggedIn() {
+  isLoggedIn() {
     const token = localStorage.getItem('token');
     const isTokenExpired = this.jwtHelper.isTokenExpired(token);
     if ( this.decodedToken === undefined && isTokenExpired === false) {
@@ -74,7 +75,7 @@ export class AuthService {
       this.decodedToken = this.jwtHelper.decodeToken(token);
       const user = localStorage.getItem('user');
       this.currentUser = JSON.parse(user);
-      this.changeUserPhoto(this.currentUser.photoUrl);
+      this.changeUserPhoto(this.currentUser.mainPhotoUrl);
     }
     return !isTokenExpired;
   }
