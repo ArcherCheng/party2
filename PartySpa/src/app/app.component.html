@@ -3,67 +3,63 @@
   <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading bg-success"><strong>派對主選單</strong></div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['home']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
         routerLinkActive="router-link-active">單身派對活動
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['party','activity']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','activity']"
         routerLinkActive="router-link-active">互動派對投票
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['party','history']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','history']"
         routerLinkActive="router-link-active">歷史派對相簿
       </a>
+      <!--
+        <div *ngIf="authService.isLoggedIn()">
+        </div>
+      -->
+      <div>
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['messages']"
+          routerLinkActive="router-link-active">我的報名活動
+        </a>
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['messages']"
+          routerLinkActive="router-link-active">我的留言管理
+        </a>
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','edit']"
+          routerLinkActive="router-link-active">我的資料管理
+        </a>
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['match','condition']"
+          routerLinkActive="router-link-active">我的配對條件
+        </a>
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['match','matchList']"
+          routerLinkActive="router-link-active">電腦配對結果
+        </a>
+      </div>
 
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['notes','before']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['notes','before']"
         routerLinkActive="router-link-active">行前須知
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['notes','meet']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['notes','meet']"
         routerLinkActive="router-link-active">活動禮儀
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['notes','after']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['notes','after']"
         routerLinkActive="router-link-active">約會注意事項
       </a>
 
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['messages']"
-        routerLinkActive="router-link-active">我的留言管理
-      </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['member','edit']"
-        routerLinkActive="router-link-active">我的資料管理
-      </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['match','condition']"
-        routerLinkActive="router-link-active">我的配對條件
-      </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['match','matchList']"
-        routerLinkActive="router-link-active">電腦配對結果
-      </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['login','login']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','login']"
         routerLinkActive="router-link-active">使用者登入
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['login','register']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','register']"
         routerLinkActive="router-link-active">新人註冊
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        (click)="logout()">登出系統
+      <a class="list-group-item list-group-item-action bg-light" (click)="logout()">登出系統
       </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['admin','member']"
-        routerLinkActive="router-link-active">member-list
-      </a>
-      <a class="list-group-item list-group-item-action bg-light"
-        [routerLink]="['admin','party']"
-        routerLinkActive="router-link-active">party-list
-      </a>
+      <div *ngIf="authService.isLoggedIn() && authService.decodedToken.role === 'Admin'">
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['admin','party']"
+          routerLinkActive="router-link-active">活動派對建檔
+        </a>
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['admin','member']"
+          routerLinkActive="router-link-active">會員資料維護
+        </a>
+      </div>
 
       <!--
       <a class="list-group-item list-group-item-action bg-light"
@@ -96,8 +92,13 @@
   <div id="page-content-wrapper">
 
     <nav class="navbar navbar-expand navbar-light bg-warning fixed-top">
-      <button class="btn btn-primary" type="button" id="menu-toggle" (click)="toggleSideBar()">
-          <span class="navbar-toggler-icon"></span>
+      <button *ngIf="sidebarMode === true" class="btn btn-primary" type="button" id="menu-toggle"
+        (click)="toggleSideBar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <button *ngIf="sidebarMode !== true" class="btn btn-primary" type="button" id="menu-toggle"
+        (click)="toggleSideBar()">
+        X
       </button>
       <span class="ml-2"> <strong>台北單身派對-{{currentTitle}}</strong></span>
       <span class="ml-auto mr-2">
@@ -111,7 +112,7 @@
       <div *ngIf="!isLoggedIn()">
         <ul class="navbar-nav mr-auto right">
           <li class="nav-item" routerLinkActive="active">
-            <a class="btn btn-primary" [routerLink]="['login/login']">登入系統</a>
+            <a class="btn btn-primary" [routerLink]="['login/login']">登入</a>
           </li>
         </ul>
       </div>
@@ -120,15 +121,15 @@
     <div class="container-fluid">
       <router-outlet></router-outlet>
       <footer class="bg-light">
-          <div>聯絡電話: <strong>0937-452-882 劉小姐</strong></div>
-          <div>LINE帳號: <strong>@dtl0852u</strong></div>
-          <div>活動網址: <a href="http://myparty.tw">http://myparty.tw</a> </div>
-          <address>
-              轉帳銀行:<strong>中國信託(代號:822)</strong><br />
-              轉帳帳號:<strong>204-54011715-2</strong>
-          </address>
-       </footer>
-      </div>
+        <div>聯絡電話: <strong>0937-452-882 劉小姐</strong></div>
+        <div>LINE帳號: <strong>@dtl0852u</strong></div>
+        <div>活動網址: <a href="http://myparty.tw">http://myparty.tw</a> </div>
+        <address>
+          轉帳銀行:<strong>中國信託(代號:822)</strong><br />
+          轉帳帳號:<strong>204-54011715-2</strong>
+        </address>
+      </footer>
+    </div>
   </div>
   <!-- /#page-content-wrapper -->
 </div>

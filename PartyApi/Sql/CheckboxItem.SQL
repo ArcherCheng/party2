@@ -1,4 +1,4 @@
-﻿drop table CheckboxItem
+﻿--drop table CheckboxItem
 go
 create table CheckboxItem
 (

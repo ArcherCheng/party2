@@ -38,7 +38,7 @@ namespace PartyApi.Dtos
         public DateTime? EarlyDate { get; set; }
         public int? EarlyManAmt { get; set; }
         public int? EarlyWomanAmt { get; set; }
-        public int? WomanTwinsAmt { get; set; }
+        public int? WomenAmt { get; set; }
 
         //public string restaurant { get; set; }
         public string AddressNo { get; set; }

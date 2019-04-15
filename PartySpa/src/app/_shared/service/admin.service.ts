@@ -6,6 +6,8 @@ import { HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { User } from '../interface/User';
+import { Observable } from 'rxjs';
+import { Activity } from '../interface/activity';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,19 @@ export class AdminService {
       })
       );
   }
+
+  partyAdd(data: Party) {
+    return this.http.post(this.baseUrl + 'admin/partyAdd', data);
+  }
+
+  getParty(partyId: number): Observable<Party> {
+    return this.http.get<Party>(this.baseUrl + 'admin/party/' + partyId);
+  }
+
+  getActivityAuditList(partyId: number): Observable<Activity[]> {
+    return this.http.get<Activity[]>(this.baseUrl + 'admin/party/activityaudit/' + partyId);
+  }
+
 
   // party list ,取得活動列表
   getMemberList(page?, itemPerPage?) {

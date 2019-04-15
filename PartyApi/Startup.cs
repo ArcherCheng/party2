@@ -53,7 +53,7 @@ namespace PartyApi
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
 
-            // services.AddTransient<Seed>();
+            services.AddTransient<Seed>();
             services.AddScoped<IRepoAuth,RepoAuth>();
             services.AddScoped<IRepoMember,RepoMember>();
             services.AddScoped<IRepoMemberCondition,RepoMemberCondition>();
@@ -77,7 +77,7 @@ namespace PartyApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) //, Seed seeder
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -101,7 +101,7 @@ namespace PartyApi
             }
 
             // app.UseHttpsRedirection();
-            // seeder.SeedMembers();
+            // seeder.SeedLiker();
             app.UseCors(x => x.WithOrigins("http://localhost:4200")
                 .AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             //app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());

@@ -1,0 +1,10 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <div *ngFor="let item of actrivityList">
+      <form #editFrom="ngForm">
+          <div>{{item.user.firstName}} {{item.user.lastName}}</div>
+          <input type="text" name="" [(ngModel)]="item.myNo">
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,189 @@
-<p>
-  party-add works!
-</p>
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <h3 class="text-primary">{{title}}</h3>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+        <input type="number" hidden formControlName="partyId">
+        <div class="form-group">
+          <label>活動名稱:</label>
+          <input type="text" class="form-control" formControlName="partyName">
+        </div>
+        <div class="form-group ">
+          <label>活動日期:</label>
+          <input type="date" class="form-control" formControlName="partyDate">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>活動時間從:</label>
+            <input type="text" class="form-control" formControlName="beginTime">
+          </div>
+          <div class="form-group col-6">
+            <label>到:</label>
+            <input type="text" class="form-control" formControlName="endTime">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>參加條件:</label>
+            <select class="form-control" formControlName="marry">
+              <option value="">請選擇</option>
+              <option value="1">1.單身未婚</option>
+              <option value="2">2.晚婚二春</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label>預定人數:</label>
+            <input type="number" class="form-control" formControlName="persons">
+          </div>
+        </div>
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>男生年齡從:</label>
+            <input type="number" class="form-control" formControlName="manOlds1">
+          </div>
+          <div class="form-group col-6">
+            <label>到:</label>
+            <input type="number" class="form-control" formControlName="manOlds2">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>男生學歷:</label>
+            <select class="form-control" formControlName="manEducaton">
+              <option value="">請選擇</option>
+              <option value="1">1.小學</option>
+              <option value="2">2.中學</option>
+              <option value="3">3.高中(職)</option>
+              <option value="4">4.大學(專)</option>
+              <option value="5">5.碩士</option>
+              <option value="6">6.博士</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label>男生金額:</label>
+            <input type="number" class="form-control" formControlName="manAmt">
+          </div>
+        </div>
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>女生年齡從:</label>
+            <input type="number" class="form-control" formControlName="womanOlds1">
+          </div>
+          <div class="form-group col-6">
+            <label>到:</label>
+            <input type="number" class="form-control" formControlName="womanOlds2">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>女生學歷:</label>
+            <select class="form-control" formControlName="womanEducaton">
+              <option value="">請選擇</option>
+              <option value="1">1.小學</option>
+              <option value="2">2.中學</option>
+              <option value="3">3.高中(職)</option>
+              <option value="4">4.大學(專)</option>
+              <option value="5">5.碩士</option>
+              <option value="6">6.博士</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label>女生金額:</label>
+            <input type="number" class="form-control" formControlName="womanAmt">
+          </div>
+        </div>
+        <hr>
+
+        <div class="form-group">
+          <label>早鳥優惠日期:</label>
+          <input type="date" class="form-control" formControlName="earlyDate">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>男生早鳥金額:</label>
+            <input type="number" class="form-control" formControlName="earlyManAmt">
+          </div>
+          <div class="form-group col-6">
+            <label>女生早鳥金額:</label>
+            <input type="number" class="form-control" formControlName="earlyWomanAmt">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>女生二人同行優惠金額:</label>
+          <input type="text" class="form-control" formControlName="womenAmt">
+        </div>
+        <hr>
+        <div class="form-group">
+          <label>餐廳名稱:</label>
+          <input type="text" class="form-control" formControlName="restaurant">
+        </div>
+        <div class="form-group">
+          <label>餐廳地址:</label>
+          <input type="text" class="form-control" formControlName="addressNo">
+        </div>
+        <div class="form-group">
+          <label>交通資訊:</label>
+          <input type="text" class="form-control" formControlName="busNote">
+        </div>
+        <div class="form-group">
+          <label>活動備註:</label>
+          <input type="text" class="form-control" formControlName="notes">
+        </div>
+        <div class="form-group">
+          <label>活動圖片:</label>
+          <select class="form-control" formControlName="pictureUrl">
+            <option value="">請選擇</option>
+            <option value="../../assets/p001.png">p001.png</option>
+            <option value="../../assets/p002.png">p002.png</option>
+            <option value="../../assets/p003.png">p003.png</option>
+            <option value="../../assets/p004.png">p004.png</option>
+            <option value="../../assets/p005.png">p005.png</option>
+            <option value="../../assets/p006.png">p006.png</option>
+            <option value="../../assets/p007.png">p007.png</option>
+            <option value="../../assets/p008.png">p008.png</option>
+            <option value="../../assets/p009.png">p009.png</option>
+            <option value="../../assets/p010.png">p010.png</option>
+            <option value="../../assets/p011.png">p011.png</option>
+            <option value="../../assets/p012.png">p012.png</option>
+            <option value="../../assets/p013.png">p013.png</option>
+            <option value="../../assets/p014.png">p014.png</option>
+            <option value="../../assets/p015.png">p015.png</option>
+            <option value="../../assets/p016.png">p016.png</option>
+            <option value="../../assets/p017.png">p017.png</option>
+            <option value="../../assets/p018.png">p018.png</option>
+            <option value="../../assets/p019.png">p019.png</option>
+            <option value="../../assets/p020.png">p020.png</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <button [disabled]="!myFormGroup.valid" type="submit" class="btn btn-success btn-block">送出存檔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<p>Form valid: {{ myFormGroup.valid }} </p>
+<p>Form value: {{ myFormGroup.value | json }}</p>
+
+
+<!--
+  <div class="row">
+    <div *ngFor="let item of bloodInclude.controls; let i = index; " class="col-6 col-md-3 col-lg-2 mb-2">
+      <input type="checkbox" formControlName="bloodInclude">
+      <label>{{bloodList[i]}}</label>
+    </div>
+    <div *ngFor="let item of bloodList; let i = index" class="col-6 col-md-3 col-lg-2 mb-2">
+        <input type="checkbox" formControlName="bloodInclude"
+        [id]="'bloodInclude'+i" [value]="item" (click)="PushValue($event.target.checked, item)"
+        [checked]="userCondition.bloodInclude?.includes(item)" >
+        <label class="form-check-label" [for]="'bloodInclude'+i">{{item}}</label>
+    </div>
+  </div>
+-->

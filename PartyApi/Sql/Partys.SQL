@@ -155,7 +155,7 @@ go
 
 
 
-
+/*
 --drop table PartySummary
 go
 create table PartySummary
@@ -176,7 +176,7 @@ create table PartySummary
 	constraint pk_PartySummary primary key (partyId) 
 );
 go
-
+*/
 
 
 

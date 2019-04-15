@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { AuthService } from 'src/app/_shared/service/auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/_shared/service/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('loginForm') editForm: NgForm;
   model: any = {};
 
   constructor(
@@ -22,10 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(next => {
+    this.authService.login(this.model).subscribe(
+    next => {
       this.alertify.success('登入成玏');
     }, error => {
-      this.alertify.error('登入失敗');
+      this.alertify.error('登入失敗:' + error);
     }, () => {
       this.router.navigate(['/home']);
     });

@@ -1,5 +1,5 @@
 <div class="jumbotron container-fluid">
-  <form class="form-signin" (ngSubmit)="login()">
+  <form  #loginFrom="ngForm" class="form-signin" (ngSubmit)="login()">
     <h3 class="h3 mb-3 font-weight-normal">登入作業</h3>
     <div class="form-group">
         <label for="username">請輸入注冊時的行動電話或電子郵件</label>
@@ -25,8 +25,8 @@
   </p>
   <p>
     非會員者可以用以下帳號輸入試用<br>
-    使用者帳號(男生): 9987654100 ～ 9987654199(共100個帳號)<br>
-    使用者帳號(女生): 9987654200 ～ 9987654299(共100個帳號)<br>
+    使用者帳號(男生): 9987654101 ～ 9987654199(共99個帳號)<br>
+    使用者帳號(女生): 9987654201 ～ 9987654299(共99個帳號)<br>
     登入通行密碼: password
   </p>
 </div>

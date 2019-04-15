@@ -59,6 +59,32 @@ namespace PartyApi.Models
                 entity.HasKey(e => e.PartyId); 
             });
 
+            modelBuilder.Entity<Activity>(entity => 
+            {
+                entity.HasKey(e => e.Id);
+                
+                entity.HasIndex(e => new { e.PartyId, e.UserId })
+                    .HasName("Activity_in1")
+                    .IsUnique();
+
+                entity.HasIndex(e => new { e.UserId, e.PartyId })
+                    .HasName("Activity_in2")
+                    .IsUnique();
+
+                entity.HasOne(d => d.Party)
+                    .WithMany(p => p.Activity)
+                    .HasForeignKey(d => d.PartyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Activity_Party");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Activity)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Activity_Member");
+
+            });
+
             modelBuilder.Entity<Liker>(entity =>
             {
                 entity.HasKey(e => new { e.PartyId, e.UserId, e.LikerId });

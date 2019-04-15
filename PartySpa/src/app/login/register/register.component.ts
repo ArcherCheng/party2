@@ -89,8 +89,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.registerData = Object.assign({}, this.registerForm.value);
-    console.log(this.registerData);
-    console.log(this.registerForm.value);
+    // console.log(this.registerData);
+    // console.log(this.registerForm.value);
     if (this.registerForm.valid) {
       this.authService.register(this.registerData).subscribe(() => {
         this.alertify.success('註冊成功');

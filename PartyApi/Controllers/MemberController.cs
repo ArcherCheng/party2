@@ -162,6 +162,24 @@ namespace PartyApi.Controllers
 
             throw new System.Exception($"關閉使用者資料失敗,ID = {userId}");
         }
+
+        [HttpGet("{userId}/GetMemberPartyList")]
+        public async Task<IActionResult> GetMemberPartyList(int userId)
+        {
+            var memberCondition = await _repoCondition.Get(userId);
+            if (memberCondition == null) 
+            {
+                memberCondition = new MemberCondition();
+                memberCondition.UserId = userId;
+                memberCondition.BloodInclude = "";
+                memberCondition.StarInclude = "";
+                memberCondition.CityInclude = "";
+                memberCondition.JobTypeInclude = "";
+                memberCondition.ReligionInclude = "";
+            }
+            var dtoMemberCondition = _mapper.Map<DtoMemberCondition>(memberCondition);
+            return Ok(dtoMemberCondition);
+        }
     }
 }
 

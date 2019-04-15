@@ -1,13 +1,14 @@
 <div class="jumbotron container-fluid">
-    <div class="row m-2 ">
-      <a class="btn btn-primary" [routerLink]="['/admin','party','add']" role="button">新增派對活動</a>
+    <div class="row card m-2">
+      <a class="btn btn-primary" [routerLink]="['/admin','party','add',0]" role="button">新增派對活動</a>
     </div>
     <div class="row">
       <div *ngFor="let party of partyList" class="col-12 col-md-6 col-lg-4 col-xl-3">
         <div class="card mb-5">
           <app-party-card [party]="party"></app-party-card>
-          <a class="btn btn-primary w-100 " [routerLink]="['/party',party.partyId,'photoList']" role="button">編輯派對活動資料</a>
-          <a class="btn btn-warning w-100 " [routerLink]="['/party',party.partyId,'match']" role="button">查詢派對活動名單</a>
+          <a class="btn btn-primary w-100 " [routerLink]="['add',party.partyId]" role="button">修改派對活動資料</a>
+          <a class="btn btn-warning w-100 " [routerLink]="['/party',party.partyId,'match']" role="button">報名核對及現場編號</a>
+          <a class="btn btn-success w-100 " [routerLink]="['/party',party.partyId,'match']" role="button">上傳活動相片</a>
         </div>
       </div>
     </div>

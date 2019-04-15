@@ -8,7 +8,7 @@ import { MemberListResolverService } from './member-list/member-list-resolver.se
 import { MemberUpdateComponent } from './member-update/member-update.component';
 import { PartyListResolverService } from './party-list/party-list-resolver.service';
 import { PartyAddComponent } from './party-add/party-add.component';
-import { PartyUpdateComponent } from './party-update/party-update.component';
+import { PartyAddResolverService } from './party-add/party-add-resolver.service';
 
 const routes: Routes = [
   {
@@ -17,6 +17,16 @@ const routes: Routes = [
     canActivate: [AdminGuard],
     children: [
       {
+        path: 'party',
+        component: PartyListComponent,
+        resolve: {apiResult: PartyListResolverService}
+      },
+      {
+        path: 'party/add/:partyId',
+        component: PartyAddComponent,
+        resolve: {apiResult: PartyAddResolverService}
+      },
+      {
         path: 'member',
         component: MemberListComponent,
         resolve: {apiResult: MemberListResolverService}
@@ -24,19 +34,6 @@ const routes: Routes = [
       {
         path: 'member/update/:userId',
         component: MemberUpdateComponent,
-      },
-      {
-        path: 'party',
-        component: PartyListComponent,
-        resolve: {apiResult: PartyListResolverService}
-      },
-      {
-        path: 'party/add',
-        component: PartyAddComponent,
-      },
-      {
-        path: 'party/update/:partyId',
-        component: PartyUpdateComponent,
       },
     ]
   },

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PartyApi.Dtos;
 using PartyApi.Repository;
 using PartyApi.Helpers;
+using PartyApi.Models;
 
 namespace PartyApi.Controllers
 {
@@ -46,9 +47,43 @@ namespace PartyApi.Controllers
         public async Task<IActionResult> getParty(int partyId) 
         {
             var repo = await _repoAdmin.GetParty(partyId);
-            var dto = _mapper.Map<DtoPartyList>(repo);
+            if (repo == null) 
+            {
+                repo = new Party();
+            }
+            var dto = _mapper.Map<DtoPartyDetail>(repo);
             return Ok(dto);
         }
+
+        [HttpPost("PartyAdd")]
+        public async Task<IActionResult> PartyAdd(DtoPartyDetail model)
+        {
+            var repoParty = await _repoAdmin.GetParty(model.PartyId);
+            if (repoParty == null) 
+            {
+                repoParty = new Party();
+                _mapper.Map(model,repoParty);
+                _repoAdmin.Add(repoParty);
+            }
+            else
+            {
+                _mapper.Map(model,repoParty);
+                _repoAdmin.Update<Party>(repoParty);
+            }
+            if (await _repoAdmin.SaveAllAsync()>0)
+                return Ok(repoParty);
+
+            return BadRequest("存檔派對活動失敗");
+        }
+
+        [HttpGet("party/ActivityAudit/{partyid}")]
+        public async Task<IActionResult> ActivityAudit(int partyId) 
+        {
+            var repoActivityList = await _repoAdmin.GetActivityAudit(partyId);
+            var dotActivity = _mapper.Map<IEnumerable<DtoActivity>>(repoActivityList);
+            return Ok(dotActivity);
+        }
+        
 
         [HttpGet("memberList")]
         public async Task<IActionResult> getMemberList([FromQuery]BaseParameter para) 
@@ -60,10 +95,11 @@ namespace PartyApi.Controllers
             //     return Unauthorized();
             // }
            
-            var repoList = await _repoAdmin.GetMemberList(para);
-            Response.AddPagination(repoList.CurrentPage, repoList.PageSize, repoList.TotalCount, repoList.TotalPages);
+            var repoMemberList = await _repoAdmin.GetMemberList(para);
+            Response.AddPagination(repoMemberList.CurrentPage, repoMemberList.PageSize, 
+                    repoMemberList.TotalCount, repoMemberList.TotalPages);
 
-            var dtoList = _mapper.Map<IEnumerable<DtoMemberList>>(repoList);
+            var dtoList = _mapper.Map<IEnumerable<DtoMemberList>>(repoMemberList);
 
             return Ok(dtoList);
         }        
@@ -71,8 +107,8 @@ namespace PartyApi.Controllers
         [HttpGet("member/{userId}")]
         public async Task<IActionResult> getMember(int userId) 
         {
-            var repo = await _repoAdmin.GetMember(userId);
-            var dto = _mapper.Map<DtoMemberList>(repo);
+            var repoMember = await _repoAdmin.GetMember(userId);
+            var dto = _mapper.Map<DtoMemberList>(repoMember);
             return Ok(dto);
         }
 

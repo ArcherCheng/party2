@@ -5,17 +5,17 @@ import { AdminRoutingModule } from './admin-routing.module';
 
 import { PartyListComponent } from './party-list/party-list.component';
 import { PartyAddComponent } from './party-add/party-add.component';
-import { PartyUpdateComponent } from './party-update/party-update.component';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberUpdateComponent } from './member-update/member-update.component';
+import { ActicityAuditComponent } from './acticity-audit/acticity-audit.component';
 
 @NgModule({
   declarations: [
+    MemberListComponent,
+    MemberUpdateComponent,
     PartyListComponent,
     PartyAddComponent,
-    PartyUpdateComponent,
-    MemberListComponent,
-    MemberUpdateComponent
+    ActicityAuditComponent,
   ],
   imports: [
     CommonModule,

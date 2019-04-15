@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,8 +9,19 @@ namespace PartyApi.Repository
 {
     public class RepoAdmin : BaseRepository, IRepoAdmin
     {
-        public RepoAdmin(AppDbContext dbContext) : base(dbContext)
+        public RepoAdmin(AppDbContext dbContext) : base(dbContext) { }
+
+        public async Task<IEnumerable<Activity>> GetActivityAudit(int partyId)
         {
+            var result = await _db.Activity
+                .Include( x => x.User)
+                // .Include( x => x.Party)
+                .Where(x => x.PartyId == partyId)
+                .OrderBy(x => x.User.Sex)
+                .ThenBy(x => x.MyNo)
+                .ToListAsync();
+
+            return result;
         }
 
         public async Task<Member> GetMember(int userId)

@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   register(user: Register) {
-    console.log(user);
+    // console.log(user);
     return this.http.post(this.baseUrl + 'register', user);
   }
 
