@@ -180,8 +180,6 @@ namespace PartyApi.Models
 
                 entity.Property(e => e.BankNumber6).HasMaxLength(32);
 
-                entity.Property(e => e.Birthday).HasColumnType("date");
-
                 entity.Property(e => e.Blood).HasMaxLength(2);
 
                 entity.Property(e => e.City).HasMaxLength(32);

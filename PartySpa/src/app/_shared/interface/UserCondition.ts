@@ -4,8 +4,8 @@ export interface UserCondition {
   marryMin: number;
   marryMax: number;
 
-  oldsMin: number;
-  oldsMax: number;
+  yearMin: number;
+  yearMax: number;
 
   educationMin: number;
   educationMax: number;

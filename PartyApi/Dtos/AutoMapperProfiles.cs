@@ -29,7 +29,7 @@ namespace PartyApi.Dtos
                         })
                .ForMember(dest => dest.Age, opt =>
                        {
-                           opt.MapFrom(src => src.Birthday.CalculateYearsOld());
+                           opt.MapFrom(src => src.BirthYear.CalculateYears());
                        });
             // .ForMember(dest => dest.PhotoUrl, opt =>
             //         {
@@ -43,7 +43,7 @@ namespace PartyApi.Dtos
                        })
                 .ForMember(dest => dest.Age, opt =>
                        {
-                           opt.MapFrom(src => src.Birthday.CalculateYearsOld());
+                           opt.MapFrom(src => src.BirthYear.CalculateYears());
                        })
                 .ForMember(dest => dest.Photos, opt =>
                         {

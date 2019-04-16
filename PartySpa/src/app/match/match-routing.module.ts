@@ -15,12 +15,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'condition',
+        path: 'myCondition',
         component: MatchConditionComponent,
         resolve: {apiResult: MatchConditionResolverService}
       },
       {
-        path: 'matchList',
+        path: 'myMatchList',
         component: MatchListComponent,
         resolve: {apiPaginatedResult: MatchListResolverService}
       },

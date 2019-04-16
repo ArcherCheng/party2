@@ -6,10 +6,10 @@
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['home']"
         routerLinkActive="router-link-active">單身派對活動
       </a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','activity']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','activityList']"
         routerLinkActive="router-link-active">互動派對投票
       </a>
-      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','history']"
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['party','historyList']"
         routerLinkActive="router-link-active">歷史派對相簿
       </a>
       <!--
@@ -17,20 +17,20 @@
         </div>
       -->
       <div>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['messages']"
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','myPartyList']"
           routerLinkActive="router-link-active">我的報名活動
         </a>
         <a class="list-group-item list-group-item-action bg-light" [routerLink]="['messages']"
           routerLinkActive="router-link-active">我的留言管理
         </a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','edit']"
-          routerLinkActive="router-link-active">我的資料管理
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['member','myEdit']"
+          routerLinkActive="router-link-active">我的個人資料
         </a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['match','condition']"
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['match','myCondition']"
           routerLinkActive="router-link-active">我的配對條件
         </a>
-        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['match','matchList']"
-          routerLinkActive="router-link-active">電腦配對結果
+        <a class="list-group-item list-group-item-action bg-light" [routerLink]="['match','myMatchList']"
+          routerLinkActive="router-link-active">我的配對結果
         </a>
       </div>
 

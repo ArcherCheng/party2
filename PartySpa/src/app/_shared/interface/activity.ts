@@ -1,5 +1,6 @@
 import { UseExistingWebDriver } from 'protractor/built/driverProviders';
 import { User } from './user';
+import { Party } from './party';
 
 export interface Activity {
   id: number;
@@ -14,5 +15,7 @@ export interface Activity {
   myNo: number;
   checkOver: number;
   notes: string;
+  retrunNote: string;
   user: User;
+  party: Party;
 }

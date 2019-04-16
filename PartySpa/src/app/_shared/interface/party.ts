@@ -9,12 +9,12 @@ export interface Party {
 
   manAmt: number;
   manEducaton: number;
-  manOlds1: number;
-  manOlds2: number;
+  manAge1: number;
+  manAge2: number;
   womanAmt: number;
   womanEducaton: number;
-  womanOlds1: number;
-  womanOlds2: number;
+  womanAge1: number;
+  womanAge2: number;
   earlyDate?: Date;
   earlyManAmt?: number;
   earlyWomanAmt?: number;

@@ -21,7 +21,7 @@ namespace PartyApi.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public int Sex { get; set; }
-        public DateTime Birthday { get; set; }
+        public int BirthYear { get; set; }
         public int Marry { get; set; }
         public int Education { get; set; }
         public int Heights { get; set; }

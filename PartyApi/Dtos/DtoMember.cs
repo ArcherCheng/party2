@@ -15,7 +15,7 @@ namespace PartyApi.Dtos
         //public string phone { get; set; }
         //public string email { get; set; }
         //不顯示,改成顯示出生年
-        //public DateTime birthday { get; set; }
+        //public int BirthYear { get; set; }
  	    
          //以下為個人必要的基本條件
         public int Sex { get; set; }
@@ -29,8 +29,7 @@ namespace PartyApi.Dtos
         public string Blood { get; set; }
         public string Star { get; set; }
         public string City { get; set; }
-        public string School { get; set; }
-        public string Subjects { get; set; }
+        public string JobType { get; set; }
         public string MainPhotoUrl { get; set; }
 
         //非原始欄位,計算出來的, 顯示用
@@ -46,8 +45,11 @@ namespace PartyApi.Dtos
         //public string phone { get; set; }
         //public string email { get; set; }
         //public DateTime birthday { get; set; }
+        public int BirthYear { get; set; }
 
         // 個人特別介紹資料,可在明細查詢,以加深他人印象
+        public string School { get; set; }
+        public string Subjects { get; set; }
         public string Introduction { get; set; }
         public string LikeCondition { get; set; }
         public string NickName { get; set; }
@@ -61,7 +63,7 @@ namespace PartyApi.Dtos
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public DateTime Birthday { get; set; }
+        public int BirthYear { get; set; }
         public int Sex { get; set; }
         public int Marry { get; set; }
         public int Education { get; set; }
@@ -98,8 +100,8 @@ namespace PartyApi.Dtos
         public int UserId { get; set; }
         public int MarryMin { get; set; }
         public int MarryMax { get; set; }
-        public int OldsMin { get; set; }
-        public int OldsMax { get; set; }
+        public int YearMin { get; set; }
+        public int YearMax { get; set; }
         public int EducationMin { get; set; }
         public int EducationMax { get; set; }
         public int HeightsMin { get; set; }

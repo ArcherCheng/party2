@@ -1,0 +1,77 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <h3 class="text-center">輸入我的轉帳資料</h3>
+  </div>
+  <form #editFrom="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">活動名稱:</label>
+      <div class="col-sm-10">
+        <h4>
+            {{activity.party.partyName}}
+        </h4>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">活動日期:</label>
+      <div class="col-sm-10">
+        <h4>
+            {{activity.party.partyDate | date:"yyyy-MM-dd, EEEE"}}
+        </h4>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">報名日期:</label>
+      <div class="col-sm-10">
+        {{activity.applyDate | date:"yyyy-MM-dd, EEEE"}}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">應繳金額:</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="actAmt" [(ngModel)]="activity.actAmt" readonly>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">銀行名稱:</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="bankName" [(ngModel)]="activity.bankName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">帳號後5碼:</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="bankNumber6" [(ngModel)]="activity.bankNumber6">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">轉帳日期:</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="bankDate" [(ngModel)]="activity.bankDate">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">同行者姓名:</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="friendsName" [(ngModel)]="activity.friendsName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">轉帳備註說明:</label>
+      <div class="col-sm-10">
+        <input class="form-control" name="retrunNote" [(ngModel)]="activity.retrunNote">
+      </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">確認轉帳成功註記:</label>
+        <div class="col-sm-10">
+          <input class="form-control" name="checkOver" [(ngModel)]="activity.checkOver" readonly>
+        </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button [disabled]="!editFrom.valid" type="submit" class="btn btn-success btn-block">存檔送出</button>
+      </div>
+    </div>
+  </form>
+</div>

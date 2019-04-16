@@ -22,12 +22,12 @@ namespace PartyApi.Models
         public int Persons { get; set; }
         public int ManAmt { get; set; }
         public int ManEducaton { get; set; }
-        public int ManOlds1 { get; set; }
-        public int ManOlds2 { get; set; }
+        public int ManAge1 { get; set; }
+        public int ManAge2 { get; set; }
         public int WomanAmt { get; set; }
         public int WomanEducaton { get; set; }
-        public int WomanOlds1 { get; set; }
-        public int WomanOlds2 { get; set; }
+        public int WomanAge1 { get; set; }
+        public int WomanAge2 { get; set; }
         public DateTime EarlyDate { get; set; }
         public int EarlyManAmt { get; set; }
         public int EarlyWomanAmt { get; set; }

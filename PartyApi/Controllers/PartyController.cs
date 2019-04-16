@@ -32,7 +32,7 @@ namespace PartyApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetPartyDetail(int id)
         {
             var party = await _repo.Get(id);
             var dtoPartyDetail = _mapper.Map<DtoPartyDetail>(party);
@@ -49,8 +49,8 @@ namespace PartyApi.Controllers
         }
 
         //取得前一個月內的活動,讓參加的會員可以查詢及留言等
-        [HttpGet("activity")]
-        public async Task<IActionResult> GetActivity([FromQuery]ParaParty para)
+        [HttpGet("activityList")]
+        public async Task<IActionResult> GetActivityList([FromQuery]ParaParty para)
         {
             // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             //     return Unauthorized();
@@ -61,8 +61,8 @@ namespace PartyApi.Controllers
         }
 
         //取得歷史活動
-        [HttpGet("history")]
-        public async Task<IActionResult> GetHistory([FromQuery]ParaParty para)
+        [HttpGet("historyList")]
+        public async Task<IActionResult> GetHistoryList([FromQuery]ParaParty para)
         {
             var partys = await _repo.GetHistoryList(para);
             var dtoPartyList = _mapper.Map<IEnumerable<DtoPartyList>>(partys);

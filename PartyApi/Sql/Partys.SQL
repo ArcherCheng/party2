@@ -21,13 +21,13 @@ create table Party
 
 	ManAmt        int  not   null,--男生金額
 	ManEducaton   int  not   null,--男生學歷
-	ManOlds1      int  not   null,--男生年次從
-	ManOlds2      int  not   null,--男生年次到
+	ManAge1       int  not   null,--男生年次從
+	ManAge2       int  not   null,--男生年次到
 
 	WomanAmt        int  not   null,--女生金額
 	WomanEducaton   int  not   null,--女生學歷
-	WomanOlds1      int  not   null,--女生年次從
-	WomanOlds2      int  not   null,--女生年次到
+	WomanAge1       int  not   null,--女生年次從
+	WomanAge2       int  not   null,--女生年次到
 
 	EarlyDate	    date  NOT   null,--早鳥日期
 	EarlyManAmt     int   NOT   null,--男生早鳥金額

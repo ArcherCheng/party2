@@ -1,7 +1,10 @@
 <div class="jumbotron container-fluid">
   <div class="row">
-    <div *ngFor="let item of userList" class="card col-12 col-md-6 col-lg-4 col-xl-3">
-      <app-member-card [user]="item"></app-member-card>
+    <div *ngFor="let item of userList;index as i" class="card col-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="card-header text-center">
+            <span><strong>座位編號: {{i+1}}</strong></span>
+        </div>
+        <app-member-card [user]="item"></app-member-card>
       <div class="card-footer">
         <ul class="list-inline member-icons animate text-center">
           <li class="list-inline-item">

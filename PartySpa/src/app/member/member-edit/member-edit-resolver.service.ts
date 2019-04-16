@@ -20,7 +20,7 @@ export class MemberEditResolverService implements Resolve<User> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
-    return this.userService.getEdit(this.authService.decodedToken.nameid).pipe(
+    return this.userService.getMyEdit(this.authService.decodedToken.nameid).pipe(
         catchError(error => {
             this.alertify.error(error);
             this.router.navigate(['/home']);

@@ -24,7 +24,7 @@ export class MatchListResolverService implements Resolve<PaginatedResult<User[]>
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.userService.getMatchList(
+    return this.userService.getMyMatchList(
       this.authService.decodedToken.nameid, this.pageNumber, this.pageSize
     ).pipe(
       // tap(data => console.log(data)),

@@ -37,7 +37,7 @@ export class MatchListComponent implements OnInit {
   }
 
   loadMatchUsers() {
-    this.userService.getMatchList(this.authService.decodedToken.nameid, this.pagination.currentPage, this.pagination.itemsPerPage)
+    this.userService.getMyMatchList(this.authService.decodedToken.nameid, this.pagination.currentPage, this.pagination.itemsPerPage)
     .subscribe((res: PaginatedResult<User[]>) => {
       this.userList = res.result;
       this.pagination = res.pagination;

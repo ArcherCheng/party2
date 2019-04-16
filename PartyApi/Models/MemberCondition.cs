@@ -8,8 +8,8 @@ namespace PartyApi.Models
         public int UserId { get; set; }
         public int MarryMin { get; set; }
         public int MarryMax { get; set; }
-        public int OldsMin { get; set; }
-        public int OldsMax { get; set; }
+        public int YearMin { get; set; }
+        public int YearMax { get; set; }
         public int EducationMin { get; set; }
         public int EducationMax { get; set; }
         public int HeightsMin { get; set; }

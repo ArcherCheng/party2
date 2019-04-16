@@ -72,6 +72,14 @@ namespace PartyApi.Helpers
             return years;
         }
 
+        public static int CalculateYears(this int theYear )
+        {
+            var years = DateTime.Today.Year - theYear;
+
+            return years;
+        }
+
+
         public static int CalculateYears(DateTime startdate, DateTime endDate )
         {
             var years = startdate.Year - endDate.Year;

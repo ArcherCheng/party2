@@ -17,7 +17,10 @@
         <tabset class="member-tabset" #memberTabs>
           <tab heading="個人資料">
             <div class="member-detail">
+              <p><strong>我的暱稱: {{user.nickName}}</strong> </p>
+              <p><strong>我的姓名: {{user.firstName}}{{user.lastName}}</strong> </p>
               <p><strong>身份類別: {{user.marry|marry}}</strong> </p>
+              <!-- <p><strong>我的年次: {{user.birthYear}}</strong></p> -->
               <p><strong>我的年齡: {{user.age}}</strong></p>
               <p><strong>我的身高: {{user.heights}} CM</strong> </p>
               <p><strong>我的體重: {{user.weights}} KG</strong> </p>
@@ -47,7 +50,7 @@
           <tab heading="我要留言">
             <app-member-message [recipientId]="user.userId" [partyId]="currentPartyId"></app-member-message>
           </tab>
-        </tabset> 
+        </tabset>
       </div>
     </div>
   </div>

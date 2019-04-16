@@ -28,7 +28,7 @@ export class PartyService {
 
   // 互動派動,取後近一個月內的活動,會員可互相投票及留言
   getActivityList(): Observable<Party[]> {
-    return this.http.get<Party[]>(this.baseUrl + 'party/activity');
+    return this.http.get<Party[]>(this.baseUrl + 'party/activityList');
   }
 
   // history list ,取得歷史的活動列表
@@ -40,7 +40,7 @@ export class PartyService {
       params = params.append('pageSize', itemPerPage);
     }
 
-    return this.http.get<Party[]>(this.baseUrl + 'party/history', { observe: 'response', params})
+    return this.http.get<Party[]>(this.baseUrl + 'party/historyList', { observe: 'response', params})
     .pipe(
       map(response => {
         paginatedResult.result = response.body;

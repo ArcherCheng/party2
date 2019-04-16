@@ -18,15 +18,16 @@ namespace PartyApi.Controllers
     public class ActivityController : BaseController
     {
         private readonly IMapper _mapper;
-        private readonly IRepoActivity _repo;
+        private readonly IRepoActivity _repoActivity;
         private readonly IRepoMember _repoMember;
         private readonly IRepoParty _repoParty;
-        public ActivityController(IMapper mapper, IRepoActivity repo, IRepoMember repoMember, IRepoParty repoParty)
+        public ActivityController(IMapper mapper, IRepoActivity repoActivity, 
+            IRepoMember repoMember, IRepoParty repoParty)
         {
             this._repoParty = repoParty;
             this._repoMember = repoMember;
             this._mapper = mapper;
-            this._repo = repo;
+            this._repoActivity = repoActivity;
         }
 
         [HttpPost("sendActivityOrder")]
@@ -43,7 +44,7 @@ namespace PartyApi.Controllers
             if (party == null)
                 return NotFound();
 
-            var activity = await _repo.GetActivityMember(userId, partyId);
+            var activity = await _repoActivity.GetActivityMember(userId, partyId);
             if (activity != null)
                 return BadRequest("您已經有報名了,不可以重復報名");
 
@@ -83,9 +84,9 @@ namespace PartyApi.Controllers
                 MyNo = 0
             };
 
-            _repo.Add<Activity>(result);
+            _repoActivity.Add<Activity>(result);
 
-            if (_repo.SaveAll() > 0)
+            if (_repoActivity.SaveAll() > 0)
                 return Ok();
 
             return BadRequest("寫入資料庫失敗,請洽詢服務人員");
@@ -102,11 +103,11 @@ namespace PartyApi.Controllers
             // if (member == null)
             //     return NotFound();
 
-            var activity = await _repo.GetActivityMember(userId, partyId);
+            var activity = await _repoActivity.GetActivityMember(userId, partyId);
             if (activity == null)
                 return BadRequest("您没有報名此活動,無法使用此功能");
 
-            var activityMembers = await _repo.GetActivityMemberList(userId, partyId);
+            var activityMembers = await _repoActivity.GetActivityMemberList(userId, partyId);
 
             var dtoMemberList = _mapper.Map<IEnumerable<DtoMemberList>>(activityMembers);
 
@@ -119,7 +120,7 @@ namespace PartyApi.Controllers
             if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var activity = await _repo.GetActivityMember(userId,partyId);
+            var activity = await _repoActivity.GetActivityMember(userId,partyId);
             if(activity == null)
                 return BadRequest("您没有報名這場活動,無法查詢資料");
             
@@ -137,15 +138,15 @@ namespace PartyApi.Controllers
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var activity = await _repo.GetActivityMember(userId, partyId);
+            var activity = await _repoActivity.GetActivityMember(userId, partyId);
             if (activity == null)
                 return BadRequest("您没有報名這場活動,無法投票");
 
-            if (await _repo.CheckActivityLike(userId, partyId, likeId))
+            if (await _repoActivity.CheckActivityLike(userId, partyId, likeId))
                 return BadRequest("您已經有投票給這個人了,看來您真的喜歡,去留言板告白吧!");
 
             //check max 5 likees
-            var count = await _repo.CountActivityLikes(userId, partyId);
+            var count = await _repoActivity.CountActivityLikes(userId, partyId);
             if (count >= 5)
                 return BadRequest("您已經投5票了,無法再投票");
 
@@ -157,9 +158,9 @@ namespace PartyApi.Controllers
                 AddedDate = System.DateTime.Now
             };
 
-            _repo.Add<Liker>(result);
+            _repoActivity.Add<Liker>(result);
 
-            if (_repo.SaveAll() > 0)
+            if (_repoActivity.SaveAll() > 0)
                 return Ok();
 
             return BadRequest("寫入資料庫失敗,請洽詢服務人員");
@@ -175,13 +176,13 @@ namespace PartyApi.Controllers
             // if (member == null)
             //     return NotFound();
 
-            var activity = await _repo.GetActivityMember(userId, partyId);
+            var activity = await _repoActivity.GetActivityMember(userId, partyId);
             if (activity == null)
                 return BadRequest("您没有報名此活動,無法使用此功能");
 
             var isTrue = isMyLike > 0 ? true : false;
 
-            var likeMembers = await _repo.GetActivityLikeList(userId, partyId, isTrue);
+            var likeMembers = await _repoActivity.GetActivityLikeList(userId, partyId, isTrue);
 
             var dtoMemberList = _mapper.Map<IEnumerable<DtoMemberList>>(likeMembers);
 
@@ -194,7 +195,7 @@ namespace PartyApi.Controllers
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-            var results = await _repo.GetMyActivityList(userId,para);
+            var results = await _repoActivity.GetMyActivityList(userId,para);
             if (results == null)
                 return NotFound();
 

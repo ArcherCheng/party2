@@ -15,7 +15,10 @@ namespace PartyApi.Repository
 
         public async Task<Activity> GetActivityMember(int userId, int PartyId)
         {
-            var result = await _db.Activity.FirstOrDefaultAsync(x => x.UserId == userId && x.PartyId == PartyId);
+            var result = await _db.Activity
+                .Include(x => x.User)
+                .Include(x => x.Party)
+                .FirstOrDefaultAsync(x => x.UserId == userId && x.PartyId == PartyId);
             return result;
         }
 
@@ -27,8 +30,10 @@ namespace PartyApi.Repository
 
             var result = await _db.Activity
                 .Where(x=>x.PartyId == partyId && x.User.Sex != sex)
-                .Select(x=>x.User)
-                .Include(x => x.MemberPhoto)
+                .OrderBy(x=>x.MyNo)
+                .Select(x=>x.User)   
+                // .Select(x => new {Member = x.User,Myno=x.MyNo})
+                // .Include(x => x.MemberPhoto)
                 .ToListAsync();
 
             return  result;

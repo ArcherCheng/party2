@@ -55,14 +55,10 @@ namespace PartyApi.Repository
 
         public async Task<PageList<Member>> GetMatchList(ParaMember para)
         {
-            DateTime minDate,maxDate;
             
             var member = _db.Member.FirstOrDefault(x => x.UserId == para.UserId);
             
             var memberCondition = _db.MemberCondition.FirstOrDefault(x => x.UserId == para.UserId);
-
-            minDate = System.DateTime.Now.AddYears(-memberCondition.OldsMax);
-            maxDate = System.DateTime.Now.AddYears(-memberCondition.OldsMin);
 
             var matchList = _db.Member.Include(p => p.MemberPhoto)
                 .Where(x => x.Sex != member.Sex)
@@ -70,7 +66,7 @@ namespace PartyApi.Repository
         
             matchList = matchList.Where(x =>
                (x.Marry >= memberCondition.MarryMin && x.Marry <= memberCondition.MarryMax) &&
-               (x.Birthday >= minDate && x.Birthday <= maxDate) &&
+               (x.BirthYear >= memberCondition.YearMin && x.BirthYear <= memberCondition.YearMax) &&
                (x.Education >= memberCondition.EducationMin && x.Education <= memberCondition.EducationMax) &&
                (x.Heights >= memberCondition.HeightsMin && x.Heights <= memberCondition.HeightsMax) &&
                (x.Weights >= memberCondition.WeightsMin && x.Weights <= memberCondition.WeightsMax) 
@@ -104,8 +100,16 @@ namespace PartyApi.Repository
             return await PageList<Member>.CreateAsync(matchList,para.PageNumber,para.PageSize);
         }
 
-    
+        public async Task<PageList<Party>> GetMemberPartyList(ParaMember para)
+        {
+            var partylist = _db.Activity
+            .Include(x => x.Party)
+            .OrderByDescending(x => x.Party.PartyDate)
+            .Where(x => x.UserId == para.UserId)
+            .Select(x => x.Party) ;
 
+            return await PageList<Party>.CreateAsync(partylist,para.PageNumber,para.PageSize);
+        }
     }
 } 
 

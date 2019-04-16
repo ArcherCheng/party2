@@ -20,7 +20,7 @@ export class MatchConditionResolverService implements Resolve<UserCondition>  {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<UserCondition> {
-    return this.userService.getCondition(this.authService.decodedToken.nameid).pipe(
+    return this.userService.getMyCondition(this.authService.decodedToken.nameid).pipe(
         catchError(error => {
             this.alertify.error(error);
             this.router.navigate(['/home']);

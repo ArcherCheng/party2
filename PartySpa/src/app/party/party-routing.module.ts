@@ -18,12 +18,12 @@ const routes: Routes = [
     resolve: {apiResult: PartyDetailResolverService}
   },
   {
-    path: 'activity',
+    path: 'activityList',
     component: PartyActivityListComponent,
     resolve: {apiListResult: PartyActivityListResolverService}
   },
   {
-    path: 'history',
+    path: 'historyList',
     component: PartyHistoryListComponent,
     resolve: {apiPaginationResult: PartyHistoryListResolverService}
   },

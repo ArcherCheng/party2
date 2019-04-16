@@ -10,12 +10,14 @@ import { MemberRoutingModule } from './member-routing.module';
 import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberPhotoEditComponent } from './member-photo-edit/member-photo-edit.component';
 import { MemberPartyListComponent } from './member-party-list/member-party-list.component';
+import { MemberPayEditComponent } from './member-pay-edit/member-pay-edit.component';
 
 @NgModule({
   declarations: [
     MemberEditComponent,
     MemberPhotoEditComponent,
     MemberPartyListComponent,
+    MemberPayEditComponent,
   ],
   imports: [
     CommonModule,

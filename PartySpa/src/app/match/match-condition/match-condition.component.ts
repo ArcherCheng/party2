@@ -93,8 +93,8 @@ export class MatchConditionComponent implements OnInit {
         userId: [this.userCondition.userId],
         marryMin: [this.userCondition.marryMin, Validators.required],
         marryMax: [this.userCondition.marryMax, Validators.required],
-        oldsMin: [this.userCondition.oldsMin, Validators.required],
-        oldsMax: [this.userCondition.oldsMax, Validators.required],
+        yearMin: [this.userCondition.yearMin, Validators.required],
+        yearMax: [this.userCondition.yearMax, Validators.required],
         educationMin: [this.userCondition.educationMin, Validators.required],
         educationMax: [this.userCondition.educationMax, Validators.required],
         heightsMin: [this.userCondition.heightsMin, Validators.required],
@@ -113,7 +113,7 @@ export class MatchConditionComponent implements OnInit {
   onSubmit(value) {
     this.userService.updateCondition(this.authService.decodedToken.nameid, this.myFormGroup.value).subscribe(next => {
       this.alertify.success('存檔成功');
-      this.router.navigate(['match', 'matchList']);
+      this.router.navigate(['match', 'myMatchList']);
     }, error => {
       this.alertify.error(error.error);
     });

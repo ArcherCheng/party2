@@ -29,7 +29,7 @@ create table Member
 
 	--以下為個人基本條件
 	Sex           int          not null,--性別(1=男,2=女)
-	Birthday      date         not null,--出生日期
+	BirthYear     int          not null,--出生日期
 	Marry         int          not null,--婚姻狀況(1=單身未婚, 2=二春無小孩, 3=二春有小孩, 4=都可以)
 	Education     int          not null,--學歷(1=小學,2=中學,3=高中職,4=大學(專),5=碩士,6=博士)
 
@@ -208,8 +208,8 @@ create table MemberCondition
     MarryMin         int      not null,--婚姻狀況(1=單身未婚, 2=二春無小孩, 3=二春有小孩, 4=都可以)
     MarryMax         int      not null,--
 
-	OldsMin          int      not null,--年齡
-	OldsMax          int      not null,--
+	YearMin          int      not null,--最少年次
+	YearMax          int      not null,--最大年次
 
 	EducationMin     int      not null,--學歷(1=小學,2=中學,3=高中職,4=大學(專),5=碩士,6=博士)
 	EducationMax     int      not null,--
