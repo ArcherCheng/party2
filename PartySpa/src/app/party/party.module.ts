@@ -7,7 +7,7 @@ import { PartyActivityListComponent } from './party-activity-list/party-activity
 import { PartyDetailComponent } from './party-detail/party-detail.component';
 import { PartyHistoryListComponent } from './party-history-list/party-history-list.component';
 import { PartyPhotoListComponent } from './party-photo-list/party-photo-list.component';
-import { PartyMatchResultComponent } from './party-match-result/party-match-result.component';
+import { PartyVoteResultComponent } from './party-vote-result/party-vote-result.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { PartyMatchResultComponent } from './party-match-result/party-match-resu
     PartyActivityListComponent,
     PartyHistoryListComponent,
     PartyPhotoListComponent,
-    PartyMatchResultComponent,
+    PartyVoteResultComponent,
   ],
   imports: [
     CommonModule,

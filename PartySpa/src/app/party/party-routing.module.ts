@@ -8,8 +8,10 @@ import { PartyHistoryListResolverService } from './party-history-list/party-hist
 import { PartyActivityListResolverService } from './party-activity-list/party-activity-list-resolver.service';
 import { PartyPhotoListComponent } from './party-photo-list/party-photo-list.component';
 import { PartyPhotoListResolverService } from './party-photo-list/party-photo-list-resolver.service';
-import { PartyMatchResultComponent } from './party-match-result/party-match-result.component';
-import { PartyMatchResultResolverService } from './party-match-result/party-match-result-resolver.service';
+// import { PartyMatchResultComponent } from './party-match-result/party-match-result.component';
+// import { PartyMatchResultResolverService } from './party-match-result/party-match-result-resolver.service';
+import { PartyVoteResultComponent } from './party-vote-result/party-vote-result.component';
+import { PartyVoteResultResolverService } from './party-vote-result/party-vote-result-resolver.service';
 
 const routes: Routes = [
   {
@@ -33,9 +35,9 @@ const routes: Routes = [
     resolve: {apiResultList: PartyPhotoListResolverService}
   },
   {
-    path: ':partyId/match',
-    component: PartyMatchResultComponent,
-    resolve: {apiResult: PartyMatchResultResolverService}
+    path: ':partyId/voteResult',
+    component: PartyVoteResultComponent,
+    resolve: {apiResult: PartyVoteResultResolverService}
   },
   {
     path: '**',

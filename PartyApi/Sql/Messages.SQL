@@ -7,7 +7,7 @@ go
 create table Message
 (
 	Id            int identity(1,1) not null,
-	PartyId       int not null,
+	-- PartyId       int not null,
 	SenderId      int not null,
 	RecipientId   int not null,
 	Contents      nvarchar(1024) not null, 
@@ -26,17 +26,18 @@ create table Message
 	constraint pk_Message primary key (Id)
 );
 go
-create index message_in1 on Message(PartyId,SenderId,RecipientId) ;
+create index message_in1 on Message(SenderId,RecipientId) ;
+go          
+create index message_in2 on Message(RecipientId,SenderId) ;
 go          
 
---alter table message drop constraint message_partyId
-alter table Message add constraint Message_Party
-      foreign key (PartyId)
-      references Party(PartyId)
-	  ON UPDATE CASCADE
-	  ON DELETE NO ACTION
-
-go
+-- --alter table message drop constraint message_partyId
+-- alter table Message add constraint Message_Party
+--       foreign key (PartyId)
+--       references Party(PartyId)
+-- 	  ON UPDATE CASCADE
+-- 	  ON DELETE NO ACTION
+-- go
 
 --alter table message drop constraint message_senderId
 alter table Message add constraint Message_Sender

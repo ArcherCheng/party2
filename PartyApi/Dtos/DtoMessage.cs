@@ -6,7 +6,6 @@ namespace PartyApi.Dtos
     public class DtoMessageList
     {
         public int Id { get; set; }
-        public int PartyId { get; set; } =0;
         public int SenderId { get; set; }
         public string SenderName { get; set; }
         public string SenderPhotoUrl { get; set; }
@@ -26,7 +25,7 @@ namespace PartyApi.Dtos
         //     SentDate = System.DateTime.Now;
         // }
  
-        public int PartyId { get; set; }=0;
+        // public int PartyId { get; set; }=0;
         public int SenderId { get; set; }
         public DateTime? SendDate { get; set; }
         public int RecipientId { get; set; }

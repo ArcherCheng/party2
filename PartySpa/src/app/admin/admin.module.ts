@@ -6,16 +6,18 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { PartyListComponent } from './party-list/party-list.component';
 import { PartyAddComponent } from './party-add/party-add.component';
 import { MemberListComponent } from './member-list/member-list.component';
-import { MemberUpdateComponent } from './member-update/member-update.component';
 import { ActicityAuditComponent } from './acticity-audit/acticity-audit.component';
+import { MemberBlackComponent } from './member-black/member-black.component';
+import { PartyPhotoAddComponent } from './party-photo-add/party-photo-add.component';
 
 @NgModule({
   declarations: [
     MemberListComponent,
-    MemberUpdateComponent,
     PartyListComponent,
     PartyAddComponent,
     ActicityAuditComponent,
+    MemberBlackComponent,
+    PartyPhotoAddComponent,
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,6 @@ import { MyMessage } from 'src/app/_shared/interface/myMessage';
 })
 export class MemberMessageComponent implements OnInit {
   @Input() recipientId: number;
-  @Input() partyId: number;
   messages: MyMessage[];
   newMessage: any = {};
 
@@ -46,7 +45,6 @@ export class MemberMessageComponent implements OnInit {
   }
 
   sendMessage() {
-    this.newMessage.partyId = this.partyId;
     this.newMessage.recipientId = this.recipientId;
     this.userService.sendMessage(this.authService.decodedToken.nameid, this.newMessage)
     .subscribe((message: MyMessage) => {

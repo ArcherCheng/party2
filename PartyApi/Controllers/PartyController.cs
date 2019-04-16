@@ -22,19 +22,19 @@ namespace PartyApi.Controllers
     [ApiController]
     public class PartyController : BaseController
     {
-        private readonly IRepoParty _repo;
+        private readonly IRepoParty _repoParty;
         private readonly IMapper _mapper;
 
-        public PartyController(IRepoParty repo, IMapper mapper)
+        public PartyController(IRepoParty repoParty, IMapper mapper)
         {
-            this._repo = repo;
+            this._repoParty = repoParty;
             this._mapper = mapper;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPartyDetail(int id)
         {
-            var party = await _repo.Get(id);
+            var party = await _repoParty.Get(id);
             var dtoPartyDetail = _mapper.Map<DtoPartyDetail>(party);
             return Ok(dtoPartyDetail);
         }
@@ -43,7 +43,7 @@ namespace PartyApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetNewList()
         {
-            var partys = await _repo.GetNewList();
+            var partys = await _repoParty.GetNewList();
             var dtoPartyList = _mapper.Map<IEnumerable<DtoPartyList>>(partys);
             return Ok(dtoPartyList);
         }
@@ -55,7 +55,7 @@ namespace PartyApi.Controllers
             // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             //     return Unauthorized();
 
-            var partys = await _repo.GetActivityList();
+            var partys = await _repoParty.GetActivityList();
             var dtoPartyList = _mapper.Map<IEnumerable<DtoPartyList>>(partys);
             return Ok(dtoPartyList);
         }
@@ -64,7 +64,7 @@ namespace PartyApi.Controllers
         [HttpGet("historyList")]
         public async Task<IActionResult> GetHistoryList([FromQuery]ParaParty para)
         {
-            var partys = await _repo.GetHistoryList(para);
+            var partys = await _repoParty.GetHistoryList(para);
             var dtoPartyList = _mapper.Map<IEnumerable<DtoPartyList>>(partys);
             Response.AddPagination(partys.CurrentPage,partys.PageSize,partys.TotalCount,partys.TotalPages);
             return Ok(dtoPartyList);
@@ -73,14 +73,14 @@ namespace PartyApi.Controllers
         [HttpGet("{partyId}/photoList")]
         public async Task<IActionResult> GetPhotoList(int partyId)
         {
-            var partyPhotos = await _repo.GetPhotoList(partyId);
+            var partyPhotos = await _repoParty.GetPhotoList(partyId);
             return Ok(partyPhotos);
         }
 
         [HttpGet("{partyId}/summary")]
         public async Task<IActionResult> GetSummary(int partyId)
         {
-            var result = await _repo.GetPartySummary(partyId);
+            var result = await _repoParty.GetPartySummary(partyId);
             return Ok(result);
         }
 

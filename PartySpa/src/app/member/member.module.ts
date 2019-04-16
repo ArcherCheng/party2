@@ -11,6 +11,8 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
 import { MemberPhotoEditComponent } from './member-photo-edit/member-photo-edit.component';
 import { MemberPartyListComponent } from './member-party-list/member-party-list.component';
 import { MemberPayEditComponent } from './member-pay-edit/member-pay-edit.component';
+import { MemberDetailComponent } from './member-detail/member-detail.component';
+import { MemberMessageComponent } from './member-message/member-message.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MemberPayEditComponent } from './member-pay-edit/member-pay-edit.compon
     MemberPhotoEditComponent,
     MemberPartyListComponent,
     MemberPayEditComponent,
+    MemberDetailComponent,
+    MemberMessageComponent,
   ],
   imports: [
     CommonModule,

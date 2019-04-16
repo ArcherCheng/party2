@@ -51,12 +51,12 @@ export class PartyAddComponent implements OnInit {
       persons: [this.party.persons, Validators.required],
       manAmt: [this.party.manAmt, Validators.required],
       manEducaton: [this.party.manEducaton, Validators.required],
-      manOlds1: [this.party.manOlds1, Validators.required],
-      manOlds2: [this.party.manOlds2, Validators.required],
+      manAge1: [this.party.manAge1, Validators.required],
+      manAge2: [this.party.manAge2, Validators.required],
       womanAmt: [this.party.womanAmt, Validators.required],
       womanEducaton: [this.party.womanEducaton, Validators.required],
-      womanOlds1: [this.party.womanOlds1, Validators.required],
-      womanOlds2: [this.party.womanOlds2, Validators.required],
+      womanAge1: [this.party.womanAge1, Validators.required],
+      womanAge2: [this.party.womanAge2, Validators.required],
       earlyDate: [this.party.earlyDate, Validators.required],
       earlyManAmt: [this.party.earlyManAmt, Validators.required],
       earlyWomanAmt: [this.party.earlyWomanAmt, Validators.required],
@@ -81,7 +81,7 @@ export class PartyAddComponent implements OnInit {
 
   setPartyDefault() {
     this.party.partyId = 0;
-    this.party.partyName = '19-001 優質未婚大專青年男女聯誼餐會-台北場';
+    this.party.partyName = '19-001 (複製用) 優質未婚大專青年男女聯誼餐會-台北場';
     this.party.partyDate = this.Today;
     this.party.beginTime = '13:30';
     this.party.endTime = '17:30';
@@ -89,12 +89,12 @@ export class PartyAddComponent implements OnInit {
     this.party.persons = 50;
     this.party.manAmt = 650;
     this.party.manEducaton = 4;
-    this.party.manOlds1 = 25;
-    this.party.manOlds2 = 40;
+    this.party.manAge1 = 25;
+    this.party.manAge2 = 40;
     this.party.womanAmt = 400;
     this.party.womanEducaton = 4;
-    this.party.womanOlds1 = 23;
-    this.party.womanOlds2 = 38;
+    this.party.womanAge1 = 23;
+    this.party.womanAge2 = 38;
     this.party.earlyDate = this.Today;
     this.party.earlyManAmt = 550;
     this.party.earlyWomanAmt = 300;

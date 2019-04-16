@@ -25,7 +25,7 @@ export class MyMessagesResolverService implements Resolve<PaginatedResult<MyMess
       ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PaginatedResult<MyMessage[]>> {
-    return this.userService.getMessages(this.authService.decodedToken.nameid,
+    return this.userService.getAllMessages(this.authService.decodedToken.nameid,
       this.pageNumber, this.pageSize, this.messageContainer);
       // .pipe(
       //   catchError(error => {

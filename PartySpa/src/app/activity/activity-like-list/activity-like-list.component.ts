@@ -26,7 +26,7 @@ export class ActivityLikeListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: {apiListResult: User[]}) => this.userList = data.apiListResult);
-    console.log(this.userList);
+    // console.log(this.userList);
     this.currentPartyId = +this.route.snapshot.params.partyId;
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
@@ -39,7 +39,7 @@ export class ActivityLikeListComponent implements OnInit {
       this.alertify.error(error);
     });
   }
-  
+
   sendLike(likeId: number) {
     this.alertify.confirm('確定要投票給這個人嗎?', () => {
       this.activityService.sendActivityLike(

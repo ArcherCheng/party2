@@ -98,7 +98,7 @@ go
 drop view ViewActivityPersons
 go
 create view ViewActivityPersons as 
-select a.PartyId,count(a.PartyId) TotalPersons,AVG(YEAR(GETDATE()) - YEAR(b.Birthday)) as AvgOlds 
+select a.PartyId,count(a.PartyId) TotalPersons,AVG(YEAR(a.ApplyDate) - b.BirthYear) as AvgOlds 
 from Activity a,Member b 
 where a.UserId = b.UserId  
 group by a.PartyId 
@@ -108,7 +108,7 @@ go
 drop view ViewActivityMen
 go
 create view ViewActivityMen as 
-select a.PartyId,count(a.PartyId) TotalMen,AVG(YEAR(GETDATE()) - YEAR(b.Birthday)) as AvgMenOlds 
+select a.PartyId,count(a.PartyId) TotalMen,AVG(YEAR(a.ApplyDate) - b.BirthYear) as AvgMenOlds 
 from Activity a,Member b
 where a.UserId = b.UserId and b.sex=1
 group by a.PartyId 
@@ -118,7 +118,7 @@ go
 drop view ViewActivityWomen
 go
 create view ViewActivityWomen as 
-select a.PartyId,count(a.PartyId) TotalWomen,AVG(YEAR(GETDATE()) - YEAR(b.Birthday)) as AvgWomenOlds
+select a.PartyId,count(a.PartyId) TotalWomen,AVG(YEAR(a.ApplyDate) - b.BirthYear) as AvgWomenOlds
 from Activity a,Member b 
 where a.UserId = b.UserId and b.sex=2
 group by a.PartyId 

@@ -5,8 +5,8 @@ import { ActivityRoutingModule } from './activity-routing.module';
 
 import { ActivityLikeListComponent } from './activity-like-list/activity-like-list.component';
 import { ActivityMemberListComponent } from './activity-member-list/activity-member-list.component';
-import { MemberDetailComponent } from './member-detail/member-detail.component';
-import { MemberMessageComponent } from './member-message/member-message.component';
+// import { MemberDetailComponent } from '../member/member-detail/member-detail.component';
+// import { MemberMessageComponent } from '../member/member-message/member-message.component';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { NgxGalleryModule } from 'ngx-gallery';
 // import { FileUploadModule } from 'ng2-file-upload';
@@ -17,8 +17,8 @@ import { MemberMessageComponent } from './member-message/member-message.componen
   declarations: [
     ActivityMemberListComponent,
     ActivityLikeListComponent,
-    MemberDetailComponent,
-    MemberMessageComponent
+    // MemberDetailComponent,
+    // MemberMessageComponent
   ],
   imports: [
     CommonModule,

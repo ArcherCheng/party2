@@ -16,7 +16,7 @@ import { ActivityService } from 'src/app/_shared/service/Activity.service';
 export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs') memberTabs: TabsetComponent;
   user: User;
-  currentPartyId = 0;
+  // currentPartyId = 0;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   mainPhotoUrl: string;  // 留言頭像用
@@ -31,12 +31,12 @@ export class MemberDetailComponent implements OnInit {
 
   ngOnInit() {
     // this.loadUser();
+    this.authService.setCurrentTitle('會員個人資料');
     this.route.data.subscribe((data: {apiResult: User}) => this.user = data.apiResult);
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.mainPhotoUrl = photoUrl);
-    this.authService.setCurrentTitle('會員個人資料');
     // this.currentPartyId = this.route.snapshot.params.partyId;
     this.route.queryParams.subscribe(params => {
-      this.currentPartyId = params.partyId;
+      // this.currentPartyId = params.partyId;
       const selectedTab = params.tab;
       this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
     });
@@ -84,20 +84,20 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
 
-  sendLike(likeId: number) {
-    // alert(this.currentPartyId);
-    this.alertify.confirm('確定要投票給這個人嗎?', () => {
-      this.activityService.sendActivityLike(
-        this.authService.decodedToken.nameid,
-        this.currentPartyId,
-        likeId
-        ).subscribe(() => {
-          this.alertify.success('投票成功');
-        }, error => {
-          this.alertify.error(error.error);
-        });
-    });
-  }
+  // sendLike(likeId: number) {
+  //   // alert(this.currentPartyId);
+  //   this.alertify.confirm('確定要投票給這個人嗎?', () => {
+  //     this.activityService.sendActivityLike(
+  //       this.authService.decodedToken.nameid,
+  //       this.currentPartyId,
+  //       likeId
+  //       ).subscribe(() => {
+  //         this.alertify.success('投票成功');
+  //       }, error => {
+  //         this.alertify.error(error.error);
+  //       });
+  //   });
+  // }
 
   // 直接在 init 中,下載主機端的資料,
   // 改成用 route resolver 下載主機端的資料 member-detail-resolver.service

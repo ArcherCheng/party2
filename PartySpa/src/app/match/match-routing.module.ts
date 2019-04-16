@@ -5,8 +5,6 @@ import { MatchListComponent } from './match-list/match-list.component';
 import { MatchListResolverService } from './match-list/match-list-resolver.service';
 import { MatchConditionComponent } from './match-condition/match-condition.component';
 import { MatchConditionResolverService } from './match-condition/match-condition-resolver.service';
-import { MatchDetailComponent } from './match-detail/match-detail.component';
-import { MatchDetailResolverService } from './match-detail/match-detail-resolver.service';
 
 const routes: Routes = [
   {
@@ -23,11 +21,6 @@ const routes: Routes = [
         path: 'myMatchList',
         component: MatchListComponent,
         resolve: {apiPaginatedResult: MatchListResolverService}
-      },
-      {
-        path: 'matchDetail/:userId',
-        component: MatchDetailComponent,
-        resolve: {apiResult: MatchDetailResolverService}
       },
     ]
   },

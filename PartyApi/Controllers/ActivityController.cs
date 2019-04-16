@@ -13,7 +13,7 @@ using PartyApi.Repository;
 namespace PartyApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/member/{userId}/party/{partyId}")]
+    [Route("api/[controller]/myId/{userId}/party/{partyId}")]
     [ApiController]
     public class ActivityController : BaseController
     {
@@ -114,24 +114,6 @@ namespace PartyApi.Controllers
             return Ok(dtoMemberList);
         }
 
-        [HttpGet("member/{id}/detail")]
-        public async Task<IActionResult> GetMemberDetail(int userId,int partyId,int id)
-        {
-            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
-
-            var activity = await _repoActivity.GetActivityMember(userId,partyId);
-            if(activity == null)
-                return BadRequest("您没有報名這場活動,無法查詢資料");
-            
-            var member = await _repoMember.GetDetail(id);
-            if(member == null)
-                return NotFound();
-
-            var dtoMember = _mapper.Map<DtoMemberDetail>(member);
-            return Ok(dtoMember);
-        }
-
         [HttpPost("like/{likeId}")]
         public async Task<IActionResult> SendActivityLike(int userId, int partyId, int likeId)
         {
@@ -189,21 +171,40 @@ namespace PartyApi.Controllers
             return Ok(dtoMemberList);
         }
 
-        [HttpGet("MyActivityList")]
-        public async Task<IActionResult> GetMyActivityList(int userId, [FromQuery]ParaActivity para)
-        {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+        // [HttpGet("member/{id}/detail")]
+        // public async Task<IActionResult> GetMemberDetail(int userId,int partyId,int id)
+        // {
+        //     if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        //         return Unauthorized();
 
-            var results = await _repoActivity.GetMyActivityList(userId,para);
-            if (results == null)
-                return NotFound();
+        //     var activity = await _repoActivity.GetActivityMember(userId,partyId);
+        //     if(activity == null)
+        //         return BadRequest("您没有報名這場活動,無法查詢資料");
+            
+        //     var member = await _repoMember.GetDetail(id);
+        //     if(member == null)
+        //         return NotFound();
 
-            Response.AddPagination(results.CurrentPage, para.PageSize, results.TotalCount, results.TotalPages);
+        //     var dtoMember = _mapper.Map<DtoMemberDetail>(member);
+        //     return Ok(dtoMember);
+        // }
 
-            // var dto4List = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
-            return Ok(results);
-        }
+
+        // [HttpGet("MyActivityList")]
+        // public async Task<IActionResult> GetMyActivityList(int userId, [FromQuery]ParaActivity para)
+        // {
+        //     if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        //         return Unauthorized();
+
+        //     var results = await _repoActivity.GetMyActivityList(userId,para);
+        //     if (results == null)
+        //         return NotFound();
+
+        //     Response.AddPagination(results.CurrentPage, para.PageSize, results.TotalCount, results.TotalPages);
+
+        //     // var dto4List = _mapper.Map<IEnumerable<DtoMemberList>>(repoMember);
+        //     return Ok(results);
+        // }
 
     }
 }

@@ -52,14 +52,14 @@ namespace PartyApi.Repository
         }
 
         
-        public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
+        public async Task<IEnumerable<Message>> GetMessageThread(int myId, int recipientId)
         {
             //var lastDate = System.DateTime.Now.AddMonths(-1);
             var result = await _db.Message
-                .Include(p => p.Sender).ThenInclude(p=>p.MemberPhoto)
-                .Include(p => p.Recipient).ThenInclude(p=>p.MemberPhoto)
-                .Where(p=>p.RecipientId == userId && p.RecipientDeleted == false && p.SenderId == recipientId && p.SendDate > _lastDate
-                    || p.RecipientId == recipientId && p.SenderId == userId && p.SenderDeleted == false && p.SendDate > _lastDate) 
+                .Include(p => p.Sender)     //.ThenInclude(p=>p.MemberPhoto)
+                .Include(p => p.Recipient)  //.ThenInclude(p=>p.MemberPhoto)
+                .Where(p=>p.RecipientId == myId && p.RecipientDeleted == false && p.SenderId == recipientId && p.SendDate > _lastDate
+                    || p.RecipientId == recipientId && p.SenderId == myId && p.SenderDeleted == false && p.SendDate > _lastDate) 
                 .OrderByDescending(p => p.SendDate)
                 .ToListAsync();
 

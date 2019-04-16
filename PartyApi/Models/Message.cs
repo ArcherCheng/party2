@@ -6,7 +6,6 @@ namespace PartyApi.Models
     public partial class Message
     {
         public int Id { get; set; }
-        public int PartyId { get; set; }
         public int SenderId { get; set; }
         public int RecipientId { get; set; }
         public string Contents { get; set; }
@@ -19,8 +18,6 @@ namespace PartyApi.Models
         public DateTime? WriteTime { get; set; }
         public string WriteUser { get; set; }
         public string WriteIp { get; set; }
-
-        public virtual Party Party { get; set; }
         public virtual Member Recipient { get; set; }
         public virtual Member Sender { get; set; }
     }

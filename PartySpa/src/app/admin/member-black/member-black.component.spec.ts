@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchDetailComponent } from './match-detail.component';
+import { MemberBlackComponent } from './member-black.component';
 
-describe('MatchDetailComponent', () => {
-  let component: MatchDetailComponent;
-  let fixture: ComponentFixture<MatchDetailComponent>;
+describe('MemberBlackComponent', () => {
+  let component: MemberBlackComponent;
+  let fixture: ComponentFixture<MemberBlackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatchDetailComponent ]
+      declarations: [ MemberBlackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatchDetailComponent);
+    fixture = TestBed.createComponent(MemberBlackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

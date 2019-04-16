@@ -7,6 +7,8 @@ import { AuthGuard } from '../_shared/guard/auth.guard';
 import { MemberPartyListResolverService } from './member-party-list/member-party-list-resolver.service';
 import { MemberPayEditComponent } from './member-pay-edit/member-pay-edit.component';
 import { MemberPayEditResolverService } from './member-pay-edit/member-pay-edit-resolver.service';
+import { MemberDetailComponent } from './member-detail/member-detail.component';
+import { MemberDetailResolverService } from './member-detail/member-detail-resolver.service';
 
 const routes: Routes = [
    {
@@ -28,6 +30,11 @@ const routes: Routes = [
         path: 'myPartyPay/:partyId',
         component: MemberPayEditComponent,
         resolve: {apiResult: MemberPayEditResolverService}
+      },
+      {
+        path: ':userId/detail',
+        component: MemberDetailComponent,
+        resolve: {apiResult: MemberDetailResolverService}
       },
     ]
   },

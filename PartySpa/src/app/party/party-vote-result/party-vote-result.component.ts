@@ -6,11 +6,11 @@ import { AuthService } from 'src/app/_shared/service/auth.service';
 import { PartyService } from 'src/app/_shared/service/party.service';
 
 @Component({
-  selector: 'app-party-match-result',
-  templateUrl: './party-match-result.component.html',
-  styleUrls: ['./party-match-result.component.css']
+  selector: 'app-party-vote-result',
+  templateUrl: './party-vote-result.component.html',
+  styleUrls: ['./party-vote-result.component.css']
 })
-export class PartyMatchResultComponent implements OnInit {
+export class PartyVoteResultComponent implements OnInit {
   partySummary: PartySummary;
 
   constructor(
@@ -23,5 +23,6 @@ export class PartyMatchResultComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: {apiResult: PartySummary}) => this.partySummary = data.apiResult);
   }
+
 
 }

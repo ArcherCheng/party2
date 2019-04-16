@@ -7,7 +7,7 @@
         <div>
             <button class="btn btn-success w-100" (click)="activityMemberList(party.partyId)">參加人員名單</button>
             <button class="btn btn-danger w-100" (click)="activityLikeList(party.partyId)">我的配對名單</button>
-            <button class="btn btn-info w-100 " [routerLink]="['/party',party.partyId,'match']" role="button">目前配對統計</button>
+            <button class="btn btn-info w-100 " [routerLink]="['/party',party.partyId,'voteResult']" role="button">目前配對統計</button>
             <!-- <button class="btn btn-primary w-100" (click)="activityMemberLike(party.partyId)">派對群組留言</button> -->
             <!-- <button class="btn btn-info w-100 " (click)="activityMemberLike(party.partyId)">我的留言信箱</button> -->
         </div>

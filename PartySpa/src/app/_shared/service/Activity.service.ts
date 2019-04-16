@@ -14,25 +14,24 @@ export class ActivityService {
 
   // 使用者點擊參加報名活動
   sendActivityOrder(userId: number, partyId: number) {
-    return this.http.post(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId + '/sendactivityorder', {});
+    return this.http.post(this.baseUrl + 'activity/myId/' + userId + '/party/' + partyId + '/sendactivityorder', {});
   }
 
-  getMember(userId: number, partyId: number , id: number): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId
-    + '/member/' + id + '/detail');  // , httpOptions
-  }
-
+  // getMember(userId: number, partyId: number , id: number): Observable<User> {
+  //   return this.http.get<User>(this.baseUrl + 'activity/myId/' + userId + '/party/' + partyId
+  //   + '/member/' + id + '/detail');  // , httpOptions
+  // }
 
   getActivityMemberList(userId: number, partyId: number): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId + '/memberList', {});
+    return this.http.get<User[]>(this.baseUrl + 'activity/myId/' + userId + '/party/' + partyId + '/memberList', {});
   }
 
   sendActivityLike(userId: number, partyId: number, likeId: number) {
-    return this.http.post(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId + '/like/' + likeId, {});
+    return this.http.post(this.baseUrl + 'activity/myId/' + userId + '/party/' + partyId + '/like/' + likeId, {});
   }
 
   getActivityLikeList(userId: number, partyId: number, isMyLike: number): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'activity/member/' + userId + '/party/' + partyId + '/likeList/' + isMyLike, {});
+    return this.http.get<User[]>(this.baseUrl + 'activity/myId/' + userId + '/party/' + partyId + '/likeList/' + isMyLike, {});
   }
 
 

@@ -110,12 +110,6 @@ namespace PartyApi.Models
    
             modelBuilder.Entity<Message>(entity =>
             {
-                entity.HasOne(d => d.Party)
-                    .WithMany(p => p.Message)
-                    .HasForeignKey(d => d.PartyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Message_Party");
-
                 entity.HasOne(d => d.Recipient)
                     .WithMany(p => p.MessageRecipient)
                     .HasForeignKey(d => d.RecipientId)

@@ -9,7 +9,6 @@ namespace PartyApi.Models
         {
             Activity = new HashSet<Activity>();
             Liker = new HashSet<Liker>();
-            Message = new HashSet<Message>();
             PartyPhoto = new HashSet<PartyPhoto>();
         }
 
@@ -44,7 +43,6 @@ namespace PartyApi.Models
 
         public virtual ICollection<Activity> Activity { get; set; }
         public virtual ICollection<Liker> Liker { get; set; }
-        public virtual ICollection<Message> Message { get; set; }
         public virtual ICollection<PartyPhoto> PartyPhoto { get; set; }
     }
 }

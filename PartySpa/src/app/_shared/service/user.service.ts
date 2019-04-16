@@ -25,10 +25,15 @@ export class UserService {
   baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
-  get(userId: number): Observable<User> {
+  getMember(userId: number): Observable<User> {
     // alert(this.baseUrl + 'member/' + userId + '/memberDetail')
     return this.http.get<User>(this.baseUrl + 'member/' + userId + '/memberDetail');  // , httpOptions
   }
+
+  // getMember(userId: number, partyId: number , id: number): Observable<User> {
+  //   return this.http.get<User>(this.baseUrl + 'activity/myId/' + userId + '/party/' + partyId
+  //   + '/member/' + id + '/detail');  // , httpOptions
+  // }
 
   getMyCondition(userId: number): Observable<UserCondition> {
     return this.http.get<UserCondition>(this.baseUrl + 'member/' + userId + '/MyCondition');  // , httpOptions
@@ -110,7 +115,7 @@ export class UserService {
     return this.http.delete(this.baseUrl + 'member/' + userId + '/photos/' + id );
   }
 
-  getMessages(userId: number, page?, itemsPerPage?, messageContainer?) {
+  getAllMessages(userId: number, page?, itemsPerPage?, messageContainer?) {
     const paginatedResult: PaginatedResult<MyMessage[]> = new PaginatedResult<MyMessage[]>();
 
     let params = new HttpParams();
@@ -120,7 +125,7 @@ export class UserService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<MyMessage[]>(this.baseUrl + 'user/' + userId + '/message', {observe: 'response', params})
+    return this.http.get<MyMessage[]>(this.baseUrl + 'message/myId/' + userId + '/getAllMessages', {observe: 'response', params})
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
@@ -134,19 +139,19 @@ export class UserService {
   }
 
   getMessageThread(userId: number, recipientId: number) {
-    return this.http.get<MyMessage[]>(this.baseUrl + 'user/' + userId + '/message/thread/' + recipientId);
+    return this.http.get<MyMessage[]>(this.baseUrl + 'message/myId/' + userId + '/thread/' + recipientId);
   }
 
   sendMessage(userId: number, messape: MyMessage) {
-    return this.http.post(this.baseUrl + 'user/' + userId + '/message', messape);
+    return this.http.post(this.baseUrl + 'message/myId/' + userId , messape);
   }
 
   deleteMessage(userId: number, messageId: number ) {
-    return this.http.post(this.baseUrl + 'user/' + userId + '/message/' + messageId, {});
+    return this.http.post(this.baseUrl + 'message/myId/' + userId + '/delete/' + messageId, {});
   }
 
   markAsRead(userId: number, messageId: number) {
-    return this.http.post(this.baseUrl + 'user/' + userId + '/message/' + messageId + '/read', {}).subscribe();
+    return this.http.post(this.baseUrl + 'message/myId/' + userId + '/markRead/' + messageId , {}).subscribe();
   }
 
   // getActivityUserList(userId: number, partyId: number): Observable<User[]> {

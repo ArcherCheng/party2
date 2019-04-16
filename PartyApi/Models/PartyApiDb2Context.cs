@@ -305,9 +305,6 @@ namespace PartyApi.Models
 
             modelBuilder.Entity<Message>(entity =>
             {
-                entity.HasIndex(e => new { e.PartyId, e.SenderId, e.RecipientId })
-                    .HasName("message_in1");
-
                 entity.Property(e => e.Contents)
                     .IsRequired()
                     .HasMaxLength(1024);
@@ -321,12 +318,6 @@ namespace PartyApi.Models
                 entity.Property(e => e.WriteTime).HasColumnType("datetime");
 
                 entity.Property(e => e.WriteUser).HasMaxLength(32);
-
-                entity.HasOne(d => d.Party)
-                    .WithMany(p => p.Message)
-                    .HasForeignKey(d => d.PartyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Message_Party");
 
                 entity.HasOne(d => d.Recipient)
                     .WithMany(p => p.MessageRecipient)

@@ -32,7 +32,7 @@ export class PartyActivityListComponent implements OnInit {
       // this.router.navigate(['/login/login']);
     } else {
       // this.alertify.warning('activityMemberList');
-      this.router.navigate(['activity/member', this.authService.decodedToken.nameid, 'party', partyId, 'memberList']);
+      this.router.navigate(['activity/myId', this.authService.decodedToken.nameid, 'party', partyId, 'memberList']);
     }
   }
 
@@ -41,7 +41,7 @@ export class PartyActivityListComponent implements OnInit {
       this.alertify.warning('請先登入系統，才可以查詢您個人的投票配對名單');
     } else {
       // this.alertify.warning('activityLikeList');
-      this.router.navigate(['activity/member', this.authService.decodedToken.nameid, 'party', partyId, 'likeList']);
+      this.router.navigate(['activity/myId', this.authService.decodedToken.nameid, 'party', partyId, 'likeList']);
     }
   }
 

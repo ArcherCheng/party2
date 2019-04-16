@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PartyMatchResultComponent } from './party-match-result.component';
+import { PartyPhotoAddComponent } from './party-photo-add.component';
 
-describe('PartyMatchResultComponent', () => {
-  let component: PartyMatchResultComponent;
-  let fixture: ComponentFixture<PartyMatchResultComponent>;
+describe('PartyPhotoAddComponent', () => {
+  let component: PartyPhotoAddComponent;
+  let fixture: ComponentFixture<PartyPhotoAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PartyMatchResultComponent ]
+      declarations: [ PartyPhotoAddComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PartyMatchResultComponent);
+    fixture = TestBed.createComponent(PartyPhotoAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
