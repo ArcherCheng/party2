@@ -47,9 +47,8 @@ export class AdminService {
   }
 
   getActivityAuditList(partyId: number): Observable<Activity[]> {
-    return this.http.get<Activity[]>(this.baseUrl + 'admin/party/activityaudit/' + partyId);
+    return this.http.get<Activity[]>(this.baseUrl + 'admin/party/activity/' + partyId + '/audit');
   }
-
 
   // party list ,取得活動列表
   getMemberList(page?, itemPerPage?) {

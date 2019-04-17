@@ -188,7 +188,7 @@ namespace PartyApi.Controllers
             return Unauthorized();
 
             var repoActivity = await _repoActivity.GetActivityMember(userId, partyId);
-            var dtoActivity = _mapper.Map<DtoActivity>(repoActivity);
+            var dtoActivity = _mapper.Map<DtoActivityAudit>(repoActivity);
             return Ok(dtoActivity);
         }
 

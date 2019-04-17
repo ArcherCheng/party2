@@ -1,0 +1,11 @@
+<div class="jumbotron container-fluid">
+  <div class="row">
+    <h2>報名核對及現場編號輸入</h2>
+  </div>
+  <div class="row" *ngFor="let item of activityList; index as i;">
+    <form #editFrom="ngForm" >
+        <img src="{{item.mainPhotoUrl}}">
+        <label>姓名:</label>{{item.firstName}} {{item.lastName}}
+    </form>
+  </div>
+</div>

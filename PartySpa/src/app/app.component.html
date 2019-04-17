@@ -47,14 +47,18 @@
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','login']"
         routerLinkActive="router-link-active">使用者登入
       </a>
+      <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','changePassword']"
+        routerLinkActive="router-link-active">變更密碼
+      </a>
       <a class="list-group-item list-group-item-action bg-light" [routerLink]="['login','register']"
         routerLinkActive="router-link-active">新人註冊
       </a>
       <a class="list-group-item list-group-item-action bg-light" (click)="logout()">登出系統
       </a>
+
       <div *ngIf="authService.isLoggedIn() && authService.decodedToken.role === 'Admin'">
         <a class="list-group-item list-group-item-action bg-light" [routerLink]="['admin','party']"
-          routerLinkActive="router-link-active">活動派對建檔
+          routerLinkActive="router-link-active">派對活動建檔
         </a>
         <a class="list-group-item list-group-item-action bg-light" [routerLink]="['admin','member']"
           routerLinkActive="router-link-active">會員資料維護

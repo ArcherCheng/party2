@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActicityAuditComponent } from './acticity-audit.component';
+import { ActivityAuditComponent } from './activity-audit.component';
 
-describe('ActicityAuditComponent', () => {
-  let component: ActicityAuditComponent;
-  let fixture: ComponentFixture<ActicityAuditComponent>;
+describe('ActivityAuditComponent', () => {
+  let component: ActivityAuditComponent;
+  let fixture: ComponentFixture<ActivityAuditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActicityAuditComponent ]
+      declarations: [ ActivityAuditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActicityAuditComponent);
+    fixture = TestBed.createComponent(ActivityAuditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

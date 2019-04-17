@@ -9,6 +9,9 @@ import { PartyAddComponent } from './party-add/party-add.component';
 import { PartyAddResolverService } from './party-add/party-add-resolver.service';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberListResolverService } from './member-list/member-list-resolver.service';
+import { ActivityAuditComponent } from './activity-audit/activity-audit.component';
+import { ActivityAuditResolverService } from './activity-audit/activity-audit-resolver.service';
+import { PartyPhotoAddComponent } from './party-photo-add/party-photo-add.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,15 @@ const routes: Routes = [
         path: 'party/add/:partyId',
         component: PartyAddComponent,
         resolve: {apiResult: PartyAddResolverService}
+      },
+      {
+        path: 'party/activity/:partyId/audit',
+        component: ActivityAuditComponent,
+        resolve: {apiResult: ActivityAuditResolverService}
+      },
+      {
+        path: 'party/partyPhoto/:partyId/add',
+        component: PartyPhotoAddComponent,
       },
       {
         path: 'member',

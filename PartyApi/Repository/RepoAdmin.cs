@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PartyApi.Dtos;
 using PartyApi.Helpers;
 using PartyApi.Models;
 
@@ -15,7 +16,7 @@ namespace PartyApi.Repository
         {
             var result = await _db.Activity
                 .Include( x => x.User)
-                // .Include( x => x.Party)
+                .Include( x => x.Party)
                 .Where(x => x.PartyId == partyId)
                 .OrderBy(x => x.User.Sex)
                 .ThenBy(x => x.MyNo)

@@ -81,7 +81,8 @@ namespace PartyApi.Dtos
         public string Religion { get; set; }
         public string Introduction { get; set; }
         public string LikeCondition { get; set; }
-
+        public string MainPhotoUrl { get; set; }
+        
         //以下為個人的其他未顯示欄位
         public string NickName { get; set; }
         public string PdQuestion { get; set; }

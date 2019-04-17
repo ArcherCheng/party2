@@ -20,6 +20,9 @@ export class MemberEditComponent implements OnInit {
   religionOptions = new Array<CheckboxItem>();
   cityOptions = new Array<CheckboxItem>();
   jobOptions = new Array<CheckboxItem>();
+  yearOptions: number[] = this.createArray(1955, 2000);
+  heightOptions: number[] = this.createArray(145, 200);
+  weightOptions: number[] = this.createArray(35, 100);
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +33,7 @@ export class MemberEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: {apiResult: User}) => this.user = data.apiResult);
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.user.mainPhotoUrl = photoUrl);
+    // this.authService.currentPhotoUrl.subscribe(photoUrl => this.user.mainPhotoUrl = photoUrl);
     this.authService.setCurrentTitle('我的資料管理');
     this.loadCheckBoxItem();
   }
@@ -43,10 +46,18 @@ export class MemberEditComponent implements OnInit {
     this.authService.getCheckboxItemList('Religion').subscribe(data => this.religionOptions = data);
   }
 
+  createArray(start: number, max: number) {
+    const a = [];
+    for (let i = start; i <= max; i++ ) {
+      a.push(i);
+    }
+    return a;
+  }
+
   updateUser() {
     this.userService.updateMember(this.authService.decodedToken.nameid, this.user).subscribe(next => {
       this.alertify.success('存檔成功');
-      this.editForm.reset();
+      // this.editForm.reset();
     }, error => {
       this.alertify.error(error.error);
     });

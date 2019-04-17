@@ -1,6 +1,6 @@
-import { UseExistingWebDriver } from 'protractor/built/driverProviders';
-import { User } from './user';
-import { Party } from './party';
+// import { UseExistingWebDriver } from 'protractor/built/driverProviders';
+// import { User } from './user';
+// import { Party } from './party';
 
 export interface Activity {
   id: number;
@@ -16,6 +16,16 @@ export interface Activity {
   checkOver: number;
   notes: string;
   retrunNote: string;
-  user: User;
-  party: Party;
+
+  // user: User;
+  // party: Party;
+  firstName: string;
+  lastName: string;
+  sex: number;
+  birthYear: number;
+  mainPhotoUrl: string;
+
+  // 以下為活動檔的資料
+  partyName: string;
+  partyDate: Date;
 }

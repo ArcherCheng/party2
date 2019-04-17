@@ -1,5 +1,5 @@
 <div class="jumbotron container-fluid">
-  <form [formGroup]="registerForm" (ngSubmit)="register()" >
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
     <h2>會員註冊</h2>
     <hr>
     <div class="form-group row">
@@ -41,29 +41,32 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-3 col-form-label">西元出生年</label>
+      <label class="col-3 col-form-label">出生西元年</label>
       <div class="col-9">
-        <input type="number" class="form-control" formControlName="birthYear">
+        <select class="form-control" id="birthYear" formControlName="birthYear">
+          <option value="">請選擇</option>
+          <option *ngFor="let item of yearOptions">{{item}}</option>
+        </select>
       </div>
     </div>
+
     <div class="form-group row">
       <label class="col-3 col-form-label">我的身高(公分)</label>
       <div class="col-9">
-        <input type="number" class="form-control" formControlName="heights">
+        <select class="form-control" id="heights" formControlName="heights">
+          <option value="">請選擇</option>
+          <option *ngFor="let item of heightOptions">{{item}}</option>
+        </select>
       </div>
     </div>
 
     <div class="form-group row">
       <label class="col-3 col-form-label">我的體重(公斤)</label>
       <div class="col-9">
-        <input type="number" class="form-control" formControlName="weights">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label class="col-3 col-form-label">我的年薪(萬)</label>
-      <div class="col-9">
-        <input type="number" class="form-control" formControlName="salary">
+        <select class="form-control" id="weights" formControlName="weights">
+          <option value="">請選擇</option>
+          <option *ngFor="let item of weightOptions">{{item}}</option>
+        </select>
       </div>
     </div>
     <div class="form-group row">
@@ -98,7 +101,7 @@
         <select class="form-control" id="blood" formControlName="blood">
           <option value="">請選擇</option>
           <option *ngFor="let item of bloodOptions">{{item.keyValue}}</option>
-      </select>
+        </select>
       </div>
     </div>
     <div class="form-group row">
@@ -149,6 +152,12 @@
           <option *ngFor="let item of religionOptions">{{item.keyValue}}</option>
         </select>
       </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-3 col-form-label">我的年薪(萬)</label>
+        <div class="col-9">
+          <input type="number" class="form-control" formControlName="salary">
+        </div>
     </div>
 
     <div class="form-group row">

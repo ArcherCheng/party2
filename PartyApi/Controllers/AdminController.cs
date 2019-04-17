@@ -76,14 +76,21 @@ namespace PartyApi.Controllers
             return BadRequest("存檔派對活動失敗");
         }
 
-        [HttpGet("party/ActivityAudit/{partyid}")]
-        public async Task<IActionResult> ActivityAudit(int partyId) 
+        [HttpGet("party/Activity/{partyid}/audit")]
+        public async Task<IActionResult> GetActivityAudit(int partyId) 
         {
             var repoActivityList = await _repoAdmin.GetActivityAudit(partyId);
-            var dotActivity = _mapper.Map<IEnumerable<DtoActivity>>(repoActivityList);
+            var dotActivity = _mapper.Map<IEnumerable<DtoActivityAudit>>(repoActivityList);
             return Ok(dotActivity);
         }
         
+        [HttpPost("party/Activity/{partyid}/audit")]
+        public async Task<IActionResult> UpdateActivityAudit(int partyId) 
+        {
+            var repoActivityList = await _repoAdmin.GetActivityAudit(partyId);
+            var dotActivity = _mapper.Map<IEnumerable<DtoActivityAudit>>(repoActivityList);
+            return Ok(dotActivity);
+        }
 
         [HttpGet("memberList")]
         public async Task<IActionResult> getMemberList([FromQuery]BaseParameter para) 

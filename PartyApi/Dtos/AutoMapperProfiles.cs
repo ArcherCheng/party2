@@ -79,6 +79,14 @@ namespace PartyApi.Dtos
 
             CreateMap<DtoMessageCreate, Message>();
             CreateMap<DtoActivity, Activity>().ReverseMap();
+            CreateMap<Activity,DtoActivityAudit>()
+               .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.User.FirstName))
+               .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName))
+               .ForMember(dest => dest.Sex, opt => opt.MapFrom(src => src.User.Sex))
+               .ForMember(dest => dest.BirthYear, opt => opt.MapFrom(src => src.User.BirthYear))
+               .ForMember(dest => dest.MainPhotoUrl, opt => opt.MapFrom(src => src.User.MainPhotoUrl))
+               .ForMember(dest => dest.PartyName, opt => opt.MapFrom(src => src.Party.PartyName))
+               .ForMember(dest => dest.PartyDate, opt => opt.MapFrom(src => src.Party.PartyDate));
 
         }
     }

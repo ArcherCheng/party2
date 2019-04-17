@@ -17,6 +17,10 @@ export class RegisterComponent implements OnInit {
   registerData: Register;
   registerForm: FormGroup;
 
+  yearOptions: number[] = this.createArray(1955, 2000);
+  heightOptions: number[] = this.createArray(145, 200);
+  weightOptions: number[] = this.createArray(35, 100);
+
   bloodOptions = new Array<CheckboxItem>();
   starOptions =  new Array<CheckboxItem>();
   religionOptions = new Array<CheckboxItem>();
@@ -59,6 +63,15 @@ export class RegisterComponent implements OnInit {
     this.authService.getCheckboxItemList('Job').subscribe(data => this.jobOptions = data);
     this.authService.getCheckboxItemList('Religion').subscribe(data => this.religionOptions = data);
   }
+
+  createArray(start: number, max: number) {
+    const a = [];
+    for (let i = start; i <= max; i++ ) {
+      a.push(i);
+    }
+    return a;
+  }
+
 
   createRegisterForm() {
     this.registerForm = this.fb.group({

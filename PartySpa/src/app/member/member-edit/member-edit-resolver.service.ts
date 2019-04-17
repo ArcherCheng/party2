@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { AlertifyService } from 'src/app/_shared/service/alertify.service';
 import { Observable, EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/_shared/service/user.service';
 import { User } from 'src/app/_shared/interface/User';
 import { AuthService } from 'src/app/_shared/service/auth.service';
@@ -21,6 +21,7 @@ export class MemberEditResolverService implements Resolve<User> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
     return this.userService.getMyEdit(this.authService.decodedToken.nameid).pipe(
+        // tap(data => console.log(data)),
         catchError(error => {
             this.alertify.error(error);
             this.router.navigate(['/home']);

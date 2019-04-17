@@ -28,7 +28,7 @@ export class MatchListComponent implements OnInit {
         this.userList = data.apiPaginatedResult.result;
         this.pagination = data.apiPaginatedResult.pagination;
       });
-    this.authService.setCurrentTitle('電腦配對結果');
+    this.authService.setCurrentTitle('我的配對結果');
   }
 
   pageChanged(event: any): void {

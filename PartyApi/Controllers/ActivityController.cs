@@ -48,6 +48,32 @@ namespace PartyApi.Controllers
             if (activity != null)
                 return BadRequest("您已經有報名了,不可以重復報名");
 
+            if (member.IsBlackUser > 0)
+                return BadRequest("由於您有不佳的記錄,無法參加本會的活動");
+
+            if (member.Marry > party.Marry)
+                return BadRequest("您的婚姻狀況資格不符,請參加符合您條件的場次");
+            
+            var myAge = member.BirthYear.CalculateYears();
+            if (member.Sex == 1)
+            {
+                if (myAge > party.ManAge2 || myAge < party.ManAge1)
+                   return BadRequest("您的年齡資格不符,請參加符合您條件的場次");
+
+                if (member.Education < party.ManEducaton)
+                   return BadRequest("您的學歷資格不符,請參加符合您條件的場次");
+            } 
+            else
+            {
+                if (myAge > party.WomanAge2 || myAge < party.WomanAge1)
+                   return BadRequest("您的年齡資格不符,請參加符合您年齡的場次");
+
+                if (member.Education < party.WomanEducaton)
+                   return BadRequest("您的學歷資格不符,請參加符合您條件的場次");
+            }
+
+
+
             var today = System.DateTime.Today;
             int amt;
 

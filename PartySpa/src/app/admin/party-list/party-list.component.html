@@ -1,22 +1,22 @@
 <div class="jumbotron container-fluid">
-    <div class="row card m-2">
-      <a class="btn btn-primary" [routerLink]="['/admin','party','add',0]" role="button">新增派對活動</a>
-    </div>
-    <div class="row">
-      <div *ngFor="let party of partyList" class="col-12 col-md-6 col-lg-4 col-xl-3">
-        <div class="card mb-5">
-          <app-party-card [party]="party"></app-party-card>
-          <a class="btn btn-primary w-100 " [routerLink]="['add',party.partyId]" role="button">修改派對活動資料</a>
-          <a class="btn btn-warning w-100 " [routerLink]="['/party',party.partyId,'match']" role="button">報名核對及現場編號</a>
-          <a class="btn btn-success w-100 " [routerLink]="['/party',party.partyId,'match']" role="button">上傳活動相片</a>
-        </div>
+  <div class="row card m-2">
+    <a class="btn btn-primary" [routerLink]="['/admin','party','add',0]" role="button">新增派對活動</a>
+  </div>
+  <div class="row">
+    <div *ngFor="let party of partyList" class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card mb-5">
+        <app-party-card [party]="party"></app-party-card>
+        <a class="btn btn-primary w-100 " [routerLink]="['add',party.partyId]" role="button">修改派對活動資料</a>
+        <a class="btn btn-warning w-100 " [routerLink]="['activity',party.partyId,'audit']" role="button">報名核對及座位編號</a>
+        <a class="btn btn-success w-100 " [routerLink]="['partyPhoto',party.partyId,'add']" role="button">上傳派對活動相片</a>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="d-flex justify-content-center">
-      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
-        [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
-        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
-      </pagination>
-  </div>
+<div class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+    [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+    nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+</div>

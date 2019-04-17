@@ -29,6 +29,4 @@ export class ActivityAuditResolverService implements Resolve<Activity[]> {
     );
   }
 
-
-
 }
