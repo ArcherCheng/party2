@@ -10,6 +10,8 @@ namespace PartyApi.Dtos
         
         [Required]
         public string LastName { get; set; }
+
+        public string NickName { get; set; }
         
         [Required]
         public string Phone { get; set; }
@@ -38,7 +40,6 @@ namespace PartyApi.Dtos
         [Required]
         public int Salary { get; set; }
        
-
         [Required]
         public string Blood { get; set; }
 

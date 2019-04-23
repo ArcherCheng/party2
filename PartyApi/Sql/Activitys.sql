@@ -162,6 +162,9 @@ go
 select * from ViewActivityMatchUser
 go
 
+
+
+
 /*
 drop function af_activity_sex_count
 go

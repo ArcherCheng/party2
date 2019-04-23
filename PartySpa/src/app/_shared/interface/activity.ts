@@ -24,6 +24,8 @@ export interface Activity {
   sex: number;
   birthYear: number;
   mainPhotoUrl: string;
+  education: number;
+  marry: number;
 
   // 以下為活動檔的資料
   partyName: string;

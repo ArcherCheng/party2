@@ -62,6 +62,9 @@ namespace PartyApi
             services.AddScoped<IRepoActivity,RepoActivity>();
             services.AddScoped<IRepoAdmin,RepoAdmin>();
             services.AddScoped<IRepoMessage,RepoMessage>();
+            services.AddScoped<IRepoSysLog,RepoSysLog>();
+            services.AddScoped<LogUserActivity>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -99,6 +102,9 @@ namespace PartyApi
                     });
                 });
             }
+
+            // IHttpContextAccessor httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            // Extensions.Context.Configure(httpContextAccessor);
 
             // app.UseHttpsRedirection();
             // seeder.SeedLiker();

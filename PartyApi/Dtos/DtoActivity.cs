@@ -46,6 +46,8 @@ namespace PartyApi.Dtos
         public string LastName { get; set; }
         public int Sex { get; set; }
         public int BirthYear { get; set; }
+        public int Marry { get; set; }
+        public int Education { get; set; }        
         public string MainPhotoUrl { get; set; }
 
         //以下為活動檔的資料

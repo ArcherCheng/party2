@@ -84,6 +84,8 @@ namespace PartyApi.Dtos
                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName))
                .ForMember(dest => dest.Sex, opt => opt.MapFrom(src => src.User.Sex))
                .ForMember(dest => dest.BirthYear, opt => opt.MapFrom(src => src.User.BirthYear))
+               .ForMember(dest => dest.Marry, opt => opt.MapFrom(src => src.User.Marry))
+               .ForMember(dest => dest.Education, opt => opt.MapFrom(src => src.User.Education))
                .ForMember(dest => dest.MainPhotoUrl, opt => opt.MapFrom(src => src.User.MainPhotoUrl))
                .ForMember(dest => dest.PartyName, opt => opt.MapFrom(src => src.Party.PartyName))
                .ForMember(dest => dest.PartyDate, opt => opt.MapFrom(src => src.Party.PartyDate));

@@ -14,6 +14,11 @@ namespace PartyApi.Repository
 
         public async Task<IEnumerable<Activity>> GetActivityAudit(int partyId)
         {
+            // var userCount = _db.Activity
+            //     .GroupBy(x => x.UserId)
+            //     .Select(x => new { UserId = x.Key, Counts=x.Count()});
+            //     //.ToDictionary(k => k.UserId, i => i.Counts);
+
             var result = await _db.Activity
                 .Include( x => x.User)
                 .Include( x => x.Party)
