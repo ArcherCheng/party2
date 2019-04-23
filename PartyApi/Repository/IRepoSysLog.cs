@@ -6,7 +6,7 @@ namespace PartyApi.Repository
 {
     public interface IRepoSysLog
     {
-         Task<int> AddLog(Aa9log20 entity);
+         Task<int> AddLogAsyn(Aa9log20 entity);
 
     }
     

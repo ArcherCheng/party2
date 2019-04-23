@@ -10,10 +10,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace PartyApi.Helpers
 {
-     public class LogUserActivity : IAsyncActionFilter
+    public class LogUserActivity : IAsyncActionFilter
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            string currentUuserId = "0";
             var temp = context.HttpContext.Request.Path;
 
             var resultContext = await next();
@@ -25,34 +26,20 @@ namespace PartyApi.Helpers
 
             if (resultContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                Aa9log20 log = new Aa9log20()
-                {
-                    UserId = resultContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value,
-                    Refer = resultContext.ActionDescriptor.AttributeRouteInfo.ToString(),
-                    Destination =resultContext.HttpContext.Request.Path,
-                    QueryString =resultContext.HttpContext.Request.QueryString.ToString(),
-                    Method = resultContext.HttpContext.Request.Method,
-                    IpAddress=resultContext.HttpContext.Request.Host.Value,
-                    RequestTime=System.DateTime.Now
-                };
-                var repo = resultContext.HttpContext.RequestServices.GetService<IRepoSysLog>();
-                await repo.AddLog(log);
+                currentUuserId = resultContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             }
-            else
+            Aa9log20 log = new Aa9log20()
             {
-                Aa9log20 log = new Aa9log20()
-                {
-                    UserId = "0", //Anonymous
-                    Refer = resultContext.ActionDescriptor.AttributeRouteInfo.ToString(),
-                    Destination =resultContext.HttpContext.Request.Path,
-                    QueryString =resultContext.HttpContext.Request.QueryString.ToString(),
-                    Method = resultContext.HttpContext.Request.Method,
-                    IpAddress=resultContext.HttpContext.Request.Host.Value,
-                    RequestTime=System.DateTime.Now
-                };
-                var repo = resultContext.HttpContext.RequestServices.GetService<IRepoSysLog>();
-                await repo.AddLog(log);
-            }
+                UserId = currentUuserId,
+                Refer = resultContext.ActionDescriptor.AttributeRouteInfo.ToString(),
+                Destination = resultContext.HttpContext.Request.Path,
+                QueryString = resultContext.HttpContext.Request.QueryString.ToString(),
+                Method = resultContext.HttpContext.Request.Method,
+                IpAddress = resultContext.HttpContext.Request.Host.Value,
+                RequestTime = System.DateTime.Now
+            };
+            var repo = resultContext.HttpContext.RequestServices.GetService<IRepoSysLog>();
+            await repo.AddLogAsyn(log);
         }
     }
 
@@ -95,7 +82,7 @@ namespace PartyApi.Helpers
             return uriBuilder.Uri;
         }
 
-        public static string GetAbsoluteUrl() 
+        public static string GetAbsoluteUrl()
         {
             return GetAbsoluteUri().ToString();
         }

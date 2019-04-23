@@ -14,7 +14,7 @@ namespace PartyApi.Repository
         {
         }
 
-        public async Task<int> AddLog(Aa9log20 log)
+        public async Task<int> AddLogAsyn(Aa9log20 log)
         {
             // await _db.Aa9log20.AddAsync(log);
             _db.Aa9log20.Add(log);
