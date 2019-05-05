@@ -76,7 +76,7 @@ namespace PartyApi.Controllers
             return BadRequest("存檔派對活動失敗");
         }
 
-        [HttpGet("party/Activity/{partyid}/audit")]
+        [HttpGet("party/Activity/{partyid}/auditList")]
         public async Task<IActionResult> GetActivityAudit(int partyId) 
         {
             var repoActivityList = await _repoAdmin.GetActivityAudit(partyId);

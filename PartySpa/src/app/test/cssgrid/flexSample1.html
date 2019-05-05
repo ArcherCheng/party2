@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flexbox sample</title>
+  <style>
+    .container{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-side-wrapper {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .main{
+      flex: 3;
+      margin-right: 2px;
+    }
+    .sidebar {
+      flex: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    header nav {
+      display: flex;
+      align-items: baseline;
+    }
+
+    header, footer  {
+      background-color: aquamarine;
+    }
+    section, aside  {
+      background-color: #aeaeae;
+    }
+
+    @media (max-width: 600px) {
+      .main-side-wrapper {
+        flex-direction: column;
+      }
+      .main {
+        margin-right: 0;
+      }
+    }
+
+    /*
+
+    */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <li><a href="#">Header</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Other</a></li>
+      </nav>
+      <button>Button</button>
+    </header>
+    <div class="main-side-wrapper">
+      <section class="main">
+        <h2>Flexbox Layout</h2>
+        <p>
+            <img src="https://demo.tutorialzine.com/2017/03/css-grid-vs-flexbox/demo/landscape.jpg">
+        </p>
+      </section>
+      <aside class="sidebar">
+        <h3>Sidebar</h3>
+        <nav>
+            <li><a href="#">Header</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Other</a></li>
+        </nav>
+      </aside>
+    </div>
+    <footer>
+      <h3>Footer</h3>
+      <p>Test flexbox and grid layout html</p>
+    </footer>
+  </div>
+
+</body>
+</html>
