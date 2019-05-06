@@ -5,7 +5,7 @@ using PartyApi.Models;
 
 namespace PartyApi.Repository
 {
-    public interface IRepoMessage : IBaseReposistiory
+    public interface IRepoMessage : IBaseRepository
     {
         Task<Message> GetMessage(int id);
         Task<PageList<Message>> GetMessagesForUser(ParaMessage para);

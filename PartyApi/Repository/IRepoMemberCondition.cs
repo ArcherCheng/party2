@@ -3,7 +3,7 @@ using PartyApi.Models;
 
 namespace PartyApi.Repository
 {
-    public interface IRepoMemberCondition : IBaseReposistiory 
+    public interface IRepoMemberCondition : IBaseRepository 
     {
         Task<MemberCondition> Get(int userId);
          

@@ -5,7 +5,7 @@ using PartyApi.Models;
 
 namespace PartyApi.Repository
 {
-    public interface IRepoActivity : IBaseReposistiory 
+    public interface IRepoActivity : IBaseRepository 
     {
         Task<Activity> GetActivityMember(int userId,int PartyId);
         Task<IEnumerable<Member>> GetActivityMemberList(int userId,int partyId);

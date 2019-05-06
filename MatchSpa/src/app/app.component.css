@@ -1,0 +1,27 @@
+.grid{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 64px auto 64px;
+  grid-gap: 1px;
+  grid-template-areas:
+  "header header"
+  "main sidebar"
+  "footer footer"
+}
+.header {
+  grid-area: header;
+  background-color: black;
+  color: white;
+}
+.main{
+  grid-area: main;
+  background-color: #aeaeae;
+}
+.sidebar{
+  grid-area: sidebar;
+  background-color: #aeaeae;
+}
+.footer{
+  grid-area: footer;
+  background-color: chocolate;
+}

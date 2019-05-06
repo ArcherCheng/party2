@@ -56,6 +56,7 @@ namespace PartyApi
             services.AddTransient<Seed>();
             services.AddScoped<IRepoAuth,RepoAuth>();
             services.AddScoped<IRepoMember,RepoMember>();
+            services.AddScoped<IRepoMatchUser,RepoMatchUser>();
             services.AddScoped<IRepoMemberCondition,RepoMemberCondition>();
             services.AddScoped<IRepoMemberPhoto,RepoMemberPhoto>();
             services.AddScoped<IRepoParty,RepoParty>();

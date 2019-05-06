@@ -6,7 +6,7 @@ using PartyApi.Helpers;
 
 namespace PartyApi.Repository
 {
-    public interface IBaseReposistiory
+    public interface IBaseRepository
     {
         void Add<T>(T entity) where T : class;
 

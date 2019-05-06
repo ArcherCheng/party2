@@ -31,6 +31,8 @@ namespace PartyApi.Dtos
         public string City { get; set; }
         public string JobType { get; set; }
         public string MainPhotoUrl { get; set; }
+        public DateTime LastDate{ get; set; }
+        public DateTime ActiveDate{ get; set; }
 
         //非原始欄位,計算出來的, 顯示用
         public string UserName { get; set; }

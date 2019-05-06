@@ -5,7 +5,7 @@ using PartyApi.Models;
 
 namespace PartyApi.Repository
 {
-    public interface IRepoMember : IBaseReposistiory 
+    public interface IRepoMember : IBaseRepository 
     {
         Task<Member> Get(int userId);
         Task<Member> GetDetail(int userId);

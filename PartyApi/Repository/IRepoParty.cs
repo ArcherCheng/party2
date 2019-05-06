@@ -5,7 +5,7 @@ using PartyApi.Models;
 
 namespace PartyApi.Repository
 {
-    public interface IRepoParty : IBaseReposistiory
+    public interface IRepoParty : IBaseRepository
     {
         Task<Party> Get(int partyId);
         Task<PageList<Party>> GetList(ParaParty para);

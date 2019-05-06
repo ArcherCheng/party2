@@ -5,7 +5,7 @@ using PartyApi.Models;
 
 namespace PartyApi.Repository
 {
-    public interface IRepoMemberPhoto : IBaseReposistiory 
+    public interface IRepoMemberPhoto : IBaseRepository 
     {
         Task<MemberPhoto> Get(int id);
         // Task<Photo> SetMainPhoto(int userId);
