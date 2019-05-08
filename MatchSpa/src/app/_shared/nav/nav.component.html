@@ -1,3 +1,24 @@
-<p>
-  nav works!
-</p>
+<nav class="topbar" [ngClass]="{'not-home': router.iaActive('/',ture)}">
+  <a [routerLink]="['/']" >
+    <img class="brand-logo" src="/assets/imgs/logo.svg" alt="台北單身派對" title="台北單身派對">
+  </a>
+  <span class="split">float</span>
+  <button (click)="navbarCollapsed = !navbarCollapsed">
+    <span class="navbar-toggler-icon">
+        <span *ngIf="navbarCollapsed" class="fa fa-bars"></span>
+        <span *ngIf="!navbarCollapsed" class="fa fa-times"></span>
+    </span>
+  </button>
+
+  <ul>
+    <li *ngIf="!this.isLoggin()">
+      <a  href="#">註冊</a>
+    </li>
+    <li *ngIf="!this.isLoggin()">
+        <a href="#">登入</a>
+    </li>
+    <li *ngIf="this.isLoggin()">
+        <a href="#">登出</a>
+    </li>
+  </ul>
+</nav>

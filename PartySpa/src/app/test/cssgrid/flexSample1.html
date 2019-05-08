@@ -1,50 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <title>flexbox sample</title>
   <style>
-    .container{
+    .container {
       display: flex;
       flex-direction: column;
     }
+
+    .header {
+      display: flex; /*inline-flex*/
+      flex-direction: row; /*column; row-reverse; column-reverse; */
+      flex-wrap: nowrap; /*wrap; wrap-reverse; */
+      /* flex-flow: row nowrap; */
+      /*設定元素主軸(水平)的對齊方式*/
+      justify-content: space-between; /*flex-start; flex-end; center; space-between; space-around; space-evenly */
+      /*設定元素對齊方式*/
+      align-items: center; /*strech; flex-start; flex-end; baseline;*/
+      /*
+      当交叉轴上有剩余空间时，align-content 可以设置 flex 容器中的 行 在交叉轴上如何分配剩余空间，
+      类似于 justify-content 在主轴上对齐单个 flex 项的方式。
+      */
+       /*align-content: center; flex-start; flex-end; center; space-between; space-around; space-evenly */
+    }
+    .header .brand-logo{
+      margin: 4px;
+      width: 48px;
+      height: auto;
+    }
+
+    .header ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding: 10px;
+    }
+
+    .header ul li {
+      display: inline;
+    }
+
+    .header ul li a {
+      padding: 6px;
+      text-decoration: none;
+      background-color: #98bf21;
+      font-weight: bold;
+    }
+
 
     .main-side-wrapper {
       display: flex;
       flex-direction: row;
     }
 
-    .main{
+    .main {
       flex: 3;
       margin-right: 2px;
     }
+
     .sidebar {
       flex: 1;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-    }
 
-    header nav {
-      display: flex;
-      align-items: baseline;
-    }
-
-    header, footer  {
+    header,
+    footer {
       background-color: aquamarine;
     }
-    section, aside  {
+
+    section,
+    aside {
       background-color: #aeaeae;
     }
 
-    @media (max-width: 600px) {
+    @media all and (max-width: 600px) {
       .main-side-wrapper {
         flex-direction: column;
       }
+
       .main {
         margin-right: 0;
       }
@@ -55,31 +94,41 @@
     */
   </style>
 </head>
+
 <body>
   <div class="container">
-    <header>
-      <nav>
-        <li><a href="#">Header</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Other</a></li>
+    <header class="header">
+      <a [routerLink]="['/']" >
+        <img class="brand-logo" src="../../../assets/user.png" alt="台北單身派對" title="台北單身派對">
+      </a>
+      <nav class="topbar">
+        <ul>
+          <li><a href="#">Header</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Other</a></li>
+        </ul>
       </nav>
-      <button>Button</button>
+      <button>
+        <span class="fa fa-bars"></span>
+      </button>
     </header>
     <div class="main-side-wrapper">
       <section class="main">
         <h2>Flexbox Layout</h2>
         <p>
-            <img src="https://demo.tutorialzine.com/2017/03/css-grid-vs-flexbox/demo/landscape.jpg">
+          <img src="https://demo.tutorialzine.com/2017/03/css-grid-vs-flexbox/demo/landscape.jpg">
         </p>
       </section>
       <aside class="sidebar">
         <h3>Sidebar</h3>
         <nav>
+          <ul>
             <li><a href="#">Header</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Help</a></li>
             <li><a href="#">Other</a></li>
+          </ul>
         </nav>
       </aside>
     </div>
@@ -90,4 +139,5 @@
   </div>
 
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 .grid{
   display: grid;
   grid-template-columns: 4fr 1fr;
-  grid-template-rows: 64px auto 64px;
+  grid-template-rows: 64px auto auto;
   grid-gap: 1px;
   grid-template-areas:
   "header header"
@@ -10,8 +10,7 @@
 }
 .header {
   grid-area: header;
-  background-color: black;
-  color: white;
+  background-color: #5e5eae;
 }
 .main{
   grid-area: main;
