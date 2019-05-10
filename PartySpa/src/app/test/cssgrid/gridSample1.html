@@ -12,16 +12,28 @@
   <style>
     .mainContainer {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: 1fr auto 1fr;
+      grid-template-columns: 10fr 2fr;
+      grid-template-rows: 6vh auto 6vh;
       grid-gap: 1px;
-      /* grid-template-areas: "header header" "main sidebar" "footer footer"; */
+      grid-template-areas:
+      "header header"
+      "mainContent sidebar"
+      "footer footer";
+    }
+    #header {
+      grid-area: header;
+    }
+    #mainContent {
+      grid-area: mainContent;
+    }
+    #mainSidebar {
+      grid-area: sidebar;
+    }
+    #footer {
+      grid-area: footer;
     }
 
     .header {
-      grid-column: 1/span 12;
-      grid-row:1/2; 
-
       display: flex; /*inline-flex*/
       flex-direction: row; /*column; row-reverse; column-reverse; */
       flex-wrap: nowrap; /*wrap; wrap-reverse; */
@@ -37,7 +49,7 @@
        /*align-content: center; flex-start; flex-end; center; space-between; space-around; space-evenly */
     }
 
-    .header .brand-logo{
+    .brand-logo{
       margin: 4px;
       width: 48px;
       height: auto;
@@ -61,25 +73,20 @@
     }
 
     .mainWrapper {
-      grid-column: 1/span 12;
-      grid-row:2/3; 
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
     }
 
-    .mainWrapper .mainContent{
-      flex: 3;
-      margin-right: 2px;
+    .mainContent{
+      margin-right: 1px;
     }
 
-    .mainWrapper .sidebar {
-      flex: 1;
+    .mainSidebar {
+      margin: 0;
     }
 
     .footer {
-      grid-column: 1/span 12;
-      grid-row:3/4; 
       display: flex;
     }
 
@@ -113,14 +120,17 @@
             <span class="fa fa-bars"></span>
           </button>
         </header>
-        <div class="mainWrapper">
+        <!--
+          <div class="mainWrapper">
+          </div>
+        -->
           <section class="mainContent" id="mainContent">
             <h2>Flexbox Layout</h2>
             <p>
               <img src="https://demo.tutorialzine.com/2017/03/css-grid-vs-flexbox/demo/landscape.jpg">
             </p>
           </section>
-          <aside class="sidebar">
+          <aside class="mainSidebar" id="mainSidebar">
             <h3>Sidebar</h3>
             <nav>
               <ul class="sidebar">
@@ -131,7 +141,6 @@
               </ul>
             </nav>
           </aside>
-        </div>
         <footer class="footer" id="footer">
           <h3>Footer</h3>
           <p>Test flexbox and grid layout html</p>
