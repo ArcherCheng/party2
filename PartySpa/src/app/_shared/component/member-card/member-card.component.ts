@@ -9,12 +9,12 @@ import { User } from 'src/app/_shared/interface/user';
 })
 export class MemberCardComponent implements OnInit {
   @Input() user: User;
-  photoUrl: string;
+  // photoUrl: string;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    // this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
 }

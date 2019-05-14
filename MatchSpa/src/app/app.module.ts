@@ -1,16 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import { PaginationModule } from 'ngx-bootstrap';
+import { SharedModule } from './_shared/shared-module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './_shared/nav/nav.component';
 import { FooterComponent } from './_shared/footer/footer.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserPhotosComponent } from './user-photos/user-photos.component';
+import { UserMatchListComponent } from './user-match-list/user-match-list.component';
+import { UserMatchConditionComponent } from './user-match-condition/user-match-condition.component';
+// import { CheckboxReactiveComponent } from './_shared/checkbox-reactive/checkbox-reactive.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -21,15 +23,15 @@ export function tokenGetter() {
     AppComponent,
     HomeComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    UserDetailComponent,
+    UserPhotosComponent,
+    UserMatchListComponent,
+    UserMatchConditionComponent
   ],
   imports: [
     BrowserModule,
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PaginationModule.forRoot(),
+    SharedModule,
     AppRoutingModule,
     JwtModule.forRoot({
       config: {

@@ -39,6 +39,7 @@ export class MyMessagesComponent implements OnInit {
             this.messages = res.result;
             this.pagination = res.pagination;
             this.messageContainer = messageContainer;
+            window.scrollTo(0, 0);
         }, error => {
           this.alertify.error(error);
         });

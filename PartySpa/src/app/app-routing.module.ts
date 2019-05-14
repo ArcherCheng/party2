@@ -25,9 +25,10 @@ const routes: Routes = [
   //   preloadingStrategy: PreloadAllModules
   // })],
 
-  imports: [RouterModule.forRoot(routes, {
-    enableTracing: false
-  })],
+  imports: [RouterModule.forRoot(
+    routes,
+    { scrollPositionRestoration: 'top', enableTracing: false },
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

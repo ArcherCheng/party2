@@ -6,6 +6,7 @@ namespace PartyApi.Models
     public partial class MemberCondition
     {
         public int UserId { get; set; }
+        public int Sex { get; set; }
         public int MarryMin { get; set; }
         public int MarryMax { get; set; }
         public int YearMin { get; set; }

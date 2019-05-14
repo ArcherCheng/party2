@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.route.data.subscribe((data: {apiResult: PaginatedResult<User[]>}) => {
       this.userList = data.apiResult.result;
       this.pagination = data.apiResult.pagination;
-      console.log(data.apiResult);
+      // console.log(data.apiResult);
     } );
   }
 
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
       (res: PaginatedResult<User[]>) => {
         this.userList = res.result;
         this.pagination = res.pagination;
+        window.scrollTo(0, 0);
       }, error => {
         this.alertify.error(error.error);
       }

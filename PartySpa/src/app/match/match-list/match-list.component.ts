@@ -41,6 +41,7 @@ export class MatchListComponent implements OnInit {
     .subscribe((res: PaginatedResult<User[]>) => {
       this.userList = res.result;
       this.pagination = res.pagination;
+      window.scrollTo(0, 0);
     }, error => {
       this.alertify.error(error.error);
     });

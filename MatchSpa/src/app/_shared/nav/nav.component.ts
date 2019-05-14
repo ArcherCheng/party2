@@ -10,16 +10,16 @@ import { AlertifyService } from '../service/alertify.service';
 })
 export class NavComponent implements OnInit {
   navbarCollapsed = true;
-  currentPhotoUrl: string;
+  photoUrl: string;
 
   constructor(
     public router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     private alertify: AlertifyService
     ) { }
 
   ngOnInit() {
-    this.authService.currentPhotoUrl.subscribe(photoUrl => this.currentPhotoUrl = photoUrl);
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   isLoggin(): boolean {

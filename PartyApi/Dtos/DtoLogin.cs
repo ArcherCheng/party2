@@ -16,9 +16,10 @@ namespace PartyApi.Dtos
 
     public class DtoCheckboxItem
     {
-        public int KeyId { get; set; }
+        public int KeySeq { get; set; }
         public string KeyValue { get; set; }        
         public bool IsChecked { get; set; }      
+        public string KeyLabel { get; set; }        
     }
 
 

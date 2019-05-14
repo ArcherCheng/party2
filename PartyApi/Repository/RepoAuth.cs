@@ -66,6 +66,7 @@ namespace PartyApi.Repository
                 return true;
             }
         }
+        
         private void createPasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -74,11 +75,12 @@ namespace PartyApi.Repository
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+
         public async Task<IEnumerable<CheckboxItem>> GetCheckboxItemList(string keyGroup)
         {
             var result = await _db.CheckboxItem
                 .Where(x => x.KeyGroup == keyGroup)
-                .OrderBy(x =>x.KeyId)
+                .OrderBy(x =>x.KeySeq)
                 // .Select(x => new {
                 //     KeyId = x.KeyId,
                 //     KeyValue =  x.KeyValue,

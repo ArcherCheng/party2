@@ -41,6 +41,7 @@ export class PartyListComponent implements OnInit {
       (res: PaginatedResult<Party[]>) => {
         this.partyList = res.result;
         this.pagination = res.pagination;
+        window.scrollTo(0, 0);
       }, error => {
         this.alertify.error(error.error);
       }

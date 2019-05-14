@@ -101,6 +101,7 @@ namespace PartyApi.Dtos
     public class DtoMemberCondition
     {
         public int UserId { get; set; }
+        public int Sex { get; set; }
         public int MarryMin { get; set; }
         public int MarryMax { get; set; }
         public int YearMin { get; set; }
